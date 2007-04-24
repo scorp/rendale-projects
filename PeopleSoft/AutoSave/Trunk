@@ -1,0 +1,215 @@
+// *****************************************************
+// IMSH_EP03 W.Bailey 10-31-2006 Auto Save Functionality
+//
+// set pollingInterval to the number of miliseconds to 
+// wait between checks to determine if a save is needed
+//
+// set saveMessage to the text you want to display in the
+// notification box when a save occurs
+// *****************************************************
+
+var pollingInterval = 4000;
+var threadLock = false;
+var saveMessage = "Data Saved!";
+var notification = $("<div>").css({
+		display: "none", 
+		left: "627px", 
+		position: "absolute", 
+		color: "#ffffff", 
+		width: "150px",
+        fontSize: "12px",
+        fontWeight: "bold",
+		background: "#66C030",
+		border: "2px solid #4E9324",
+        padding: "2px",
+		textAlign: "center"
+		});
+var imsh_save_error = false;
+var SaveTimeout = new Array();
+var FadeTimeout;
+
+checkFormChanged = function(form, objFrame)
+{
+	threadLock = true;
+			if (!form.ICChanged)
+			   return null;          			
+		    if (form.ICChanged.value == "-1")
+  				return false;        			
+			if (form.ICChanged.value == "1")
+  				return true;   
+
+			for (var j = 0; j < form.length; ++j)
+			{
+  					if (isChanged(form.elements[j], objFrame))
+					{	
+						if (form.elements[j].name != 'CARRIER')
+	     				{		
+							return true;
+						}
+					
+					}
+			}
+			return false;
+};
+
+function update_defaults(form){
+	for (var j = 0; j < form.length; ++j)
+	{
+		var element = form.elements[j];
+		try{
+		switch(element.type)
+		{
+			case "checkbox":
+				element.defaultChecked = element.checked;
+				break;
+			case "select-one":
+				element.options[element.selectedIndex].defaultSelected = true;
+				break;
+ 			case "hidden":
+				break;
+			case "button":
+				break;
+			default:
+				element.defaultValue = element.value;
+				break;				
+		};		
+		}
+		catch(ex){};
+	};
+};
+
+function timeoutHandler(){
+	while (window.SaveTimeout.length > 0)
+	{
+		job = window.SaveTimeout.shift()
+		window.clearTimeout(job)
+	}
+	window.SaveTimeout.push(setTimeout("autosave()",pollingInterval));
+}
+
+function autosave(){
+	var changes = checkFormChanged(document.%formname);
+	if (changes) {
+		$('input[@name=ICAction]').attr({value: 'IMSH_LADP_WRK_SAVE_PB'});
+		update_defaults(document.%formname);
+		var params = $('form[@name=%formname]').fastSerialize();
+        $.ajax({ type: "POST", url: $('form[@name=%formname]').attr("action"), data: $.param( params ), success: 
+			function(msg)
+			{ 
+	       		var searchForError = "nResubmit=0;";
+		        var errorStart = msg.indexOf(searchForError, msg.indexOf("<body")) + searchForError.length;
+       			var errorEnd = msg.indexOf(";", errorStart);
+        		var errorMessage = msg.substr(errorStart, errorEnd - errorStart);
+		        if (errorMessage.indexOf('alert') != -1)
+        		{
+					threadLock = false;
+					var searchFor = "'ICStateNum' value='";
+	    			var stateNumStart = msg.indexOf(searchFor) + searchFor.length;
+	    			var stateNumEnd = msg.indexOf("'", stateNumStart);
+			    	var newState = msg.substr(stateNumStart, stateNumEnd - stateNumStart);
+	       		    $('input[@name=ICStateNum]').attr({value: newState});
+					try
+                    {
+                      eval(errorMessage);
+                    }
+                    catch(exception)
+                    {
+
+                    }
+      			}
+      			else
+      			{
+					$('input[@name=ICChanged]').attr({value: '0'});
+			    	var searchFor = "'ICStateNum' value='";
+	    			var stateNumStart = msg.indexOf(searchFor) + searchFor.length;
+	    			var stateNumEnd = msg.indexOf("'", stateNumStart);
+			    	var newState = msg.substr(stateNumStart, stateNumEnd - stateNumStart);
+	       		    $('input[@name=ICStateNum]').attr({value: newState});
+	    			display_notification();
+				}
+			var searchForError = null;
+			var errorStart = null;
+			var errorEnd = null;
+			var errorMessage = null;
+		 	var SearchFor = null;
+	        var stateNumStart = null;
+	        var stateNumEnd = null;
+			threadLock = false;
+    		}
+		});
+	}
+	else{
+		threadLock = false;
+		window.timeoutHandler();
+	};
+};
+
+function display_notification(){
+
+    var topValue = window.pageYOffset;
+    if (! topValue )
+		topValue = document.documentElement.scrollTop;
+    if (! topValue )
+		topValue = document.body.scrollTop;
+    var topValue = topValue.toString() + "px";
+    notification.css({top: topValue});
+	notification.fadeIn("fast", 
+		function(){
+    	FadeTimeout = setTimeout ( "fade_notification()", 3000);
+	});
+};
+
+function fade_notification(){
+		notification.fadeOut("slow", 
+			function(){
+				notification.remove();
+				$("body").append(notification);
+				window.timeoutHandler();
+				clearTimeout(FadeTimeout);
+			}
+		);
+};
+
+function start_autosave(){
+
+notification.append(saveMessage);
+$("body").append(notification);		
+        if ($('input[@name=ICChanged]').val() != 0 && !imsh_save_error){
+			window.timeoutHandler();
+		}
+		else
+		{
+			window.timeoutHandler();
+		}
+
+		$('textarea').keypress(timeoutHandler);
+		$('input[@type="text"]').keypress(timeoutHandler);
+
+    	window.submitAction_%Formname = function(form, name){
+		form = $('form')[0];
+		$('body').css({cursor: "wait"});
+		function submit_the_form()
+		{
+			form.ICAction.value=name;
+			form.ICXPos.value=getScrollX();
+			form.ICYPos.value=getScrollY();
+			processing_%Formname(1,3000);
+			form.ICResubmit.value=nResubmit;
+			form.submit();
+			nResubmit++;
+		}
+
+		function check_for_lock()
+		{
+			if (threadLock){
+				setTimeout("submitAction_%Formname('" + %formname + "','" + name + "')",250);
+			}
+			else{
+				IMSH_JS.Utilities.page_cache.sleep();
+				submit_the_form();
+			}
+		}
+		
+		check_for_lock();
+	};
+}
