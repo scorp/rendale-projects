@@ -1,0 +1,52 @@
+/* Training */
+
+import IMSH_LADP:*;
+import IMSH_LADP:Models:*;
+import IMSH_LADP:Types:*;
+
+Component IMSH_LADP:Controller &controller;
+Local string &page;
+Component Record &dg_record;
+Component Row &dg_row;
+
+DoModal(Page.IMSH_LADP_TRN_DG, "", 0, 0);
+
+If All(&dg_record) Then
+   If GetLevel0()(1).GetRowset(Scroll.TRAINING).ActiveRowCount > 1 Or
+         Not GetLevel0()(1).GetRowset(Scroll.TRAINING)(1).IsNew Or
+         (GetLevel0()(1).GetRowset(Scroll.TRAINING)(1).IsNew And
+            GetLevel0()(1).GetRowset(Scroll.TRAINING)(1).IsChanged) Then
+      GetLevel0()(1).GetRowset(Scroll.TRAINING).InsertRow(0);
+   End-If;
+   GetLevel0()(1).GetRowset(Scroll.TRAINING).SetComponentChanged = True;
+   &new_record = GetLevel0()(1).GetRowset(Scroll.TRAINING)(1).TRAINING;
+   &dg_record.CopyFieldsTo(&new_record);
+   &new_record.emplid.value = IMSH_LADP.EMPLID.Value;
+   IMSH_LADP_WRK.IMSH_GROUPBOX12.Visible = True;
+   
+   
+   If None(&new_record.Course_Start_dt.value) Then
+      If None(&new_record.IMSH_YEAR.Value) Then
+         GetLevel0()(1).GetRowset(Scroll.TRAINING)(1).IMSH_LADP_WRK.DESCR100.Label = "Add Course Date";
+      Else
+         GetLevel0()(1).GetRowset(Scroll.TRAINING)(1).IMSH_LADP_WRK.DESCR100.Label = &new_record.DESCR100.Value;
+      End-If;
+      GetLevel0()(1).GetRowset(Scroll.TRAINING)(1).IMSH_LADP_WRK.DESCR100.Enabled = True;
+   Else
+      GetLevel0()(1).GetRowset(Scroll.TRAINING)(1).IMSH_LADP_WRK.DESCR100.Label = DateTimeToLocalizedString(&new_record.COURSE_START_DT.Value, "MMM yyyy");
+      GetLevel0()(1).GetRowset(Scroll.TRAINING)(1).IMSH_LADP_WRK.DESCR100.Enabled = False;
+      try
+         GetGrid(%Page, "TRAINING").DESCR100_TRN.Label = "Course Date";
+      catch Exception &grid_ex
+         
+      end-try;
+   End-If;
+   
+   
+   
+   &dg_record = Null;
+End-If;
+DoSaveNow();
+
+Local IMSH_LADP:Types:Arguments &args = create IMSH_LADP:Types:Arguments();
+&controller.do("render_form", &args);

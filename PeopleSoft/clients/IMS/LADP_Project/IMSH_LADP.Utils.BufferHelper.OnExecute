@@ -1,0 +1,28 @@
+class BufferHelper
+   method BufferHelper();
+   method is_empty_rowset(&rowset As Rowset) Returns boolean;
+end-class;
+
+method BufferHelper
+   
+end-method;
+
+method is_empty_rowset
+   /+ &rowset as Rowset +/
+   /+ Returns Boolean +/
+   Local integer &a;
+   If &rowset.ActiveRowCount <= 1 Then
+      Local Record &rec = &rowset(1).GetRecord(@("record." | &rowset.DBRecordName));
+      For &a = 1 To &rec.FieldCount
+         If None(&rec.GetField(&a).Value) And
+               &rec.GetField(&a).IsKey Then
+            rem WinMessage(&rec.GetField(&a).Value);
+            Return True
+         End-If;
+      End-For;
+      Return False;
+   Else
+      Return False;
+   End-If;
+end-method;
+

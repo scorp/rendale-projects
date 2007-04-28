@@ -1,0 +1,126 @@
+import IMSH_LADP:*;
+import IMSH_LADP:Types:*;
+import IMSH_LADP:Models:*;
+import PT_WF_NOTIFICATION:*;
+
+class Employee extends IMSH_LADP:Model
+   method Employee();
+   
+   method populate_development_plan(&year As string);
+   method find_pmp_id_for(&year As string) Returns string;
+   method find_performance_rating_by_date(&date As date) Returns Record;
+   method find_manager() Returns IMSH_LADP:Models:Employee;
+   method find_hr_rep() Returns IMSH_LADP:Models:Employee;
+   property PT_WF_NOTIFICATION:NotificationAddress email_address get;
+   property IMSH_LADP:Models:DevelopmentPlanCollection development_plan_collection;
+   property IMSH_LADP:ModelCollection prior_position_collection;
+   property IMSH_LADP:ModelCollection relocation_collection;
+   property IMSH_LADP:ModelCollection education_collection;
+   property IMSH_LADP:ModelCollection training_collection;
+   property IMSH_LADP:ModelCollection languages_collection;
+   property IMSH_LADP:ModelCollection certifications_collection;
+end-class;
+
+Declare Function EP_ReportsToByPosition PeopleCode FUNCLIB_EP.EP_APPRAISAL_ID FieldFormula;
+
+method Employee
+   Local Record &imsh_emp = CreateRecord(Record.IMSH_EMPLOYEE);
+   %Super = CreateObject("IMSH_LADP:Model", &imsh_emp);
+   
+   /* qualifications and background */
+   If %Component = "IMSH_LADP_FORM" Then
+      try
+         %This.prior_position_collection = CreateObject("IMSH_LADP:ModelCollection", GetLevel0()(1).GetRowset(Scroll.IMSH_PRIOR_POS));
+         %This.relocation_collection = CreateObject("IMSH_LADP:ModelCollection", GetLevel0()(1).GetRowset(Scroll.IMSH_RELOCATE));
+         %This.education_collection = CreateObject("IMSH_LADP:ModelCollection", GetLevel0()(1).GetRowset(Scroll.IMSH_LADPEDU_VW));
+         %This.training_collection = CreateObject("IMSH_LADP:ModelCollection", GetLevel0()(1).GetRowset(Scroll.TRAINING));
+         %This.languages_collection = CreateObject("IMSH_LADP:ModelCollection", GetLevel0()(1).GetRowset(Scroll.IMSH_LADPLNG_VW));
+         %This.certifications_collection = CreateObject("IMSH_LADP:ModelCollection", GetLevel0()(1).GetRowset(Scroll.IMSH_LADPCRT_VW));
+      catch Exception &error_getting_buffer
+      end-try;
+   End-If;
+end-method;
+
+get email_address
+   /+ Returns PT_WF_NOTIFICATION:NotificationAddress +/
+   Local string &out;
+   Local PT_WF_NOTIFICATION:NotificationAddress &n_address = create PT_WF_NOTIFICATION:NotificationAddress("", "", "", "Email", "");
+   SQLExec("Select emailid from ps_rolexlatopr where emplid = :1", %This.GetField(Field.EMPLID).Value, &out);
+   &n_address.EmailId = &out;
+   &n_address.Channel = "Email";
+   Return &n_address;
+end-get;
+
+method find_performance_rating_by_date
+   /+ &date as Date +/
+   /+ Returns Record +/
+   Local Record &result = CreateRecord(Record.EMPLOYEE_REVIEW);
+   SQLExec("%selectall(EMPLOYEE_REVIEW A) where %EffDtCheck(EMPLOYEE_REVIEW AA, A, %datein(:2)) AND A.EMPLID = :1 and A.REVIEW_TYPE = 'P'", %This.GetField(Field.EMPLID).Value, &date, &result);
+   Return &result;
+end-method;
+
+method find_manager
+   /+ Returns IMSH_LADP:Models:Employee +/
+   Local IMSH_LADP:Models:Employee &manager = create IMSH_LADP:Models:Employee();
+   &manager.GetField(Field.EMPLID).Value = EP_ReportsToByPosition("4", %This.GetField(Field.EMPLID).Value, 0, %Date);
+   
+   try
+      If None(&manager.GetField(Field.EMPLID).Value) Then
+         Local Rowset &IMSH_EmplJob = CreateRowset(Record.JOB);
+         &IMSH_EmplJob.Fill("WHERE FILL.EMPLID = :1 AND FILL.EMPL_RCD = :2 AND FILL.EFFDT = (SELECT MAX(A.EFFDT) FROM PS_JOB A WHERE A.EMPLID = FILL.EMPLID AND A.EMPL_RCD = FILL.EMPL_RCD AND A.EFFDT <= %DATEIN(:3)) AND FILL.EFFSEQ = (SELECT MAX(A1.EFFSEQ) FROM PS_JOB A1 WHERE A1.EMPLID = FILL.EMPLID AND A1.EMPL_RCD = FILL.EMPL_RCD AND A1.EFFDT = FILL.EFFDT)", %This.GetField(Field.EMPLID).Value, 0, %Date);
+         Local string &two_up;
+         SQLExec("select a.REPORTS_TO from PS_POSITION_DATA A where A.POSITION_NBR = :1 and %EffdtCheck(POSITION_DATA AA, A, %datein(:2))", &IMSH_EmplJob(1).JOB.REPORTS_TO.Value, %Date, &two_up);
+         If All(&two_up) Then
+            &IMSH_EmplJob.Fill("WHERE FILL.POSITION_NBR = :1 AND FILL.EMPL_RCD = :2 AND FILL.EFFDT = (SELECT MAX(A.EFFDT) FROM PS_JOB A WHERE A.EMPLID = FILL.EMPLID AND A.EMPL_RCD = FILL.EMPL_RCD AND A.EFFDT <= %DATEIN(:3)) AND FILL.EFFSEQ = (SELECT MAX(A1.EFFSEQ) FROM PS_JOB A1 WHERE A1.EMPLID = FILL.EMPLID AND A1.EMPL_RCD = FILL.EMPL_RCD AND A1.EFFDT = FILL.EFFDT) and FILL.EMPL_STATUS in ('A','L','P','W')", &two_up, 0, %Date);
+            &manager.GetField(Field.EMPLID).Value = &IMSH_EmplJob(1).JOB.EMPLID.Value;
+         End-If;
+      End-If;
+   catch Exception &lookup_ex
+   end-try;
+   &manager.SelectByKey();
+   Return &manager;
+end-method;
+
+method find_pmp_id_for
+   /+ &year as String +/
+   /+ Returns String +/
+   Local string &result;
+   SQLExec("SELECT max(EP_APPRAISAL_ID) from PS_EP_APPR where EMPLID = :1 and year(PERIOD_END_DT) = :2 and EP_REVIEW_STATUS NOT IN ('CA')", %This.GetField(Field.EMPLID).Value, Value(&year), &result);
+   Return &result;
+end-method;
+
+method populate_development_plan
+   /+ &year as String +/
+   %This.development_plan_collection = CreateObject("IMSH_LADP:Models:DevelopmentPlanCollection", GetLevel0()(1).GetRowset(Scroll.IMSH_B_ITEM_VW));
+   Local integer &pmp_id = Value(%This.find_pmp_id_for(&year));
+   If All(&pmp_id) Then
+      %This.development_plan_collection.Select(Record.EP_APPR_B_ITEM, "WHERE EP_APPRAISAL_ID = :1 and EP_SECTION_TYPE = 'DEVOBJ'", Value(%This.find_pmp_id_for(&year)));
+   Else
+      try
+         IMSH_LADP_WRK.IMSH_ADD_ROW2.Enabled = False;
+         IMSH_LADP_WRK.IMSH_ADD_ROW2.Label = "No PMP available";
+         
+      catch Exception &pmp_not_found
+         
+      end-try;
+   End-If;
+   Local integer &a;
+   For &a = 1 To %This.development_plan_collection.ActiveRowCount
+      If Not %This.development_plan_collection.GetRow(&a).IsNew Then
+         Local IMSH_LADP:Models:DevelopmentPlan &devplan = create IMSH_LADP:Models:DevelopmentPlan(%This.development_plan_collection.GetRow(&a).IMSH_B_ITEM_VW);
+      End-If;
+   End-For;
+end-method;
+
+method find_hr_rep
+   /+ Returns IMSH_LADP:Models:Employee +/
+   Local IMSH_LADP:Models:Employee &hr_rep = create IMSH_LADP:Models:Employee();
+   Local string &hr_rep_emplid;
+   
+   SQLExec("select b.emplid FROM PSOPRDEFN C, PS_IMSH_EMPLOYEE b where C.emplid = b.emplid and C.oprid in (SELECT A.ROLEUSER FROM PS_RTE_CNTL_LN_VW1 A WHERE A.ROLENAME = 'IMSH Business Partner' AND A.RTE_CNTL_TYPE_1 = 'IMSH_DEPARTMENT' AND A.RTE_FROM_VALUE_1 = :1)", %This.GetField(Field.DEPTID).Value, &hr_rep_emplid);
+   &hr_rep.GetField(Field.EMPLID).Value = &hr_rep_emplid;
+   &hr_rep.SelectByKey();
+   
+   Return &hr_rep;
+end-method;
+

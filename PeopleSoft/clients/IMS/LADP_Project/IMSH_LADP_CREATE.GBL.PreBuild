@@ -1,0 +1,9 @@
+import IMSH_LADP:*;
+import IMSH_LADP:Types:*;
+
+Component IMSH_LADP:Controller &controller;
+
+&router = CreateObject("IMSH_LADP:Router");
+&args = CreateObject("IMSH_LADP:Types:Arguments");
+&controller = &router.route();
+&controller.do("PreBuild", &args);

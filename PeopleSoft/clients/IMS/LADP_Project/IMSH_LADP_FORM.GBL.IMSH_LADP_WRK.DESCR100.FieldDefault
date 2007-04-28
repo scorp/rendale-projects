@@ -1,0 +1,131 @@
+try
+   Evaluate GetRow().ParentRowset.DBRecordName
+   When "IMSH_PRIOR_POS"
+      
+      If None(GetRow().IMSH_PRIOR_POS.FROM_DT.Value, GetRow().IMSH_PRIOR_POS.THRU_DT.Value) Then
+         If None(IMSH_PRIOR_POS.DESCR100.Value) Then
+            GetRow().IMSH_LADP_WRK.DESCR100.Label = "Add Employment Dates";
+         Else
+            GetRow().IMSH_LADP_WRK.DESCR100.Label = IMSH_PRIOR_POS.DESCR100.Value;
+         End-If;
+         If (%EmployeeId = IMSH_LADP.EMPLID.Value And
+               GetLevel0().GetRow(1).IMSH_LADP.IMSH_LADP_STATUS.Value = "IP") Or
+               (%Menu = "IMSH_LADP_HR" And
+                  GetLevel0().GetRow(1).IMSH_LADP.IMSH_LADP_STATUS.Value <> "HC") Then
+            GetRow().IMSH_LADP_WRK.DESCR100.Enabled = True;
+         End-If;
+      Else
+         If None(GetRow().IMSH_PRIOR_POS.FROM_DT.Value) Then
+            &from = "";
+         Else
+            &from = DateTimeToLocalizedString(GetRow().IMSH_PRIOR_POS.FROM_DT.Value, "MMM yyyy");
+         End-If;
+         
+         If None(GetRow().IMSH_PRIOR_POS.THRU_DT.Value) Then
+            &thru = "current";
+         Else
+            &thru = DateTimeToLocalizedString(GetRow().IMSH_PRIOR_POS.THRU_DT.Value, "MMM yyyy");
+         End-If;
+         rem GetRow().IMSH_LADP_WRK.DESCR100.Value = &from | " - " | &thru;
+         GetRow().IMSH_LADP_WRK.DESCR100.Label = &from | " - " | &thru;
+         GetRow().IMSH_LADP_WRK.DESCR100.Enabled = False;
+      End-If;
+      
+      try
+         Local Grid &grid = GetGrid(%Page, "IMSH_PRIOR_POS");
+         &grid.DESCR100.Label = "Employment Dates";
+      catch Exception &grid_ex
+         
+      end-try;
+      Break;
+   When "IMSH_LADPEDU_VW"
+      
+      If None(GetRow().IMSH_LADPEDU_VW.DT_ISSUED.Value) Then
+         If None(GetRow().IMSH_LADPEDU_VW.IMSH_YEAR.Value) Then
+            GetRow().IMSH_LADP_WRK.DESCR100.Label = "Add Graduation Date";
+         Else
+            GetRow().IMSH_LADP_WRK.DESCR100.Label = GetRow().IMSH_LADPEDU_VW.IMSH_YEAR.Value;
+         End-If;
+         If (%EmployeeId = IMSH_LADP.EMPLID.Value And
+               GetLevel0().GetRow(1).IMSH_LADP.IMSH_LADP_STATUS.Value = "IP") Or
+               (%Menu = "IMSH_LADP_HR" And
+                  GetLevel0().GetRow(1).IMSH_LADP.IMSH_LADP_STATUS.Value <> "HC") Then
+            GetRow().IMSH_LADP_WRK.DESCR100.Enabled = True;
+         End-If;
+      Else
+         
+         GetRow().IMSH_LADP_WRK.DESCR100.Label = DateTimeToLocalizedString(GetRow().IMSH_LADPEDU_VW.DT_ISSUED.Value, "MMM yyyy");
+         GetRow().IMSH_LADP_WRK.DESCR100.Enabled = False;
+      End-If;
+      
+      try
+         Local Grid &grid2 = GetGrid(%Page, "IMSH_LADPEDU_VW");
+         &grid2.GetColumn("DESCR100_EDU").Label = "Graduation Date";
+      catch Exception &grid_ex2
+         
+      end-try;
+      
+      Break;
+      
+   When "IMSH_LADPCRT_VW"
+      
+      If None(GetRow().IMSH_LADPCRT_VW.DT_ISSUED.Value) Then
+         If None(GetRow().IMSH_LADPCRT_VW.IMSH_YEAR.Value) Then
+            GetRow().IMSH_LADP_WRK.DESCR100.Label = "Add Issue Date";
+         Else
+            GetRow().IMSH_LADP_WRK.DESCR100.Label = GetRow().IMSH_LADPCRT_VW.IMSH_YEAR.Value;
+         End-If;
+         If (%EmployeeId = IMSH_LADP.EMPLID.Value And
+               GetLevel0().GetRow(1).IMSH_LADP.IMSH_LADP_STATUS.Value = "IP") Or
+               (%Menu = "IMSH_LADP_HR" And
+                  GetLevel0().GetRow(1).IMSH_LADP.IMSH_LADP_STATUS.Value <> "HC") Then
+            GetRow().IMSH_LADP_WRK.DESCR100.Enabled = True;
+         End-If;
+      Else
+         GetRow().IMSH_LADP_WRK.DESCR100.Label = DateTimeToLocalizedString(GetRow().IMSH_LADPCRT_VW.DT_ISSUED.Value, "MMM yyyy");
+         GetRow().IMSH_LADP_WRK.DESCR100.Enabled = False;
+      End-If;
+      
+      try
+         Local Grid &grid3 = GetGrid(%Page, "IMSH_LADPCRT_VW");
+         &grid3.GetColumn("DESCR100_CRT").Label = "Issue Date";
+      catch Exception &grid_ex3
+         
+      end-try;
+      
+      Break;
+   When "TRAINING"
+      
+      If None(GetRow().TRAINING.COURSE_START_DT.Value) Then
+         If None(GetRow().TRAINING.IMSH_YEAR.Value) Then
+            GetRow().IMSH_LADP_WRK.DESCR100.Label = "Add Course Date";
+         Else
+            GetRow().IMSH_LADP_WRK.DESCR100.Label = GetRow().TRAINING.IMSH_YEAR.Value;
+         End-If;
+         If (%EmployeeId = IMSH_LADP.EMPLID.Value And
+               GetLevel0().GetRow(1).IMSH_LADP.IMSH_LADP_STATUS.Value = "IP") Or
+               (%Menu = "IMSH_LADP_HR" And
+                  GetLevel0().GetRow(1).IMSH_LADP.IMSH_LADP_STATUS.Value <> "HC") Then
+            GetRow().IMSH_LADP_WRK.DESCR100.Enabled = True;
+         End-If;
+      Else
+         GetRow().IMSH_LADP_WRK.DESCR100.Label = DateTimeToLocalizedString(GetRow().TRAINING.COURSE_START_DT.Value, "MMM yyyy");
+         GetRow().IMSH_LADP_WRK.DESCR100.Enabled = False;
+      End-If;
+      
+      try
+         Local Grid &grid4 = GetGrid(%Page, "TRAINING");
+         &grid4.GetColumn("DESCR100_TRN").Label = "Course Date";
+      catch Exception &grid_ex4
+         
+      end-try;
+      Break;
+   When "IMSH_LADPLNG_VW"
+      Break;
+   When "IMSH_B_ITEM_VW"
+      
+      Break;
+   End-Evaluate;
+catch Exception &e
+   
+end-try;

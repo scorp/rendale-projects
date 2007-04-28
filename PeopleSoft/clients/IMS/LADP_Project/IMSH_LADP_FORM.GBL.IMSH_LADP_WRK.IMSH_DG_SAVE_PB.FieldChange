@@ -1,0 +1,68 @@
+import IMSH_LADP:*;
+import IMSH_LADP:Types:*;
+
+Component IMSH_LADP:Controller &controller;
+Component Record &dg_record;
+Component Row &dg_row;
+Component boolean &edit;
+Component boolean &add;
+
+&dg_record = GetRow().GetRecord(@("RECORD." | GetRow().ParentRowset.DBRecordName));
+
+&dg_record.ExecuteEdits(%Edit_Required);
+
+Local array of string &fieldarray = CreateArrayRept("", 0);
+For &a = 1 To &dg_record.FieldCount
+   If &dg_record.GetField(&a).EditError = True And
+         &dg_record.GetField(&a).IsInBuf And
+         &dg_record.GetField(&a).Visible Then
+      Evaluate %Page
+      When "IMSH_LADP_EDU_DG"
+         &fieldarray.Push(&dg_record.GetField(&a).Name);
+         Evaluate &dg_record.GetField(&a).Name
+         When "ACCOMPLISHMENT"
+            &dg_record.GetField(&a).GetRelated(CO_DEGREE_VW.DESCR).Style = "PSERROR";
+            Break;
+         When-Other
+            &dg_record.GetField(&a).Style = "PSERROR";
+            Break;
+         End-Evaluate;
+         Break;
+      When "IMSH_LADP_CRT_DG"
+         &fieldarray.Push(&dg_record.GetField(&a).Name);
+         Evaluate &dg_record.GetField(&a).Name
+         When "ACCOMPLISHMENT"
+            &dg_record.GetField(&a).GetRelated(HR_LIC_CERT_VW.DESCR).Style = "PSERROR";
+            Break;
+         When-Other
+            &dg_record.GetField(&a).Style = "PSERROR";
+            Break;
+         End-Evaluate;
+         Break;
+      When "IMSH_LADP_TRN_DG"
+         &fieldarray.Push(&dg_record.GetField(&a).Name);
+         Evaluate &dg_record.GetField(&a).Name
+         When-Other
+            &dg_record.GetField(&a).Style = "PSERROR";
+            Break;
+         End-Evaluate;
+         Break;
+      When-Other;
+         &fieldarray.Push(&dg_record.GetField(&a).Name);
+         &dg_record.GetField(&a).Style = "PSERROR";
+      End-Evaluate;
+   Else
+      &dg_record.GetField(&a).Style = "";
+   End-If;
+End-For;
+
+If &fieldarray.Len > 0 Then
+   Error "Please complete the highlighted fields";
+End-If;
+
+If &edit Then
+   &edit = False;
+   EndModal(1);
+Else
+   EndModal(0);
+End-If;

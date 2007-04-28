@@ -1,0 +1,16 @@
+import IMSH_LADP:*;
+import IMSH_LADP:Types:*;
+
+Component IMSH_LADP:Controller &controller;
+
+
+
+
+&args = CreateObject("IMSH_LADP:Types:Arguments");
+&controller.do("render_form", &args);
+try
+   Local Grid &grid = GetGrid(%Page, "IMSH_PRIOR_POS");
+   &grid.DESCR100.Label = "Employment Dates";
+catch Exception &grid_ex
+   
+end-try;

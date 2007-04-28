@@ -1,0 +1,54 @@
+import IMSH_LADP:Models:*;
+import PT_WF_NOTIFICATION:*;
+
+class LadpNotification extends PT_WF_NOTIFICATION:Notification
+   property IMSH_LADP:Models:LadpDocument document;
+   property IMSH_LADP:Models:Employee employee;
+   
+   method LadpNotification();
+   method get_recipients() Returns array of PT_WF_NOTIFICATION:NotificationAddress abstract;
+   method add_recipients_from_list(&recipients As array of PT_WF_NOTIFICATION:NotificationAddress, &role As string) Returns array of PT_WF_NOTIFICATION:NotificationAddress;
+   method send();
+end-class;
+
+method LadpNotification
+   %Super = create PT_WF_NOTIFICATION:Notification("", %Datetime, "ENG");
+end-method;
+
+method send
+   /+ Extends/implements PT_WF_NOTIFICATION:Notification.Send +/
+   %Super.Send();
+end-method;
+
+method add_recipients_from_list
+   /+ &recipients as Array of PT_WF_NOTIFICATION:NotificationAddress, +/
+   /+ &role as String +/
+   /+ Returns Array of PT_WF_NOTIFICATION:NotificationAddress +/
+   Local Record &assigned = CreateRecord(Record.IMSH_LADP_ASSGN);
+   Local SQL &find_recipients = CreateSQL("%selectall(IMSH_LADP_ASSGN) where IMSH_LADP_ID = :1 and ep_role = :2", %This.document.GetField(Field.IMSH_LADP_ID).Value, &role);
+   Local integer &a;
+   Local boolean &exists;
+   rem Local File &LOG = GetFile("EMAIL_LIST.TXT", "W");
+   While &find_recipients.Fetch(&assigned)
+      Local IMSH_LADP:Models:Employee &notif_recipient = create IMSH_LADP:Models:Employee();
+      &notif_recipient.GetField(Field.EMPLID).Value = &assigned.EMPLID.Value;
+      &notif_recipient.SelectByKey();
+      &exists = False;
+      For &a = 1 To &recipients.Len
+         If &recipients [&a].EmailId = &notif_recipient.email_address.EmailId Then
+            &exists = True;
+            rem &LOG.WriteLine(&notif_recipient.email_address.EmailId | " already exists");
+         Else
+            rem            &LOG.WriteLine(&notif_recipient.email_address.EmailId | " will be added");
+         End-If;
+      End-For;
+      If Not &exists Then
+         &recipients.Push(&notif_recipient.email_address);
+         rem      &LOG.WriteLine(&notif_recipient.email_address.EmailId | " " | &notif_recipient.email_address.Channel | " has been added");
+      End-If;
+      
+   End-While;
+   rem &LOG.Close();
+   Return &recipients;
+end-method;
+

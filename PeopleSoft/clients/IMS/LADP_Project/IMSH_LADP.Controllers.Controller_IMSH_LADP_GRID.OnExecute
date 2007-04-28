@@ -1,0 +1,162 @@
+import IMSH_LADP:*;
+import IMSH_LADP:Controllers:*;
+import IMSH_LADP:Models:*;
+import IMSH_LADP:Types:*;
+
+class Controller_IMSH_LADP_GRID extends IMSH_LADP:Controllers:BaseController
+   method Controller_IMSH_LADP_GRID();
+   
+   /* action methods called by super class */
+   method PageActivate();
+   method PreBuild();
+   method SavePreChange();
+   method ViewForm();
+   method search();
+   
+   /* models */
+   property IMSH_LADP:ModelCollection current_forms;
+   property IMSH_LADP:ModelCollection historical_forms;
+   property IMSH_LADP:Model user;
+   
+end-class;
+
+method Controller_IMSH_LADP_GRID
+   %Super = create IMSH_LADP:Controllers:BaseController();
+   %This.user = create IMSH_LADP:Model(CreateRecord(Record.IMSH_EMPLOYEE));
+   
+   %This.user.GetField(Field.EMPLID).Value = %EmployeeId;
+   %This.user.SelectByKey();
+   
+end-method;
+
+method PreBuild
+   Local integer &a;
+   %This.current_forms = create IMSH_LADP:Models:LadpDocumentCollection(GetLevel0()(1).GetRowset(Scroll.IMSH_LADP_VW));
+   %This.historical_forms = create IMSH_LADP:Models:LadpDocumentCollection(GetLevel0()(1).GetRowset(Scroll.IMSH_LADP_HIST));
+   
+   Evaluate %Menu
+   When "IMSH_LADP_EMP"
+      %This.current_forms.Select(Record.IMSH_LADP_VW, "WHERE EMPLID = :1", %EmployeeId);
+      %This.historical_forms.Select(Record.IMSH_LADP_HIST, "WHERE EMPLID = :1 and year <> 2006", %EmployeeId);
+      
+      For &a = 1 To %This.current_forms.ActiveRowCount
+         %This.current_forms.GetRow(&a).IMSH_LADP_WRK.IMSH_LADP_ASSGN_PB.Visible = False;
+         %This.current_forms.GetRow(&a).GetRecord(Record.IMSH_MGR_NAME_V).GetField(Field.NAME).Visible = False;
+      End-For;
+      For &a = 1 To %This.historical_forms.ActiveRowCount
+         %This.historical_forms.GetRow(&a).IMSH_LADP_WRK.IMSH_LADP_ASSGN_PB.Visible = False;
+         %This.historical_forms.GetRow(&a).GetRecord(Record.IMSH_MGR_NAME_V).GetField(Field.NAME).Visible = False;
+      End-For;
+      
+      Break;
+   When "IMSH_LADP_MGR"
+      %This.current_forms.Select(Record.IMSH_LADP_VW, "WHERE IMSH_LADP_ID IN (SELECT D.IMSH_LADP_ID FROM PS_IMSH_LADP_ASSGN D WHERE D.IMSH_LADP_ID = PS_IMSH_LADP_VW.IMSH_LADP_ID AND D.EMPLID = :1 AND D.EP_ROLE = 'MGR') OR EXISTS (SELECT 'X' FROM PS_IMSH_EMPLOYEE B WHERE B.REPORTS_TO = :2 AND B.EMPLID = PS_IMSH_LADP_VW.EMPLID)", %EmployeeId, %This.user.GetField(Field.POSITION_NBR).Value);
+      %This.historical_forms.Select(Record.IMSH_LADP_HIST, "WHERE EMPLID IN (SELECT D.EMPLID FROM PS_IMSH_LADP_ASSGN D WHERE D.IMSH_LADP_ID = PS_IMSH_LADP_HIST.IMSH_LADP_ID AND D.EMPLID = :1 AND D.EP_ROLE = 'MGR') OR EXISTS (SELECT 'X' FROM PS_IMSH_EMPLOYEE B WHERE B.REPORTS_TO = :2 AND B.EMPLID = PS_IMSH_LADP_HIST.EMPLID) and year <> 2006", %EmployeeId, %This.user.GetField(Field.POSITION_NBR).Value);
+      
+      For &a = 1 To %This.current_forms.ActiveRowCount
+         %This.current_forms.GetRow(&a).IMSH_LADP_WRK.IMSH_LADP_ASSGN_PB.Visible = False;
+         %This.current_forms.GetRow(&a).GetRecord(Record.IMSH_MGR_NAME_V).GetField(Field.NAME).Visible = False;
+      End-For;
+      For &a = 1 To %This.historical_forms.ActiveRowCount
+         %This.historical_forms.GetRow(&a).IMSH_LADP_WRK.IMSH_LADP_ASSGN_PB.Visible = False;
+         %This.current_forms.GetRow(&a).GetRecord(Record.IMSH_MGR_NAME_V).GetField(Field.NAME).Visible = False;
+      End-For;
+      Break;
+      
+   When "IMSH_LADP_HR"
+      Break;
+   End-Evaluate;
+   
+   ObjectDoMethod(%This.current_forms, "status_" | %Menu);
+   ObjectDoMethod(%This.historical_forms, "status_" | %Menu);
+   %This.current_forms.Sort(IMSH_LADP_VW.IMSH_LADP_STATUS, "D");
+   %This.historical_forms.Sort(IMSH_LADP_HIST.IMSH_LADP_STATUS, "D");
+end-method;
+
+method PageActivate
+   Local IMSH_LADP:Types:Arguments &args;
+   Local IMSH_LADP:View &view;
+   Evaluate %Menu
+   When "IMSH_LADP_EMP"
+      &view = CreateObject("IMSH_LADP:Views:GridViewEmployee", %This);
+      Break;
+   When "IMSH_LADP_MGR"
+      &view = CreateObject("IMSH_LADP:Views:GridViewManager", %This);
+      Break;
+   When "IMSH_LADP_HR"
+      &view = CreateObject("IMSH_LADP:Views:GridViewHR", %This);
+      Break;
+   End-Evaluate;
+   &view.render(&args);
+end-method;
+
+method SavePreChange
+   
+end-method;
+
+method ViewForm
+   Local Record &imsh_ladp_srch = CreateRecord(Record.IMSH_LADP_SRCH);
+   &imsh_ladp_srch.IMSH_LADP_ID.Value = GetRow().GetRecord(@("RECORD." | GetRow().ParentRowset.DBRecordName)).GetField(Field.IMSH_LADP_ID).Value;
+   &imsh_ladp_srch.EMPLID.Value = GetRow().GetRecord(@("RECORD." | GetRow().ParentRowset.DBRecordName)).GetField(Field.EMPLID).Value;
+   Transfer( False, @("menuname." | %Menu), BarName.SS, ItemName.IMSH_LADP_FORM, Page.IMSH_LADP_FORM, "C", &imsh_ladp_srch);
+end-method;
+
+method search
+   %This.current_forms.Flush();
+   %This.historical_forms.Flush();
+   Local integer &a;
+   Local string &where, &where_hist;
+   Local IMSH_LADP:Models:Employee &employee = create IMSH_LADP:Models:Employee();
+   Local IMSH_LADP:Models:Employee &manager;
+   
+   If Not None(IMSH_LADP_WRK.EP_EE_FIRST_NAME.Value, IMSH_LADP_WRK.EP_EE_LAST_NAME.Value) Then
+      &where = " and exists (select 'x' from ps_employees emp where emp.emplid = PS_IMSH_LADP_VW.EMPLID and rtrim(UPPER(emp.last_name)) like '%" | Upper(RTrim(IMSH_LADP_WRK.EP_EE_LAST_NAME.Value)) | "%' and rtrim(UPPER(emp.first_name)) like '%" | Upper(RTrim(IMSH_LADP_WRK.EP_EE_FIRST_NAME.Value)) | "%')"
+   End-If;
+   
+   If Not None(IMSH_LADP_WRK.EP_MGR_FIRST_NAME.Value, IMSH_LADP_WRK.EP_MGR_LAST_NAME.Value) Then
+      &where = &where | " and exists (select 'x' from ps_employees emp, ps_employees mgr where mgr.position_nbr = emp.reports_to and emp.emplid = PS_IMSH_LADP_VW.EMPLID and rtrim(UPPER(mgr.last_name)) like '%" | Upper(RTrim(IMSH_LADP_WRK.EP_MGR_LAST_NAME.Value)) | "%' and rtrim(UPPER(mgr.first_name)) like '%" | Upper(RTrim(IMSH_LADP_WRK.EP_MGR_FIRST_NAME.Value)) | "%')"
+   End-If;
+   
+   
+   If Not None(IMSH_LADP_WRK.EP_EE_FIRST_NAME.Value, IMSH_LADP_WRK.EP_EE_LAST_NAME.Value) Then
+      &where_hist = " and exists (select 'x' from ps_employees emp where emp.emplid = PS_IMSH_LADP_HIST.EMPLID and rtrim(UPPER(emp.last_name)) like '%" | Upper(RTrim(IMSH_LADP_WRK.EP_EE_LAST_NAME.Value)) | "%' and rtrim(UPPER(emp.first_name)) like '%" | Upper(RTrim(IMSH_LADP_WRK.EP_EE_FIRST_NAME.Value)) | "%')"
+   End-If;
+   
+   If Not None(IMSH_LADP_WRK.EP_MGR_FIRST_NAME.Value, IMSH_LADP_WRK.EP_MGR_LAST_NAME.Value) Then
+      &where_hist = &where_hist | " and exists (select 'x' from ps_employees emp, ps_employees mgr where mgr.position_nbr = emp.reports_to and emp.emplid = PS_IMSH_LADP_HIST.EMPLID and rtrim(UPPER(mgr.last_name)) like '%" | Upper(RTrim(IMSH_LADP_WRK.EP_MGR_LAST_NAME.Value)) | "%' and rtrim(UPPER(mgr.first_name)) like '%" | Upper(RTrim(IMSH_LADP_WRK.EP_MGR_FIRST_NAME.Value)) | "%')"
+   End-If;
+   
+   
+   
+   If IsUserInRole("IMSH_LADP_SUPERUSER") Then
+      
+      %This.current_forms.Select(Record.IMSH_LADP_VW, "Where 1=1 " | &where);
+      %This.historical_forms.Select(Record.IMSH_LADP_HIST, "WHERE year <> 2006" | &where_hist);
+      For &a = 1 To %This.current_forms.ActiveRowCount
+         %This.current_forms.GetRow(&a).GetRecord(Record.IMSH_MGR_NAME_V).GetField(Field.NAME).Visible = True;
+         %This.current_forms.GetRow(&a).IMSH_LADP_WRK.IMSH_LADP_ASSGN_PB.Visible = True;
+      End-For;
+      For &a = 1 To %This.historical_forms.ActiveRowCount
+         %This.historical_forms.GetRow(&a).GetRecord(Record.IMSH_MGR_NAME_V).GetField(Field.NAME).Visible = True;
+         %This.historical_forms.GetRow(&a).IMSH_LADP_WRK.IMSH_LADP_ASSGN_PB.Visible = True;
+      End-For;
+   Else
+      
+      %This.current_forms.Select(Record.IMSH_LADP_VW, "WHERE IMSH_LADP_ID IN (SELECT D.IMSH_LADP_ID FROM PS_IMSH_LADP_ASSGN D WHERE D.IMSH_LADP_ID = PS_IMSH_LADP_VW.IMSH_LADP_ID AND D.EMPLID = :1 AND D.EP_ROLE = 'HR')" | &where, %EmployeeId);
+      %This.historical_forms.Select(Record.IMSH_LADP_HIST, "WHERE EMPLID IN (SELECT D.EMPLID FROM PS_IMSH_LADP_ASSGN D WHERE D.IMSH_LADP_ID = PS_IMSH_LADP_HIST.IMSH_LADP_ID AND D.EMPLID = :1 AND D.EP_ROLE = 'HR')  and year <> 2006" | &where_hist, %EmployeeId);
+      
+      For &a = 1 To %This.current_forms.ActiveRowCount
+         %This.current_forms.GetRow(&a).GetRecord(Record.IMSH_MGR_NAME_V).GetField(Field.NAME).Visible = True;
+         %This.current_forms.GetRow(&a).IMSH_LADP_WRK.IMSH_LADP_ASSGN_PB.Visible = False;
+      End-For;
+      For &a = 1 To %This.historical_forms.ActiveRowCount
+         %This.historical_forms.GetRow(&a).GetRecord(Record.IMSH_MGR_NAME_V).GetField(Field.NAME).Visible = True;
+         %This.historical_forms.GetRow(&a).IMSH_LADP_WRK.IMSH_LADP_ASSGN_PB.Visible = False;
+      End-For;
+   End-If;
+   ObjectDoMethod(%This.current_forms, "status_" | %Menu);
+   ObjectDoMethod(%This.historical_forms, "status_" | %Menu);
+   %This.current_forms.Sort(IMSH_LADP_VW.IMSH_LADP_STATUS, "D");
+   %This.historical_forms.Sort(IMSH_LADP_HIST.IMSH_LADP_STATUS, "D");
+   %This.PageActivate();
+end-method

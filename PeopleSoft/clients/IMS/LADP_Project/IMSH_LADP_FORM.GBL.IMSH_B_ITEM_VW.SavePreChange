@@ -1,0 +1,10 @@
+Local Rowset &RsItem = GetRowset();
+Local number &Seq = 0;
+Local number &RowNumber = CurrentRowNumber() - 1;
+
+If None(&RsItem(CurrentRowNumber()).IMSH_B_ITEM_VW.EP_ITEM_ID.Value) And
+      &RsItem(CurrentRowNumber()).IsNew And
+      All(&RsItem(CurrentRowNumber()).IMSH_B_ITEM_VW.EP_TITLE.Value) Then
+   SQLExec("Select max(EP_ITEM_SEQ) from PS_EP_APPR_B_ITEM where EP_APPRAISAL_ID = :1 and EP_SECTION_TYPE = :2 and EP_ITEM_ID = :3", &RsItem(CurrentRowNumber()).IMSH_B_ITEM_VW.EP_APPRAISAL_ID.Value, &RsItem(CurrentRowNumber()).IMSH_B_ITEM_VW.EP_SECTION_TYPE.Value, &RsItem(CurrentRowNumber()).IMSH_B_ITEM_VW.EP_ITEM_ID.Value, &db_seq);
+   &RsItem(CurrentRowNumber()).IMSH_B_ITEM_VW.EP_ITEM_SEQ.Value = &db_seq + 1;
+End-If;

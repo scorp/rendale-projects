@@ -1,0 +1,32 @@
+/* 06-02-2003                                    ***************************/
+/* ICE 502530000  Performance issue with training course enrollment        */
+/* Old Fetchvalue order removed. The condition of the panelgroup           */
+/* has been added to the existing condition of the page HR_PROF_TRN_DETAIL */
+/* because the action was the same in both cases.                          */
+/***************************************************************************/
+/********Begin Resolution 627850**************/
+<* W.Bailey LADP 4.23.06 *>
+
+If %Page = Page.HR_PROF_TRN_DETAIL Or
+      %Component = Component.IMSH_LADP_FORM Then
+   <* END W.Bailey LADP 4.23.06 *>
+   
+   /********End Resolution 627850**************/
+   /*----Commented for the fix 304889 Starts ----*/
+   /*   SQLExec("SELECT BUSINESS_UNIT FROM PS_TRN_DEF_JOB_VW WHERE EMPLID = :1", PER_ORG_ASGN_VW.EMPLID, TRAINING.BUSINESS_UNIT);  */
+   /*----Commented for the fix 304889 Starts ----*/
+   
+   /*-----fix for 304889 Starts-----*/
+   /********Begin Resolution 627850**************/
+   /*SQLExec(SQL.HR_TRN_DEF_BU, TRAINING.EMPLID, TRAINING.BUSINESS_UNIT);*/
+   /* SQLExec(SQL.HR_TRN_DEF_BU, TRAINING.EMPLID, TRAINING.EMPL_RCD, TRAINING.BUSINESS_UNIT); */
+   SQLExec(SQL.HR_TRN_DEF_BU, TRAINING.EMPLID.Value, TRAINING.EMPL_RCD.Value, TRAINING.BUSINESS_UNIT.Value);
+   /********End Resolution 627850****************/
+   /*-----fix for 304889 Ends-----*/
+   
+Else
+   If %PanelGroup <> PanelGroup.TRN_GNRL_DMND_SUBS And
+         %PanelGroup <> PanelGroup.TRN_EMPL_DMND_SUBS Then
+      TRAINING.BUSINESS_UNIT = OPR_DEF_TBL_HR.BUSINESS_UNIT;
+   End-If;
+End-If;

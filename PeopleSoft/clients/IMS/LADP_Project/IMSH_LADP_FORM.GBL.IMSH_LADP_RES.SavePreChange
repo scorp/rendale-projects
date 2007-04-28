@@ -1,0 +1,5 @@
+IMSH_LADP_RES.IMSH_LADP_ID.Value = IMSH_LADP.IMSH_LADP_ID.Value;
+IMSH_LADP_RES.EMPLID.Value = IMSH_LADP.EMPLID.Value;
+If None(GetRecord().IMSH_ITEM_ID.Value) Then
+   GetRecord().IMSH_ITEM_ID.Value = GetNextNumberWithGapsCommit(IMSH_LADP_SEQ.IMSH_ITEM_ID, 999999999, 1, "where IMSH_LADP_ID =" | GetRecord().IMSH_LADP_ID.Value);
+End-If;

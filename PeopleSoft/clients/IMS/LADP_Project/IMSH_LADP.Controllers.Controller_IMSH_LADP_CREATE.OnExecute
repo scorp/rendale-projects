@@ -1,0 +1,80 @@
+import IMSH_LADP:*;
+import IMSH_LADP:Controllers:*;
+import IMSH_LADP:Models:*;
+import IMSH_LADP:Types:*;
+
+class Controller_IMSH_LADP_CREATE extends IMSH_LADP:Controllers:BaseController
+   method Controller_IMSH_LADP_CREATE();
+   
+   /* action methods called by super class */
+   method PreBuild();
+   method GenerateDocuments();
+   
+   property Field list;
+end-class;
+
+method Controller_IMSH_LADP_CREATE
+   %Super = create IMSH_LADP:Controllers:BaseController();
+   %This.list = GetRecord(Record.IMSH_LADP_WRK).GetField(Field.HTMLAREA);
+end-method;
+
+method PreBuild
+   IMSH_LADP_WRK.YEAR.Value = Year(%Date);
+end-method;
+
+method GenerateDocuments
+   Local integer &a;
+   Local array of string &emplid_array = CreateArrayRept("", 0);
+   Local Record &IMSH_LADP;
+   Local Record &IMSH_LADP_ASSGN;
+   If Find("select", %This.list.Value) <> 0 Then
+      /* by sql */
+      try
+         Local SQL &emplid_sql = CreateSQL(%This.list.Value);
+         Local string &emplid_res;
+         While &emplid_sql.Fetch(&emplid_res)
+            &emplid_array.Push(&emplid_res);
+         End-While;
+      catch Exception &sql_ex
+         
+      end-try;
+   Else
+      /* array of emplids */
+      &emplid_array = Split(%This.list.Value, ",")
+   End-If;
+   Local integer &success = 0;
+   For &a = 1 To &emplid_array.Len
+      Local IMSH_LADP:Models:Employee &employee = create IMSH_LADP:Models:Employee();
+      &employee.GetField(Field.EMPLID).Value = LTrim(RTrim(&emplid_array [&a]));
+      
+      If &employee.exists() Then
+         &IMSH_LADP = CreateRecord(Record.IMSH_LADP);
+         &IMSH_LADP.EMPLID.Value = &emplid_array [&a];
+         Local IMSH_LADP:Models:LadpDocument &new_document = create IMSH_LADP:Models:LadpDocument(&IMSH_LADP);
+         &new_document.GetField(Field.EMPLID).Value = &emplid_array [&a];
+         If All(IMSH_LADP_WRK.YEAR.Value) Then
+            &new_document.GetField(Field.PERIOD_BEGIN_DT).Value = Date3(IMSH_LADP_WRK.YEAR.Value, 1, 1);
+            &new_document.GetField(Field.PERIOD_END_DT).Value = Date3(IMSH_LADP_WRK.YEAR.Value, 12, 31);
+         Else
+            &new_document.GetField(Field.PERIOD_BEGIN_DT).Value = Date3(Year(%Date), 1, 1);
+            &new_document.GetField(Field.PERIOD_END_DT).Value = Date3(Year(%Date), 12, 31);
+         End-If;
+         &new_document.GetField(Field.IMSH_LADP_STATUS).Value = "IP";
+         
+         If Not &new_document.exists() Then
+            Local boolean &doc_create_result = &new_document.Insert();
+            Local boolean &hr_assign_result = &new_document.add_assignment("HR", "");
+            Local boolean &mgr_assign_result = &new_document.add_assignment("MGR", "");
+            Local Record &seq_record = CreateRecord(Record.IMSH_LADP_SEQ);
+            &new_document.CopyFieldsTo(&seq_record);
+            &seq_record.IMSH_ITEM_ID.Value = 50;
+            Local boolean &seq_result = &seq_record.Insert();
+            &success = &success + 1;
+         End-If;
+      End-If;
+      
+   End-For;
+   
+   IMSH_LADP_WRK.HTMLAREA2.Value = "<DIV style=""background:#EE5757; color:#fff; padding:5px; font-size:12px; font-weight:bold; border:2px solid #be3838; text-align:center"">" | String(&success) | " out of " | String(&a - 1) | " Documents were created</DIV>"
+end-method;
+

@@ -1,0 +1,28 @@
+Local string &valid;
+Global boolean &security_violation;
+
+Evaluate %Menu
+When "IMSH_LADP_EMP"
+   If %EmployeeId <> IMSH_LADP_SRCH.EMPLID.Value Then
+      &valid = "";
+   Else
+      &valid = "x";
+   End-If;
+   Break;
+When "IMSH_LADP_MGR"
+   &role = "MGR";
+   SQLExec("Select 'x' from PS_IMSH_LADP_ASSGN where IMSH_LADP_ID = :1 and EMPLID = :2 and EP_ROLE = :3", IMSH_LADP_SRCH.IMSH_LADP_ID.Value, %EmployeeId, &role, &valid);
+   Break;
+When "IMSH_LADP_HR"
+   &role = "HR";
+   SQLExec("Select 'x' from PS_IMSH_LADP_ASSGN where IMSH_LADP_ID = :1 and EMPLID = :2 and EP_ROLE = :3", IMSH_LADP_SRCH.IMSH_LADP_ID.Value, %EmployeeId, &role, &valid);
+   Break;
+End-Evaluate;
+
+If None(&valid) And
+      Not IsUserInRole("IMSH_LADP_SUPERUSER") Then
+   &security_violation = True;
+   Transfer( False, @("MENUNAME." | %Menu), BarName.SS, ItemName.IMSH_LADP_GRID, Page.IMSH_LADP_GRID, "C");
+Else
+   SetSearchDialogBehavior(0);
+End-If;

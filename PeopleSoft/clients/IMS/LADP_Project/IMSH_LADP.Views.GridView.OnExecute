@@ -1,0 +1,42 @@
+import IMSH_LADP:*;
+import IMSH_LADP:Types:*;
+import IMSH_LADP:Utils:*;
+import IMSH_LADP:Controllers:*;
+
+class GridView implements IMSH_LADP:View
+   method GridView(&calling_controller As IMSH_LADP:Controllers:Controller_IMSH_LADP_GRID);
+   method render(&args As IMSH_LADP:Types:Arguments);
+   method hide_empty_grids();
+   
+   property IMSH_LADP:Controllers:Controller_IMSH_LADP_GRID controller;
+   property IMSH_LADP:Utils:StringBuffer buffer;
+end-class;
+
+method GridView
+   /+ &calling_controller as IMSH_LADP:Controllers:Controller_IMSH_LADP_GRID +/
+   %This.controller = &calling_controller;
+   %This.buffer = CreateObject("IMSH_LADP:Utils:StringBuffer", "");
+end-method;
+
+method render
+   /+ &args as IMSH_LADP:Types:Arguments +/
+   /+ Extends/implements IMSH_LADP:View.render +/
+   %This.buffer.reset();
+   %This.buffer.append(GetHTMLText(HTML.IMSH_LADP_STYLE));
+   IMSH_LADP_WRK.HTMLAREA.Value = %This.buffer.value;
+   IMSH_LADP_WRK.IMSH_GROUPBOX1.Visible = True;
+   IMSH_LADP_WRK.IMSH_GROUPBOX2.Visible = True;
+   IMSH_LADP_WRK.IMSH_GROUPBOX3.Visible = False;
+   %This.hide_empty_grids();
+end-method;
+
+method hide_empty_grids
+   Local IMSH_LADP:Utils:BufferHelper &utils = CreateObject("IMSH_LADP:Utils:BufferHelper");
+   If %This.controller.current_forms.is_empty() Then
+      IMSH_LADP_WRK.IMSH_GROUPBOX1.Visible = False;
+   End-If;
+   If %This.controller.historical_forms.is_empty() Then
+      IMSH_LADP_WRK.IMSH_GROUPBOX2.Visible = False;
+   End-If;
+end-method;
+

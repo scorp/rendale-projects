@@ -1,0 +1,57 @@
+import IMSH_LADP:*;
+import IMSH_LADP:Types:*;
+import IMSH_LADP:Utils:*;
+import IMSH_LADP:Controllers:*;
+import IMSH_LADP:Views:*;
+
+class FormViewEmployee extends IMSH_LADP:Views:FormView
+   method FormViewEmployee(&calling_controller As IMSH_LADP:Controllers:Controller_IMSH_LADP_FORM);
+   method render(&args As IMSH_LADP:Types:Arguments);
+   method status_handler();
+   
+   property IMSH_LADP:Controllers:Controller_IMSH_LADP_FORM controller;
+   property IMSH_LADP:Utils:StringBuffer buffer;
+end-class;
+
+method FormViewEmployee
+   /+ &calling_controller as IMSH_LADP:Controllers:Controller_IMSH_LADP_FORM +/
+   %Super = CreateObject("IMSH_LADP:Views:FormView", &calling_controller);
+   %This.buffer = CreateObject("IMSH_LADP:Utils:StringBuffer", "");
+   %This.controller = &calling_controller;
+end-method;
+
+method render
+   /+ &args as IMSH_LADP:Types:Arguments +/
+   /+ Extends/implements IMSH_LADP:Views:FormView.render +/
+   %Super.render(&args);
+   %This.buffer.reset();
+   %This.buffer.append(GetHTMLText(HTML.IMSH_LADP_SCRIPT_EMPLOYEE, GetHTMLText(HTML.IMSH_LADP_STYLE)));
+   IMSH_LADP_WRK.HTMLAREA.Value = %This.buffer.value;
+   
+   /* status */
+   %This.status_handler();
+   IMSH_LADP_WRK.IMSH_LADP_STATUS.Value = %This.controller.document.status_emp;
+   IMSH_LADP_WRK.HTMLAREA5.Value = GetHTMLText(HTML.IMSH_LADP_STATUS_FRAGMENT, IMSH_LADP_WRK.IMSH_LADP_STATUS.LongTranslateValue);
+   
+   
+   /* employee never sees the manager assessment */
+   IMSH_LADP_WRK.IMSH_GROUPBOX5.Visible = False;
+end-method;
+
+method status_handler
+   /+ Extends/implements IMSH_LADP:Views:FormView.status_handler +/
+   %Super.status_handler();
+   Local integer &a;
+   Local Rowset &results = GetLevel0()(1).GetRowset(Scroll.IMSH_LADP_RES);
+   Evaluate %This.controller.document.status
+   When "IP"
+      %This.controller.document.employee_updateable();
+      Break;
+   When "EC"
+   When "MC"
+   When "HC"
+      %This.controller.document.employee_readonly();
+      Break;
+   End-Evaluate;
+end-method;
+

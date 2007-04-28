@@ -1,0 +1,51 @@
+class StringBuffer
+   method StringBuffer(&InitialValue As string);
+   method append(&New As string);
+   method reset();
+   property string value get set;
+   property integer length readonly;
+   property integer max_length;
+private
+   instance array of string &pieces;
+end-class;
+
+method StringBuffer
+   /+ &InitialValue as String +/
+   
+   &pieces = CreateArray(&InitialValue);
+   &max_length = 2147483647;
+   &length = Len(&InitialValue);
+end-method;
+
+method reset
+   &pieces.Len = 0;
+   &length = 0;
+end-method;
+
+method append
+   /+ &New as String +/
+   Local integer &TempLength = &length + Len(&New);
+   If &length > &max_length Then
+      throw CreateException(0, 0, "Maximum size of StringBuffer exceeded(" | &max_length | ")");
+   End-If;
+   &length = &TempLength;
+   &pieces.Push(&New);
+end-method;
+
+get value
+   /+ Returns String +/
+   Local string &Temp = &pieces.Join("", "", "", &length);
+   /* collapse array now */
+   &pieces.Len = 1;
+   &pieces [1] = &Temp; /* start out with this combo string */
+   Return &Temp;
+end-get;
+
+set value
+   /+ &NewValue as String +/
+   /* Ditch our current value */
+   &pieces.Len = 1;
+   &pieces [1] = &NewValue; /* start out with this string */
+   &length = Len(&NewValue);
+end-set;
+

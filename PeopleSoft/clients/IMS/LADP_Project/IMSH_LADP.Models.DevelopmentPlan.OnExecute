@@ -1,0 +1,22 @@
+import IMSH_LADP:*;
+import IMSH_LADP:Models:*;
+import IMSH_LADP:Utils:*;
+import IMSH_LADP:Types:*;
+
+class DevelopmentPlan extends IMSH_LADP:Model
+   method DevelopmentPlan(&rec As Record);
+end-class;
+
+method DevelopmentPlan
+   /+ &rec as Record +/
+   %Super = CreateObject("IMSH_LADP:Model", &rec);
+   
+   Local SQL &DEVTYPE = CreateSQL("%SELECTALL(IMSH_DEVTYPE_VW)");
+   Local Record &DEVTYPE_REC = CreateRecord(Record.IMSH_DEVTYPE_VW);
+   %This.GetField(Field.EP_ITEM_LINK).ClearDropDownList();
+   While &DEVTYPE.Fetch(&DEVTYPE_REC)
+      %This.GetField(Field.EP_ITEM_LINK).AddDropDownItem(&DEVTYPE_REC.EP_ITEM_ID.Value, &DEVTYPE_REC.EP_TITLE.Value);
+   End-While;
+   %This.GetField(Field.EP_SECTION_TYPE).Value = "DEVOBJ";
+end-method;
+

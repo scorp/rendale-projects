@@ -1,0 +1,23 @@
+import SAC_AW_MONITOR:MONITOR:threadDescrBase;
+
+class ThreadDescr extends SAC_AW_MONITOR:MONITOR:threadDescrBase
+   method ThreadDescr();
+   method getThreadDescr(&keys As array of Field) Returns string;
+end-class;
+
+method ThreadDescr
+   %Super = create SAC_AW_MONITOR:MONITOR:threadDescrBase();
+end-method;
+
+method getThreadDescr
+   /+ &keys as Array of Field +/
+   /+ Returns String +/
+   /+ Extends/implements SAC_AW_MONITOR:MONITOR:threadDescrBase.getThreadDescr +/
+   
+   Local string &keystring, &Name;
+   &keystring = "LADP";
+   
+   Return &keystring;
+   
+end-method;
+

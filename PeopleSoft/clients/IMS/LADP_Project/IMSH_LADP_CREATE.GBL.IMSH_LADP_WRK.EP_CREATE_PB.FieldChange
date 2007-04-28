@@ -1,0 +1,6 @@
+import IMSH_LADP:*;
+import IMSH_LADP:Types:*;
+
+Component IMSH_LADP:Controller &controller;
+
+&controller.do("GenerateDocuments", CreateObject("IMSH_LADP:Types:Arguments"));

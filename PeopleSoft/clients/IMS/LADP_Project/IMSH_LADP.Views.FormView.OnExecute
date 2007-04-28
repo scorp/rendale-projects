@@ -1,0 +1,133 @@
+import IMSH_LADP:*;
+import IMSH_LADP:Types:*;
+import IMSH_LADP:Utils:*;
+import IMSH_LADP:Controllers:*;
+
+class FormView implements IMSH_LADP:View
+   method FormView(&calling_controller As IMSH_LADP:Controllers:Controller_IMSH_LADP_FORM);
+   method render(&args As IMSH_LADP:Types:Arguments);
+   method setup_header();
+   method setup_background_grids();
+   method status_handler();
+   
+   property IMSH_LADP:Controllers:Controller_IMSH_LADP_FORM controller;
+   property IMSH_LADP:Utils:StringBuffer buffer;
+end-class;
+
+method FormView
+   /+ &calling_controller as IMSH_LADP:Controllers:Controller_IMSH_LADP_FORM +/
+   %This.controller = &calling_controller;
+   %This.buffer = CreateObject("IMSH_LADP:Utils:StringBuffer", "");
+end-method;
+
+method render
+   /+ &args as IMSH_LADP:Types:Arguments +/
+   /+ Extends/implements IMSH_LADP:View.render +/
+   %This.setup_header();
+   %This.setup_background_grids();
+   
+   /* adding prior year results */
+   If %This.controller.prior_ladp_results.Len > 0 Then
+      Local integer &a;
+      %This.buffer.reset();
+      For &a = 1 To %This.controller.prior_ladp_results.Len
+         %This.buffer.append("<div class=""IMSH_LADP_PRIOR_RESULT"" style=""background:eee; color:#666;"">" | %This.controller.prior_ladp_results [&a] | "</div>");
+      End-For;
+      IMSH_LADP_WRK.HTMLAREA7.Value = GetHTMLText(HTML.IMSH_LADP_PRIORRES_FRAGMENT, %This.buffer.value);
+   End-If;
+   IMSH_LADP_WRK.HTMLAREA8.Value = GetHTMLText(HTML.IMSH_LADP_RESULT_INS);
+end-method;
+
+method status_handler
+   Evaluate %This.controller.document.status
+   When "IP"
+      IMSH_LADP_WRK.RESET_PB.Visible = False;
+      IMSH_LADP_WRK.STATUS_PB.Visible = True;
+      IMSH_LADP_WRK.RESET_PB.Label = "";
+      IMSH_LADP_WRK.STATUS_PB.Label = "Submit to Manager";
+      Break;
+   When "EC"
+      IMSH_LADP_WRK.RESET_PB.Visible = True;
+      IMSH_LADP_WRK.STATUS_PB.Visible = True;
+      IMSH_LADP_WRK.RESET_PB.Label = "Send Back to Employee";
+      IMSH_LADP_WRK.STATUS_PB.Label = "Complete and Submit";
+      Break;
+   When "MC"
+      IMSH_LADP_WRK.RESET_PB.Visible = True;
+      IMSH_LADP_WRK.STATUS_PB.Visible = True;
+      IMSH_LADP_WRK.RESET_PB.Label = "Send Back to Manager";
+      IMSH_LADP_WRK.STATUS_PB.Label = "Complete and Lock";
+      Break;
+   When "HC"
+      IMSH_LADP_WRK.RESET_PB.Visible = True;
+      IMSH_LADP_WRK.STATUS_PB.Visible = False;
+      IMSH_LADP_WRK.RESET_PB.Label = "Unlock";
+      Break;
+      
+   When-Other
+      IMSH_LADP_WRK.RESET_PB.Visible = False;
+      IMSH_LADP_WRK.STATUS_PB.Visible = False;
+      Break;
+   End-Evaluate;
+end-method;
+
+method setup_header
+   Local string &html;
+   IMSH_LADP_WRK.NAME_DISPLAY.Value = %This.controller.manager.GetField(Field.NAME_DISPLAY).Value;
+   IMSH_LADP_WRK.DESCR.Value = %This.controller.manager.GetField(Field.DESCR).Value;
+   IMSH_LADP_WRK.YEAR.Value = Year(IMSH_LADP.PERIOD_END_DT.Value);
+   
+   /* status */
+   IMSH_LADP_WRK.IMSH_LADP_STATUS.Value = %This.controller.document.status;
+   IMSH_LADP_WRK.HTMLAREA5.Value = GetHTMLText(HTML.IMSH_LADP_STATUS_FRAGMENT, IMSH_LADP_WRK.IMSH_LADP_STATUS.LongTranslateValue);
+end-method;
+
+method setup_background_grids
+   Local integer &a;
+   /* Education */
+   For &a = 1 To %This.controller.rs_education.ActiveRowCount
+      If None(%This.controller.rs_education.GetRow(&a).IMSH_LADPEDU_VW.SCHOOL_CODE.Value) Then
+         %This.controller.rs_education.GetRow(&a).IMSH_LADP_WRK.SCHOOL.Value = %This.controller.rs_education.GetRow(&a).IMSH_LADPEDU_VW.SCHOOL.Value;
+      Else
+         %This.controller.rs_education.GetRow(&a).IMSH_LADP_WRK.SCHOOL.Value = %This.controller.rs_education.GetRow(&a).SCHOOL_TBL_VW.DESCR.Value;
+      End-If;
+      
+      If None(%This.controller.rs_education.GetRow(&a).IMSH_LADPEDU_VW.MAJOR_CODE.Value) Then
+         %This.controller.rs_education.GetRow(&a).IMSH_LADP_WRK.MAJOR.Value = %This.controller.rs_education.GetRow(&a).IMSH_LADPEDU_VW.MAJOR.Value;
+      Else
+         %This.controller.rs_education.GetRow(&a).IMSH_LADP_WRK.MAJOR.Value = %This.controller.rs_education.GetRow(&a).MAJOR_TBL.DESCR.Value;
+      End-If;
+   End-For;
+   %This.controller.rs_education.Sort(IMSH_LADPEDU_VW.DT_ISSUED, "D", IMSH_LADPEDU_VW.IMSH_YEAR, "D");
+   
+   /* Certifications */
+   For &a = 1 To %This.controller.rs_certifications.ActiveRowCount
+      If All(%This.controller.rs_certifications.GetRow(&a).IMSH_LADPCRT_VW.SCHOOL.Value) Then
+         %This.controller.rs_certifications.GetRow(&a).IMSH_LADP_WRK.SCHOOL.Value = %This.controller.rs_certifications.GetRow(&a).IMSH_LADPCRT_VW.SCHOOL.Value;
+      Else
+         %This.controller.rs_certifications.GetRow(&a).IMSH_LADP_WRK.SCHOOL.Value = %This.controller.rs_certifications.GetRow(&a).HR_LIC_CERT_VW.DESCR.Value;
+      End-If;
+   End-For;
+   %This.controller.rs_certifications.Sort(IMSH_LADPCRT_VW.DT_ISSUED, "D", IMSH_LADPCRT_VW.IMSH_YEAR, "D");
+   
+   /* Training */
+   For &a = 1 To %This.controller.rs_training.ActiveRowCount
+      If All(%This.controller.rs_training.GetRow(&a).TRAINING.SCHOOL.Value) Then
+         %This.controller.rs_training.GetRow(&a).IMSH_LADP_WRK.SCHOOL.Value = %This.controller.rs_training.GetRow(&a).TRAINING.SCHOOL.Value;
+      Else
+         %This.controller.rs_training.GetRow(&a).IMSH_LADP_WRK.SCHOOL.Value = %This.controller.rs_training.GetRow(&a).COURSE_TBL.DESCR.Value;
+      End-If;
+   End-For;
+   %This.controller.rs_training.Sort(TRAINING.COURSE_START_DT, "D", TRAINING.IMSH_YEAR, "D");
+   
+   /* Prior Positions */
+   GetLevel0()(1).GetRowset(Scroll.IMSH_PRIOR_POS).Sort(IMSH_PRIOR_POS.FROM_DT, "D", IMSH_PRIOR_POS.IMSH_ITEM_ID, "D");
+   
+   /* results */
+   GetLevel0()(1).GetRowset(Scroll.IMSH_LADP_RES).Sort(IMSH_LADP_RES.IMSH_ITEM_ID, "D");
+   
+   /* dev plans */
+   GetLevel0()(1).GetRowset(Scroll.IMSH_B_ITEM_VW).Sort(IMSH_B_ITEM_VW.EP_ITEM_SEQ, "D");
+   
+end-method;
+

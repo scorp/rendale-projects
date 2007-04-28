@@ -1,0 +1,31 @@
+/* Languages */
+
+import IMSH_LADP:*;
+import IMSH_LADP:Models:*;
+import IMSH_LADP:Types:*;
+
+Component IMSH_LADP:Controller &controller;
+Local string &page;
+Component Record &dg_record;
+Component Row &dg_row;
+
+DoModal(Page.IMSH_LADP_LNG_DG, "", 0, 0);
+
+If All(&dg_record) Then
+   If GetLevel0()(1).GetRowset(Scroll.IMSH_LADPLNG_VW).ActiveRowCount > 1 Or
+         Not GetLevel0()(1).GetRowset(Scroll.IMSH_LADPLNG_VW)(1).IsNew Or
+         (GetLevel0()(1).GetRowset(Scroll.IMSH_LADPLNG_VW)(1).IsNew And
+            GetLevel0()(1).GetRowset(Scroll.IMSH_LADPLNG_VW)(1).IsChanged) Then
+      GetLevel0()(1).GetRowset(Scroll.IMSH_LADPLNG_VW).InsertRow(0);
+   End-If;
+   GetLevel0()(1).GetRowset(Scroll.IMSH_LADPLNG_VW).SetComponentChanged = True;
+   &new_record = GetLevel0()(1).GetRowset(Scroll.IMSH_LADPLNG_VW)(1).IMSH_LADPLNG_VW;
+   &dg_record.CopyFieldsTo(&new_record);
+   &new_record.emplid.value = IMSH_LADP.EMPLID.Value;
+   IMSH_LADP_WRK.IMSH_GROUPBOX13.Visible = True;
+   &dg_record = Null;
+End-If;
+DoSaveNow();
+
+Local IMSH_LADP:Types:Arguments &args = create IMSH_LADP:Types:Arguments();
+&controller.do("render_form", &args);

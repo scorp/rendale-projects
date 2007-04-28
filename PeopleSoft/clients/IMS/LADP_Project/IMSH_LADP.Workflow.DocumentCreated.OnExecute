@@ -1,0 +1,39 @@
+import IMSH_LADP:Models:*;
+import PT_WF_NOTIFICATION:*;
+import IMSH_LADP:Base:*;
+
+class DocumentCreated extends IMSH_LADP:Base:LadpNotification
+   property IMSH_LADP:Models:LadpDocument document;
+   property IMSH_LADP:Models:Employee employee;
+   
+   method DocumentCreated(&in_document As IMSH_LADP:Models:LadpDocument, &in_employee As IMSH_LADP:Models:Employee);
+   method get_recipients() Returns array of PT_WF_NOTIFICATION:NotificationAddress;
+   method send();
+end-class;
+
+method DocumentCreated
+   /+ &in_document as IMSH_LADP:Models:LadpDocument, +/
+   /+ &in_employee as IMSH_LADP:Models:Employee +/
+   %Super = create IMSH_LADP:Base:LadpNotification();
+   %Super.EmailReplyTo = "PSWORKFLOW@IMSHEALTH.COM";
+   %This.employee = &in_employee;
+   %This.document = &in_document;
+   %Super.Subject = "Employee Complete Subject";
+   %Super.Message = "Employee Complete Message";
+end-method;
+
+method get_recipients
+   /+ Returns Array of PT_WF_NOTIFICATION:NotificationAddress +/
+   /+ Extends/implements IMSH_LADP:Base:LadpNotification.get_recipients +/
+   Local array of PT_WF_NOTIFICATION:NotificationAddress &recipients = CreateArrayRept(create PT_WF_NOTIFICATION:NotificationAddress("", "", "", "", ""), 0);
+   rem Local IMSH_LADP:Models:Employee &manager = %This.employee.find_manager();
+   &recipients.Push(%This.employee.email_address);
+   Return &recipients;
+end-method;
+
+method send
+   /+ Extends/implements IMSH_LADP:Base:LadpNotification.send +/
+   %Super.NotifyTo = %This.get_recipients();
+   %Super.send();
+end-method;
+

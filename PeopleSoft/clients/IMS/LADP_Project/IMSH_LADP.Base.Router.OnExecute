@@ -1,0 +1,12 @@
+import IMSH_LADP:*;
+import IMSH_LADP:Controllers:*;
+
+class Router
+   method route() Returns IMSH_LADP:Controller;
+end-class;
+
+method route
+   /+ Returns IMSH_LADP:Controller +/
+   Return CreateObject("IMSH_LADP:Controllers:Controller_" | String(%Page));
+end-method;
+

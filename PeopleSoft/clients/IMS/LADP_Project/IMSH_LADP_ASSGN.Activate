@@ -1,0 +1,4 @@
+Component Row &row;
+
+GetRowset(Scroll.IMSH_LADP_ASSGN).Flush();
+GetRowset(Scroll.IMSH_LADP_ASSGN).Select(Record.IMSH_LADP_ASSGN, "where IMSH_LADP_ID = :1", &row.GetRecord(@("RECORD." | &row.ParentRowset.DBRecordName)).GetField(Field.IMSH_LADP_ID).Value);

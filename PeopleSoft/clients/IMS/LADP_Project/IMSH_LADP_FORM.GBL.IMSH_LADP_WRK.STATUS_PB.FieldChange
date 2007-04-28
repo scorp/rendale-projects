@@ -1,0 +1,8 @@
+import IMSH_LADP:*;
+import IMSH_LADP:Types:*;
+
+Component IMSH_LADP:Controller &controller;
+
+&args = CreateObject("IMSH_LADP:Types:Arguments");
+&args.string_args.push("status_next");
+&controller.do("display_confirmation", &args);

@@ -1,0 +1,48 @@
+import IMSH_LADP:*;
+import IMSH_LADP:Utils:*;
+import IMSH_LADP:Types:*;
+
+class BaseController implements IMSH_LADP:Controller
+   method BaseController();
+   method do(&action As string, &args As IMSH_LADP:Types:Arguments);
+   
+   method populate_rowset_from_model(&models As array of IMSH_LADP:Model, &rowset As Rowset) Returns Rowset;
+   
+   property IMSH_LADP:Types:Arguments arguments;
+end-class;
+
+method BaseController
+   
+end-method;
+
+method do
+   /+ &action as String, +/
+   /+ &args as IMSH_LADP:Types:Arguments +/
+   /+ Extends/implements IMSH_LADP:Controller.do +/
+   %This.arguments = &args;
+   ObjectDoMethod(%This, &action);
+   
+end-method;
+
+method populate_rowset_from_model
+   /+ &models as Array of IMSH_LADP:Model, +/
+   /+ &rowset as Rowset +/
+   /+ Returns Rowset +/
+   Local integer &a;
+   Local IMSH_LADP:Utils:BufferHelper &bh = CreateObject("IMSH_LADP:Utils:BufferHelper");
+   For &a = 1 To &models.Len
+      If &bh.is_empty_rowset(&rowset) Then
+         If &a = 1 Then
+            &models [&a].CopyFieldsTo(&rowset(1).GetRecord(@("record." | &rowset.DBRecordName)));
+         Else
+            &rowset.InsertRow(&rowset.ActiveRowCount);
+            &models [&a].CopyFieldsTo(&rowset(&rowset.ActiveRowCount).GetRecord(@("record." | &rowset.DBRecordName)));
+         End-If;
+      Else
+         &rowset.InsertRow(&rowset.ActiveRowCount);
+         &models [&a].CopyFieldsTo(&rowset(&rowset.ActiveRowCount).GetRecord(@("record." | &rowset.DBRecordName)));
+      End-If;
+   End-For;
+   Return &rowset
+end-method;
+

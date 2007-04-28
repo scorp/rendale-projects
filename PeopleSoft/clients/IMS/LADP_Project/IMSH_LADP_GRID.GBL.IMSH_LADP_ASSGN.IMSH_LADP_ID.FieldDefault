@@ -1,0 +1,7 @@
+Component Row &row;
+
+try
+   GetField().Value = &row.GetRecord(@("RECORD." | &row.ParentRowset.DBRecordName)).GetField(Field.IMSH_LADP_ID).Value
+catch Exception &e
+   
+end-try;

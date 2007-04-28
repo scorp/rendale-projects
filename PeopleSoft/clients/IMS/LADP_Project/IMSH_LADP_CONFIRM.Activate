@@ -1,0 +1,5 @@
+import IMSH_LADP:*;
+
+Component IMSH_LADP:Controller &controller;
+
+&controller.do("render_confirmation", &controller.arguments);

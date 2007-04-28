@@ -1,0 +1,69 @@
+/* PRIOR POSITIONS */
+
+import IMSH_LADP:*;
+import IMSH_LADP:Models:*;
+import IMSH_LADP:Types:*;
+
+Component IMSH_LADP:Controller &controller;
+Local string &page;
+Component Record &dg_record;
+Component Row &dg_row;
+
+DoModal(Page.IMSH_LADP_PP_DG, "", 0, 0);
+
+
+
+If All(&dg_record) Then
+   If GetLevel0()(1).GetRowset(Scroll.IMSH_PRIOR_POS).ActiveRowCount > 1 Or
+         Not GetLevel0()(1).GetRowset(Scroll.IMSH_PRIOR_POS)(1).IsNew Then
+      GetLevel0()(1).GetRowset(Scroll.IMSH_PRIOR_POS).InsertRow(0);
+   End-If;
+   
+   rem Local Record GetLevel0()(1).GetRowset(Scroll.IMSH_PRIOR_POS)(1).IMSH_PRIOR_POS = GetLevel0()(1).GetRowset(Scroll.IMSH_PRIOR_POS)(1).IMSH_PRIOR_POS;
+   GetLevel0()(1).GetRowset(Scroll.IMSH_PRIOR_POS)(1).IMSH_PRIOR_POS.EMPLID.Value = IMSH_LADP.EMPLID.Value;
+   
+   &dg_record.CopyFieldsTo(GetLevel0()(1).GetRowset(Scroll.IMSH_PRIOR_POS)(1).IMSH_PRIOR_POS);
+   GetLevel0()(1).GetRowset(Scroll.IMSH_PRIOR_POS)(1).IMSH_PRIOR_POS.EMPLID.Value = IMSH_LADP.EMPLID.Value;
+   GetLevel0()(1).GetRowset(Scroll.IMSH_PRIOR_POS)(1).IMSH_PRIOR_POS.IMSH_ITEM_ID.Value = GetNextNumberWithGapsCommit(IMSH_LADP_SEQ.IMSH_ITEM_ID, 999999999, 1, "where IMSH_LADP_ID =" | GetLevel0()(1).IMSH_LADP.IMSH_LADP_ID.Value);
+   IMSH_LADP_WRK.IMSH_GROUPBOX9.Visible = True;
+   
+   If None(GetLevel0()(1).GetRowset(Scroll.IMSH_PRIOR_POS)(1).IMSH_PRIOR_POS.FROM_DT.Value, GetLevel0()(1).GetRowset(Scroll.IMSH_PRIOR_POS)(1).IMSH_PRIOR_POS.THRU_DT.Value) Then
+      rem     GetLevel0()(1).GetRowset(Scroll.IMSH_PRIOR_POS)(1).IMSH_LADP_WRK.DESCR100.Value = GetLevel0()(1).GetRowset(Scroll.IMSH_PRIOR_POS)(1).IMSH_PRIOR_POS.DESCR100.Value;
+      If None(GetLevel0()(1).GetRowset(Scroll.IMSH_PRIOR_POS)(1).IMSH_PRIOR_POS.DESCR100.Value) Then
+         GetLevel0()(1).GetRowset(Scroll.IMSH_PRIOR_POS)(1).IMSH_PRIOR_POS.DESCR100.Label = "Add Employment Dates";
+      Else
+         GetLevel0()(1).GetRowset(Scroll.IMSH_PRIOR_POS)(1).IMSH_PRIOR_POS.DESCR100.Label = GetLevel0()(1).GetRowset(Scroll.IMSH_PRIOR_POS)(1).IMSH_PRIOR_POS.DESCR100.Value;
+      End-If;
+      GetLevel0()(1).GetRowset(Scroll.IMSH_PRIOR_POS)(1).IMSH_LADP_WRK.DESCR100.Enabled = True;
+   Else
+      If None(GetLevel0()(1).GetRowset(Scroll.IMSH_PRIOR_POS)(1).IMSH_PRIOR_POS.FROM_DT.Value) Then
+         &from = "";
+      Else
+         &from = DateTimeToLocalizedString(GetLevel0()(1).GetRowset(Scroll.IMSH_PRIOR_POS)(1).IMSH_PRIOR_POS.FROM_DT.Value, "MMM yyyy");
+      End-If;
+      
+      If None(GetLevel0()(1).GetRowset(Scroll.IMSH_PRIOR_POS)(1).IMSH_PRIOR_POS.THRU_DT.Value) Then
+         &thru = "current";
+      Else
+         &thru = DateTimeToLocalizedString(GetLevel0()(1).GetRowset(Scroll.IMSH_PRIOR_POS)(1).IMSH_PRIOR_POS.THRU_DT.Value, "MMM yyyy");
+      End-If;
+      
+      rem GetLevel0()(1).GetRowset(Scroll.IMSH_PRIOR_POS)(1).IMSH_LADP_WRK.DESCR100.Value = &from | " - " | &thru;
+      GetLevel0()(1).GetRowset(Scroll.IMSH_PRIOR_POS)(1).IMSH_LADP_WRK.DESCR100.Label = &from | " - " | &thru;
+      GetLevel0()(1).GetRowset(Scroll.IMSH_PRIOR_POS)(1).IMSH_LADP_WRK.DESCR100.Enabled = False;
+      try
+         Local Grid &grid = GetGrid(%Page, "IMSH_PRIOR_POS");
+         &grid.DESCR100.Label = "Employment Dates";
+      catch Exception &grid_ex
+         
+      end-try;
+   End-If;
+   
+   
+   &dg_record = Null;
+End-If;
+
+
+DoSaveNow();
+Local IMSH_LADP:Types:Arguments &args = create IMSH_LADP:Types:Arguments();
+&controller.do("render_form", &args);

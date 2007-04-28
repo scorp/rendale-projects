@@ -1,0 +1,316 @@
+import IMSH_LADP:*;
+import IMSH_LADP:Types:*;
+import IMSH_LADP:Models:*;
+
+import SAC_AW:*;
+
+class LadpDocument extends IMSH_LADP:Model
+   method LadpDocument(&doc_args As Record);
+   method exists() Returns boolean;
+   method manager_readonly();
+   method employee_readonly();
+   method hr_readonly();
+   method manager_updateable();
+   method employee_updateable();
+   method hr_updateable();
+   method status_next();
+   method status_back();
+   method add_assignment(&type As string, &emplid As string) Returns boolean;
+   
+   property string status get set;
+   property string next_status_long_xlat get;
+   property string previous_status_long_xlat get;
+   property string status_emp get;
+   property string status_mgr get;
+   property array of Field self_assessment;
+   property array of Field mgr_assessment;
+   
+   property IMSH_LADP:Models:Employee employee;
+   property IMSH_LADP:Models:DevelopmentPlanCollection development_plan_collection;
+   property IMSH_LADP:Models:ResultsCollection results_collection;
+   property IMSH_LADP:ModelCollection prior_position_collection;
+   property IMSH_LADP:ModelCollection relocation_collection;
+   property IMSH_LADP:ModelCollection education_collection;
+   property IMSH_LADP:ModelCollection training_collection;
+   property IMSH_LADP:ModelCollection languages_collection;
+   property IMSH_LADP:ModelCollection certifications_collection;
+   
+private
+   instance array of string &statuses;
+end-class;
+
+method LadpDocument
+   /+ &doc_args as Record +/
+   %Super = CreateObject("IMSH_LADP:Model", &doc_args);
+   
+   If None(%This.GetField(Field.IMSH_LADP_ID).Value) And
+         All(%This.GetField(Field.EMPLID).Value) Then
+      %This.GetField(Field.IMSH_LADP_ID).Value = GetNextNumberWithGapsCommit(EP_INSTALLATION.EP_LAST_APPR_ID, 99999999, 1);
+   End-If;
+   
+   
+   /* qualifications and background */
+   If %Component = "IMSH_LADP_FORM" Then
+      %This.statuses = CreateArray("IP", "EC", "MC", "HC");
+      
+      %This.self_assessment = CreateArray(%This.GetField(Field.IMSH_RELOCATE_BG), %This.GetField(Field.IMSH_YRS_IN_JOB), %This.GetField(Field.IMSH_CG_EMP_CMNTS), %This.GetField(Field.IMSH_EMP_COMMENTS), %This.GetField(Field.IMSH_LT_CG), %This.GetField(Field.IMSH_ST_CG), %This.GetField(Field.IMSH_EMP_STR1), %This.GetField(Field.IMSH_EMP_STR2), %This.GetField(Field.IMSH_EMP_STR3), %This.GetField(Field.IMSH_EMP_DEV1), %This.GetField(Field.IMSH_EMP_DEV2), %This.GetField(Field.IMSH_EMP_DEV3));
+      %This.mgr_assessment = CreateArray(%This.GetField(Field.IMSH_MGR_STR1), %This.GetField(Field.IMSH_MGR_STR2), %This.GetField(Field.IMSH_MGR_STR3), %This.GetField(Field.IMSH_MGR_DEV1), %This.GetField(Field.IMSH_MGR_DEV2), %This.GetField(Field.IMSH_MGR_DEV3), %This.GetField(Field.IMSH_CF_MGR_CMNTS), %This.GetField(Field.IMSH_MGR_CG_YN), %This.GetField(Field.IMSH_CG_MGR_CMNTS), %This.GetField(Field.IMSH_MGR_CO_YN), %This.GetField(Field.IMSH_DC_MGR_CMNTS), %This.GetField(Field.IMSH_CO_MGR_CMNTS), %This.GetField(Field.IMSH_OA_MGR_CMNTS), %This.GetField(Field.IMSH_MGR_RELO_YN));
+      
+      %This.prior_position_collection = CreateObject("IMSH_LADP:ModelCollection", GetLevel0()(1).GetRowset(Scroll.IMSH_PRIOR_POS));
+      rem %This.relocation_collection = CreateObject("IMSH_LADP:ModelCollection", GetLevel0()(1).GetRowset(Scroll.IMSH_RELOCATE));
+      %This.education_collection = CreateObject("IMSH_LADP:ModelCollection", GetLevel0()(1).GetRowset(Scroll.IMSH_LADPEDU_VW));
+      %This.training_collection = CreateObject("IMSH_LADP:ModelCollection", GetLevel0()(1).GetRowset(Scroll.TRAINING));
+      %This.languages_collection = CreateObject("IMSH_LADP:ModelCollection", GetLevel0()(1).GetRowset(Scroll.IMSH_LADPLNG_VW));
+      %This.certifications_collection = CreateObject("IMSH_LADP:ModelCollection", GetLevel0()(1).GetRowset(Scroll.IMSH_LADPCRT_VW));
+      %This.development_plan_collection = CreateObject("IMSH_LADP:Models:DevelopmentPlanCollection", GetLevel0()(1).GetRowset(Scroll.IMSH_B_ITEM_VW));
+      %This.results_collection = CreateObject("IMSH_LADP:Models:ResultsCollection", GetLevel0()(1).GetRowset(Scroll.IMSH_LADP_RES));
+   End-If;
+end-method;
+
+get status
+   /+ Returns String +/
+   Local string &status;
+   Return %This.GetField(Field.IMSH_LADP_STATUS).Value;
+end-get;
+
+set status
+   /+ &NewValue as String +/
+   %This.GetField(Field.IMSH_LADP_STATUS).Value = &NewValue;
+end-set;
+
+get next_status_long_xlat
+   /+ Returns String +/
+   Local string &status;
+   Local Record &status_wrk = CreateRecord(Record.IMSH_LADP_WRK);
+   &status_wrk.IMSH_LADP_NXT_STAT.Value = %This.statuses [&statuses.Find(%This.status) + 1];
+   
+   Return &status_wrk.IMSH_LADP_NXT_STAT.LongTranslateValue;
+end-get;
+
+get previous_status_long_xlat
+   /+ Returns String +/
+   Local string &status;
+   Local Record &status_wrk = CreateRecord(Record.IMSH_LADP_WRK);
+   &status_wrk.IMSH_LADP_NXT_STAT.Value = %This.statuses [&statuses.Find(%This.status) - 1];
+   
+   Return &status_wrk.IMSH_LADP_NXT_STAT.LongTranslateValue;
+end-get;
+
+get status_emp
+   /+ Returns String +/
+   Local string &status;
+   Evaluate %This.GetField(Field.IMSH_LADP_STATUS).Value
+   When "IP"
+   When "EC"
+      Return %This.GetField(Field.IMSH_LADP_STATUS).Value;
+      Break;
+   When "MC"
+   When "HC"
+   When "CO"
+      Return "CO";
+      Break;
+   When-Other
+      Return "";
+   End-Evaluate;
+end-get;
+
+get status_mgr
+   /+ Returns String +/
+   Local string &status;
+   Evaluate %This.GetField(Field.IMSH_LADP_STATUS).Value
+   When "IP"
+   When "EC"
+      Return %This.GetField(Field.IMSH_LADP_STATUS).Value;
+      Break;
+   When "MC"
+   When "HC"
+   When "CO"
+      Return "CO";
+      Break;
+   When-Other
+      Return "";
+   End-Evaluate;
+end-get;
+
+method status_next
+   %This.GetField(Field.IMSH_LADP_STATUS).Value = %This.statuses [&statuses.Find(%This.status) + 1];
+   rem   %This.launch_manager = create SAC_AW:LaunchManager("IMSH_LADP", %This As Record, "SHARE", %UserId);
+   rem   %This.launch_manager.DoSubmit();
+end-method;
+
+method status_back
+   %This.GetField(Field.IMSH_LADP_STATUS).Value = %This.statuses [&statuses.Find(%This.status) - 1];
+end-method;
+
+method employee_readonly
+   Local integer &a;
+   IMSH_LADP_WRK.SAVE_PB.Visible = False;
+   IMSH_LADP_WRK.STATUS_PB.Visible = False;
+   IMSH_LADP_WRK.RESET_PB.Visible = False;
+   IMSH_LADP.IMSH_YRS_IN_JOB.DisplayOnly = True;
+   IMSH_LADP.IMSH_RELOCATE_BG.DisplayOnly = True;
+   IMSH_LADP_WRK.ADD_ROW.Visible = False;
+   IMSH_LADP_WRK.IMSH_ADD_ROW2.Visible = False;
+   IMSH_LADP_WRK.IMSH_ADD_ROW4.Visible = False;
+   IMSH_LADP_WRK.IMSH_ADD_ROW5.Visible = False;
+   IMSH_LADP_WRK.IMSH_ADD_ROW6.Visible = False;
+   IMSH_LADP_WRK.IMSH_ADD_ROW7.Visible = False;
+   IMSH_LADP_WRK.IMSH_ADD_ROW8.Visible = False;
+   For &a = 1 To %This.self_assessment.Len
+      %This.self_assessment [&a].DisplayOnly = True;
+   End-For;
+   
+   %This.development_plan_collection.make_readonly();
+   
+   %This.results_collection.make_readonly();
+   %This.education_collection.disable_grid_action();
+   %This.training_collection.disable_grid_action();
+   %This.certifications_collection.disable_grid_action();
+   %This.languages_collection.disable_grid_action();
+   %This.prior_position_collection.disable_grid_action();
+end-method;
+
+method manager_readonly
+   Local integer &a;
+   %This.employee_readonly();
+   For &a = 1 To %This.mgr_assessment.Len
+      %This.mgr_assessment [&a].DisplayOnly = True;
+   End-For;
+end-method;
+
+method hr_readonly
+   %This.manager_readonly();
+end-method;
+
+method employee_updateable
+   Local integer &a;
+   IMSH_LADP_WRK.SAVE_PB.Visible = True;
+   IMSH_LADP_WRK.STATUS_PB.Visible = True;
+   IMSH_LADP.IMSH_RELOCATE_BG.DisplayOnly = False;
+   IMSH_LADP.IMSH_YRS_IN_JOB.DisplayOnly = False;
+   IMSH_LADP_WRK.ADD_ROW.Visible = True;
+   IMSH_LADP_WRK.IMSH_ADD_ROW2.Visible = True;
+   IMSH_LADP_WRK.IMSH_ADD_ROW4.Visible = True;
+   IMSH_LADP_WRK.IMSH_ADD_ROW5.Visible = True;
+   IMSH_LADP_WRK.IMSH_ADD_ROW6.Visible = True;
+   IMSH_LADP_WRK.IMSH_ADD_ROW7.Visible = True;
+   IMSH_LADP_WRK.IMSH_ADD_ROW8.Visible = True;
+   For &a = 1 To %This.self_assessment.Len
+      %This.self_assessment [&a].DisplayOnly = False;
+   End-For;
+   %This.development_plan_collection.make_updateable();
+   %This.results_collection.make_updateable();
+   
+   %This.education_collection.enable_grid_action();
+   %This.training_collection.enable_grid_action();
+   %This.certifications_collection.enable_grid_action();
+   %This.languages_collection.enable_grid_action();
+   %This.prior_position_collection.enable_grid_action();
+   
+end-method;
+
+method manager_updateable
+   Local integer &a;
+   IMSH_LADP_WRK.SAVE_PB.Visible = True;
+   IMSH_LADP.IMSH_YRS_IN_JOB.DisplayOnly = True;
+   IMSH_LADP.IMSH_RELOCATE_BG.DisplayOnly = True;
+   IMSH_LADP_WRK.ADD_ROW.Visible = False;
+   IMSH_LADP_WRK.IMSH_ADD_ROW2.Visible = True;
+   IMSH_LADP_WRK.IMSH_ADD_ROW4.Visible = False;
+   IMSH_LADP_WRK.IMSH_ADD_ROW5.Visible = False;
+   IMSH_LADP_WRK.IMSH_ADD_ROW6.Visible = False;
+   IMSH_LADP_WRK.IMSH_ADD_ROW7.Visible = False;
+   IMSH_LADP_WRK.IMSH_ADD_ROW8.Visible = False;
+   For &a = 1 To %This.self_assessment.Len
+      %This.self_assessment [&a].DisplayOnly = True;
+   End-For;
+   For &a = 1 To %This.mgr_assessment.Len
+      %This.mgr_assessment [&a].DisplayOnly = False;
+   End-For;
+   
+   %This.results_collection.make_readonly();
+   %This.development_plan_collection.make_updateable();
+   %This.education_collection.disable_grid_action();
+   %This.training_collection.disable_grid_action();
+   %This.certifications_collection.disable_grid_action();
+   %This.languages_collection.disable_grid_action();
+   %This.prior_position_collection.disable_grid_action();
+   
+end-method;
+
+method hr_updateable
+   Local integer &a;
+   IMSH_LADP_WRK.SAVE_PB.Visible = True;
+   IMSH_LADP_WRK.STATUS_PB.Visible = True;
+   IMSH_LADP_WRK.RESET_PB.Visible = True;
+   IMSH_LADP_WRK.ADD_ROW.Visible = True;
+   IMSH_LADP_WRK.IMSH_ADD_ROW2.Visible = True;
+   IMSH_LADP_WRK.IMSH_ADD_ROW4.Visible = True;
+   IMSH_LADP_WRK.IMSH_ADD_ROW5.Visible = True;
+   IMSH_LADP_WRK.IMSH_ADD_ROW6.Visible = True;
+   IMSH_LADP_WRK.IMSH_ADD_ROW7.Visible = True;
+   IMSH_LADP_WRK.IMSH_ADD_ROW8.Visible = True;
+   For &a = 1 To %This.self_assessment.Len
+      %This.self_assessment [&a].DisplayOnly = False;
+   End-For;
+   For &a = 1 To %This.mgr_assessment.Len
+      %This.mgr_assessment [&a].DisplayOnly = False;
+   End-For;
+   %This.development_plan_collection.make_updateable();
+   %This.results_collection.make_updateable();
+   
+   %This.education_collection.enable_grid_action();
+   %This.training_collection.enable_grid_action();
+   %This.certifications_collection.enable_grid_action();
+   %This.languages_collection.enable_grid_action();
+   %This.prior_position_collection.enable_grid_action();
+   
+end-method;
+
+method exists
+   /+ Returns Boolean +/
+   /+ Extends/implements IMSH_LADP:Model.exists +/
+   If %Super.exists() Then
+      Return True;
+   Else
+      Local string &exists;
+      SQLExec("SELECT 'x' FROM PS_IMSH_LADP WHERE EMPLID = :1 AND PERIOD_BEGIN_DT = :2 AND PERIOD_END_DT = :3", %This.GetField(Field.EMPLID).Value, %This.GetField(Field.PERIOD_BEGIN_DT).Value, %This.GetField(Field.PERIOD_END_DT).Value, &exists);
+      If All(&exists) Then
+         Return True;
+      Else
+         Return False;
+      End-If;
+   End-If;
+end-method;
+
+method add_assignment
+   /+ &type as String, +/
+   /+ &emplid as String +/
+   /+ Returns Boolean +/
+   Local Record &assignment = CreateRecord(Record.IMSH_LADP_ASSGN);
+   %This.employee = create IMSH_LADP:Models:Employee();
+   %This.employee.GetField(Field.EMPLID).Value = %This.GetField(Field.EMPLID).Value;
+   %This.employee.SelectByKey();
+   &assignment.IMSH_LADP_ID.Value = %This.GetField(Field.IMSH_LADP_ID).Value;
+   If &emplid <> "" Then
+      &assignment.EMPLID.Value = &emplid;
+      &assignment.EP_ROLE.Value = &type;
+   Else
+      Evaluate &type
+      When "MGR"
+         Local imsh_ladp:models:Employee &manager = %This.employee.find_manager();
+         &assignment.EMPLID.Value = &manager.GetField(Field.EMPLID).Value;
+         &assignment.EP_ROLE.Value = &type;
+         Return &assignment.Insert();
+         Break;
+      When "HR"
+         Local imsh_ladp:models:Employee &hr_rep = %This.employee.find_hr_rep();
+         &assignment.EMPLID.Value = &hr_rep.GetField(Field.EMPLID).Value;
+         &assignment.EP_ROLE.Value = &type;
+         Return &assignment.Insert();
+         Break;
+      End-Evaluate;
+      Return False;
+   End-If;
+end-method;
+

@@ -1,0 +1,14 @@
+import IMSH_LADP:*;
+import IMSH_LADP:Types:*;
+import IMSH_LADP:Models:DevelopmentPlan;
+
+Component IMSH_LADP:Controller &controller;
+Local Rowset &RsItem = GetRowset();
+Local number &Seq = 0;
+Local number &RowNumber = CurrentRowNumber() - 1;
+
+
+If All(GetRecord().EP_TITLE.Value) Then
+   &args = CreateObject("IMSH_LADP:Types:Arguments");
+   &controller.do("initialize_dev_plan_item", &args);
+End-If;

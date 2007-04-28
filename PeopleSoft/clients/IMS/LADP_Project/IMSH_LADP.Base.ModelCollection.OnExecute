@@ -1,0 +1,74 @@
+import IMSH_LADP:*;
+import IMSH_LADP:Utils:*;
+import IMSH_LADP:Types:Arguments;
+
+class ModelCollection extends Rowset
+   method ModelCollection(&rowset As Rowset);
+   method get(&index As integer) Returns IMSH_LADP:Model;
+   method is_empty() Returns boolean;
+   method make_readonly();
+   method make_updateable();
+end-class;
+
+method ModelCollection
+   /+ &rowset as Rowset +/
+   %Super = &rowset;
+end-method;
+
+method get
+   /+ &index as Integer +/
+   /+ Returns IMSH_LADP:Model +/
+   Local IMSH_LADP:Model &model = CreateObject("IMSH_LADP:Model", %This.GetRow(&index).GetRecord(@("RECORD." | %This.DBRecordName)));
+   Return &model;
+end-method;
+
+method is_empty
+   /+ Returns Boolean +/
+   Local integer &a;
+   If %This.ActiveRowCount <= 1 Then
+      Local Record &rec = %This.GetRow(1).GetRecord(@("record." | %This.DBRecordName));
+      For &a = 1 To &rec.FieldCount
+         If None(&rec.GetField(&a).Value) And
+               &rec.GetField(&a).IsKey Then
+            rem WinMessage(&rec.GetField(&a).Value);
+            Return True
+         End-If;
+      End-For;
+      Return False;
+   Else
+      Return False;
+   End-If;
+end-method;
+
+method make_readonly
+   %This.InsertEnabled = False;
+   %This.DeleteEnabled = False;
+   Local integer &a, &b, &c;
+   For &a = 1 To %This.ActiveRowCount
+      For &b = 1 To %This.GetRow(&a).RecordCount
+         For &c = 1 To %This.GetRow(&a).GetRecord(&b).FieldCount
+            try
+               %This.GetRow(&a).GetRecord(&b).GetField(&c).DisplayOnly = True;
+            catch Exception &readonly_ex
+            end-try
+         End-For;
+      End-For;
+   End-For;
+end-method;
+
+method make_updateable
+   %This.InsertEnabled = True;
+   %This.DeleteEnabled = True;
+   Local integer &a, &b, &c;
+   For &a = 1 To %This.ActiveRowCount
+      For &b = 1 To %This.GetRow(&a).RecordCount
+         For &c = 1 To %This.GetRow(&a).GetRecord(&b).FieldCount
+            try
+               %This.GetRow(&a).GetRecord(&b).GetField(&c).DisplayOnly = False;
+            catch Exception &readonly_ex
+            end-try
+         End-For;
+      End-For;
+   End-For;
+end-method;
+

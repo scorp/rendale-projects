@@ -1,0 +1,17 @@
+class Arguments
+   method Arguments();
+   property array of string string_args;
+   property array of number number_args;
+   property array of object object_args;
+   property array of Rowset rowset_args;
+   property array of Row row_args;
+   property array of Record record_args;
+   property array of Field field_args;
+   property string type;
+end-class;
+
+method Arguments
+   %This.string_args = CreateArrayRept("", 0);
+   %This.number_args = CreateArrayRept(0, 0);
+end-method;
+

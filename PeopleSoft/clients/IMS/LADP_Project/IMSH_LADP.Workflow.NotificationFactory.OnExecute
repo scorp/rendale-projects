@@ -1,0 +1,70 @@
+import IMSH_LADP:Base:*;
+import IMSH_LADP:Models:*;
+import IMSH_LADP:Workflow:*;
+import PT_WF_NOTIFICATION:*;
+
+class NotificationFactory
+   method NotificationFactory();
+   method create_notification(&document As IMSH_LADP:Models:LadpDocument, &employee As IMSH_LADP:Models:Employee, &old_status As string, &new_status As string) Returns IMSH_LADP:Base:LadpNotification;
+end-class;
+
+method NotificationFactory
+   
+end-method;
+
+method create_notification
+   /+ &document as IMSH_LADP:Models:LadpDocument, +/
+   /+ &employee as IMSH_LADP:Models:Employee, +/
+   /+ &old_status as String, +/
+   /+ &new_status as String +/
+   /+ Returns IMSH_LADP:Base:LadpNotification +/
+   Local IMSH_LADP:Base:LadpNotification &notification;
+   Local string &action = &old_status | "=>" | &new_status;
+   
+   Evaluate &action
+   When "=>IP"
+   When " =>IP"
+      &notification = create IMSH_LADP:Workflow:DocumentCreated(&document, &employee);
+      
+      Return &notification;
+   When "IP=>EC"
+      &notification = create IMSH_LADP:Workflow:EmployeeComplete(&document, &employee);
+      
+      Return &notification;
+      Break;
+   When "EC=>MC"
+      &notification = create IMSH_LADP:Workflow:ManagerComplete(&document, &employee);
+      
+      Return &notification;
+      Break;
+   When "MC=>HC"
+      /* HR Finalizes */
+      /* no notification needed? */
+      &notification = create IMSH_LADP:Base:LadpNotification();
+      rem   &notification.document = &document;
+      rem   &notification.employee = &employee;
+      Return &notification;
+      Break;
+   When "HC=>MC"
+      /* HR reopens */
+      /* no notification needed? */
+      &notification = create IMSH_LADP:Base:LadpNotification();
+      rem &notification.document = &document;
+      rem &notification.employee = &employee;
+      Return &notification;
+      Break;
+   When "MC=>EC"
+      &notification = create IMSH_LADP:Workflow:HRPushback(&document, &employee);
+      
+      Return &notification;
+      Break;
+   When "EC=>IP"
+      &notification = create IMSH_LADP:Workflow:ManagerPushback(&document, &employee);
+      &notification.document = &document;
+      &notification.employee = &employee;
+      Return &notification;
+      Break;
+   End-Evaluate;
+   
+end-method;
+

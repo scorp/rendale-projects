@@ -1,0 +1,104 @@
+import PSXP_RPTDEFNMANAGER:*;
+import IMSH_LADP:*;
+import IMSH_LADP:Controllers:*;
+
+Declare Function DeleteLocalFile PeopleCode PSXPFUNCLIB.FUNCLIB FieldFormula;
+Declare Function GetDirSeparator PeopleCode PSXPFUNCLIB.FUNCLIB FieldFormula;
+Declare Function GetFileNameFromPath PeopleCode PSXPFUNCLIB.FUNCLIB FieldFormula;
+Declare Function GetDirectoryFromPath PeopleCode PSXPFUNCLIB.FUNCLIB FieldFormula;
+Declare Function GetFileExtension PeopleCode PSXPFUNCLIB.FUNCLIB FieldFormula;
+
+Component IMSH_LADP:Controller &controller;
+
+Local Rowset &rs = GetLevel0();
+Local XmlNode &currentnode, &rownode;
+
+Local XmlDoc &xmldocRoot = CreateXmlDoc("<?xml version='1.0' encoding='UTF-8'?><root></root>");
+Local XmlNode &nodeRoot = &xmldocRoot.DocumentElement;
+
+Local array of Rowset &rowsets = CreateArrayRept(CreateRowset(Record.IMSH_DUMMY), 0);
+&rowsets.Push(GetLevel0());
+For &a = 1 To GetLevel0()(1).ChildCount
+   &rowsets.Push(GetLevel0()(1).GetRowset(&a));
+End-For;
+
+For &d = 1 To &rowsets.Len
+   &rs = &rowsets [&d];
+   &rowsetnode = &nodeRoot.AddElement(&rowsets [&d].DBRecordName);
+   
+   For &a = 1 To &rs.ActiveRowCount
+      &rownode = &rowsetnode.AddElement("row");
+      &rownode.AddAttribute("rownumber", String(&a));
+      
+      For &b = 1 To &rs(&a).RecordCount
+         For &c = 1 To &rs(&a).GetRecord(&b).FieldCount
+            try
+               &currentnode = &rownode.AddElement(&rs(&a).GetRecord(&b).Name | "__" | &rs(&a).GetRecord(&b).GetField(&c).Name);
+               If &rs(&a).GetRecord(&b).Name | "__" | &rs(&a).GetRecord(&b).GetField(&c).Name = "IMSH_B_ITEM_VW__EP_ITEM_LINK" Then
+                  SQLExec("select EP_TITLE from PS_EP_INIT_TBL a where EP_ITEM_ID = :1 and %effdtcheck(EP_INIT_TBL aa, a, %currentdatein)", &rs(&a).GetRecord(&b).GetField(&c).Value, &output);
+                  &currentnode.NodeValue = &output;
+               Else
+                  If &rs(&a).GetRecord(&b).Name | "__" | &rs(&a).GetRecord(&b).GetField(&c).Name = "IMSH_LADP_WRK__DESCR100" Then
+                     &currentnode.NodeValue = &rs(&a).GetRecord(&b).GetField(&c).Label;
+                  Else
+                     &currentnode.NodeValue = &rs(&a).GetRecord(&b).GetField(&c).FormattedValue;
+                  End-If;
+               End-If;
+            catch Exception &e
+               
+            end-try;
+         End-For;
+      End-For;
+      
+      If &rowsets [&d].DBRecordName = "IMSH_LADP" Then
+         
+         &currentnode = &rownode.AddElement("IMSH_DERIVED_" | "employee_current_perf_rating");
+         &currentnode.NodeValue = ObjectGetProperty(&controller, "employee_current_perf_rating");
+         
+         &currentnode = &rownode.AddElement("IMSH_DERIVED_" | "employee_previous_perf_rating");
+         &currentnode.NodeValue = ObjectGetProperty(&controller, "employee_previous_perf_rating");
+         
+         &currentnode = &rownode.AddElement("IMSH_DERIVED_" | "employee_grade");
+         &currentnode.NodeValue = ObjectGetProperty(&controller, "employee").GetField(Field.GRADE).Value;
+         
+         &currentnode = &rownode.AddElement("IMSH_DERIVED_" | "employee_current_perf_year");
+         &currentnode.NodeValue = ObjectGetProperty(&controller, "employee_current_perf_year");
+         
+         &currentnode = &rownode.AddElement("IMSH_DERIVED_" | "employee_previous_perf_year");
+         &currentnode.NodeValue = ObjectGetProperty(&controller, "employee_previous_perf_year");
+      End-If;
+      
+      
+   End-For;
+   
+End-For;
+
+
+&sep = GetDirSeparator();
+
+CreateDirectory("XMLP", %FilePath_Relative);
+
+&report = create PSXP_RPTDEFNMANAGER:ReportDefn("LADP");
+&report.get();
+
+&RptOutputDir = GetEnv("PS_SERVDIR") | &sep | "files" | &sep | "XMLP" | &sep | UuidGen();
+&sOutputDir = &RptOutputDir | &sep | "RptInst";
+&sDataDir = &RptOutputDir | &sep | "Data";
+
+CreateDirectory(&sOutputDir, %FilePath_Absolute);
+CreateDirectory(&sDataDir, %FilePath_Absolute);
+
+&report.outdestination = &RptOutputDir;
+&report.setruntimedataxmldoc(&xmldocRoot);
+If %Menu = "IMSH_LADP_EMP" Then
+   &template = "EMPLOYEE_TEMPLATE";
+Else
+   &template = "MANAGER_TEMPLATE";
+End-If;
+
+&report.ProcessReport(&template, %Language_User, %Date, "");
+&sFileExt = GetFileExtension(&sOutputFormat);
+CommitWork();
+&report.DisplayOutput();
+
+DeleteLocalFile(&sOutputFile, %FilePath_Absolute);

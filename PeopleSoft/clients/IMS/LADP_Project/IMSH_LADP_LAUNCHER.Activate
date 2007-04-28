@@ -1,0 +1,1 @@
+Transfer( False, @("MENUNAME." | %Menu), BarName.SS, ItemName.IMSH_LADP_GRID, Page.IMSH_LADP_GRID, "C");

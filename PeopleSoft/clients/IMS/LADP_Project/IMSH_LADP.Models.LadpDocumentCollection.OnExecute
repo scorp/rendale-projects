@@ -1,0 +1,37 @@
+import IMSH_LADP:*;
+import IMSH_LADP:Models:*;
+
+import IMSH_LADP:Utils:*;
+import IMSH_LADP:Types:Arguments;
+
+class LadpDocumentCollection extends IMSH_LADP:ModelCollection
+   method LadpDocumentCollection(&rowset As Rowset);
+   method status_IMSH_LADP_EMP();
+   method status_IMSH_LADP_MGR();
+   method status_IMSH_LADP_HR();
+end-class;
+
+method LadpDocumentCollection
+   /+ &rowset as Rowset +/
+   %Super = CreateObject("IMSH_LADP:ModelCollection", &rowset);
+end-method;
+
+method status_IMSH_LADP_EMP
+   Local integer &a;
+   For &a = 1 To %This.ActiveRowCount
+      Local IMSH_LADP:Models:LadpDocument &document = create IMSH_LADP:Models:LadpDocument(%This.GetRow(&a).GetRecord(@("record." | %This.DBRecordName)));
+      &document.status = &document.status_emp;
+   End-For;
+end-method;
+
+method status_IMSH_LADP_MGR
+   Local integer &a;
+   For &a = 1 To %This.ActiveRowCount
+      Local IMSH_LADP:Models:LadpDocument &document = create IMSH_LADP:Models:LadpDocument(%This.GetRow(&a).GetRecord(@("record." | %This.DBRecordName)));
+      &document.status = &document.status_mgr;
+   End-For;
+end-method;
+
+method status_IMSH_LADP_HR
+end-method;
+

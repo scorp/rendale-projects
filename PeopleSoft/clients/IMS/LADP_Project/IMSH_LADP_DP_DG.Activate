@@ -1,0 +1,14 @@
+import IMSH_LADP:*;
+import IMSH_LADP:Types:*;
+
+Component IMSH_LADP:Controller &controller;
+
+IMSH_LADP_WRK.HTMLAREA9.Value = GetHTMLText(HTML.IMSH_LADP_STYLE) | GetHTMLText(HTML.IMSH_LADP_DG_SCRIPT);
+
+
+&args = CreateObject("IMSH_LADP:Types:Arguments");
+&controller.do("initialize_dev_plan_item", &args);
+
+If None(GetRow().IMSH_B_ITEM_VW.EP_APPRAISAL_ID.Value) Then
+   GetRow().IMSH_B_ITEM_VW.EP_APPRAISAL_ID.Value = ObjectGetProperty(&controller, "employee").find_pmp_id_for(String(Year(ObjectGetProperty(&controller, "document").GetField(Field.PERIOD_END_DT).Value)));
+End-If;

@@ -1,0 +1,28 @@
+class Logger
+   method Logger(&strfilename As string);
+   method writeline(&line As string);
+   method open();
+   method close();
+   property string filename;
+private
+   instance File &log_file
+end-class;
+
+method Logger
+   /+ &strfilename as String +/
+   &filename = &strfilename;
+end-method;
+
+method open
+   &log_file = GetFile(&filename, "w");
+end-method;
+
+method writeline
+   /+ &line as String +/
+   &log_file.WriteLine(&line);
+end-method;
+
+method close
+   &log_file.Close();
+end-method;
+

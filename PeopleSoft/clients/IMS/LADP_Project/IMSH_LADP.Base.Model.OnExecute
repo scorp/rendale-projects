@@ -1,0 +1,85 @@
+import IMSH_LADP:Base:*;
+import IMSH_LADP:Utils:*;
+import IMSH_LADP:Types:Arguments;
+
+
+class Model extends Record
+   method Model(&args As Record);
+   
+   method exists();
+   method find_related(&model As IMSH_LADP:Base:Model) Returns array of IMSH_LADP:Base:Model;
+   method save_changes(&record As Record);
+   method save_to_db() Returns boolean abstract;
+   method to_string() Returns string;
+   property boolean modified;
+   property boolean deleted;
+end-class;
+
+method Model
+   /+ &args as Record +/
+   %Super = &args
+end-method;
+
+method find_related
+   /+ &model as IMSH_LADP:Base:Model +/
+   /+ Returns Array of IMSH_LADP:Base:Model +/
+   
+   Local integer &a, &b, &c;
+   Local IMSH_LADP:Utils:StringBuffer &sb = CreateObject("IMSH_LADP:Utils:StringBuffer", "");
+   Local array of IMSH_LADP:Base:Model &related = CreateArrayRept(create IMSH_LADP:Base:Model(CreateObject("IMSH_LADP:Types:Arguments")), 0);
+   Local array of string &common_keys = CreateArrayRept("", 0);
+   
+   For &a = 1 To %This.FieldCount
+      If %This.GetField(&a).IsKey Then
+         For &b = 1 To &model.FieldCount
+            If &model.GetField(&b).Name = %This.GetField(&a).Name Then
+               &common_keys.Push(&model.GetField(&b).Name)
+            End-If;
+            Break;
+         End-For;
+      End-If;
+   End-For;
+   
+   For &c = 1 To &common_keys.Len
+      &sb.append(" and " | &common_keys [&c] | "='" | %This.GetField(@("field." | &common_keys [&c])).Value | "'");
+   End-For;
+   
+   Local SQL &model_select = CreateSQL("%selectall(" | &model.Name | ") where 1=1" | &sb.value);
+   Local Record &model_record = CreateRecord(@("Record." | &model.Name));
+   While &model_select.Fetch(&model_record)
+      Local IMSH_LADP:Base:Model &work_model = CreateObject("IMSH_LADP:Base:Model", &model_record.Name);
+      &work_model.modified = False;
+      &related.Push(&work_model);
+      
+      &model_record.CopyFieldsTo(&related [&related.Len]);
+   End-While;
+   
+   Return &related;
+end-method;
+
+method save_changes
+   /+ &record as Record +/
+   
+   If &record.IsChanged = True Then
+      %This.CopyFieldsTo(&record);
+      Local boolean &result = &record.Save();
+   Else
+      %This.CopyFieldsTo(&record);
+   End-If;
+   
+end-method;
+
+method to_string
+   /+ Returns String +/
+   Local integer &a;
+   Local IMSH_LADP:Utils:StringBuffer &sb = CreateObject("IMSH_LADP:Utils:StringBuffer", "");
+   For &a = 1 To %This.FieldCount
+      &sb.append(%This.GetField(&a).Name | ": " | %This.GetField(&a).Value | " ");
+   End-For;
+   
+   Return &sb.value;
+end-method;
+
+method exists
+   
+end-method

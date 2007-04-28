@@ -1,0 +1,12 @@
+import IMSH_LADP:*;
+import IMSH_LADP:Types:*;
+
+Component IMSH_LADP:Controller &controller;
+
+For &a = GetLevel0()(1).GetRowset(Scroll.IMSH_B_ITEM_VW).RowCount To 1 Step - 1
+   If None(GetLevel0()(1).GetRowset(Scroll.IMSH_B_ITEM_VW)(&a).IMSH_B_ITEM_VW.EP_TITLE.Value) Then
+      GetLevel0()(1).GetRowset(Scroll.IMSH_B_ITEM_VW).FlushRow(&a);
+   End-If;
+End-For;
+
+&controller.do(&controller.arguments.string_args [1], CreateObject("IMSH_LADP:Types:Arguments"));

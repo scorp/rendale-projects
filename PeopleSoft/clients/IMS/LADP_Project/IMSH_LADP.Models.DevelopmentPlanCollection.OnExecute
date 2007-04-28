@@ -1,0 +1,40 @@
+import IMSH_LADP:*;
+import IMSH_LADP:Utils:*;
+import IMSH_LADP:Types:Arguments;
+import IMSH_LADP:Models:*;
+
+class DevelopmentPlanCollection extends IMSH_LADP:ModelCollection
+   method DevelopmentPlanCollection(&rowset As Rowset);
+   method make_readonly();
+   method make_updateable();
+end-class;
+
+method DevelopmentPlanCollection
+   /+ &rowset as Rowset +/
+   %Super = CreateObject("IMSH_LADP:ModelCollection", &rowset);
+end-method;
+
+method make_readonly
+   /+ Extends/implements IMSH_LADP:ModelCollection.make_readonly +/
+   REM %Super.make_readonly();
+   rem %This.ParentRow.GetRecord(Record.IMSH_LADP_WRK).GetField(Field.IMSH_ADD_ROW2).Visible = False;
+   Local integer &a;
+   For &a = 1 To %This.ActiveRowCount
+      %This.GetRow(&a).IMSH_LADP_WRK.EDIT_PB.DisplayOnly = True;
+      %This.GetRow(&a).IMSH_LADP_WRK.IMSH_ADD_ROW2.DisplayOnly = True;
+      %This.GetRow(&a).IMSH_LADP_WRK.IMSH_DELETE_ROW2.DisplayOnly = True;
+   End-For;
+end-method;
+
+method make_updateable
+   /+ Extends/implements IMSH_LADP:ModelCollection.make_updateable +/
+   REM %Super.make_readonly();
+   rem %This.ParentRow.GetRecord(Record.IMSH_LADP_WRK).GetField(Field.IMSH_ADD_ROW2).Visible = False;
+   Local integer &a;
+   For &a = 1 To %This.ActiveRowCount
+      %This.GetRow(&a).IMSH_LADP_WRK.EDIT_PB.DisplayOnly = False;
+      %This.GetRow(&a).IMSH_LADP_WRK.IMSH_ADD_ROW2.DisplayOnly = False;
+      %This.GetRow(&a).IMSH_LADP_WRK.IMSH_DELETE_ROW2.DisplayOnly = False;
+   End-For;
+end-method;
+

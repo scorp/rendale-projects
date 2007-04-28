@@ -1,0 +1,7 @@
+If All(GetRecord().SCHOOL_CODE.Value) Then
+   GetRecord().SCHOOL.Value = "";
+End-If;
+
+If All(GetRecord().MAJOR_CODE.Value) Then
+   GetRecord().MAJOR.Value = "";
+End-If;

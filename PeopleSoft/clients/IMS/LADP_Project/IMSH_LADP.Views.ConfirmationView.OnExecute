@@ -1,0 +1,42 @@
+import IMSH_LADP:*;
+import IMSH_LADP:Types:*;
+import IMSH_LADP:Utils:*;
+import IMSH_LADP:Controllers:*;
+import IMSH_LADP:Views:*;
+import IMSH_LADP:Base:*;
+
+class ConfirmationView extends IMSH_LADP:View
+   method ConfirmationView(&calling_controller As IMSH_LADP:Controllers:Controller_IMSH_LADP_FORM);
+   method render(&args As IMSH_LADP:Types:Arguments);
+   
+   property IMSH_LADP:Controllers:Controller_IMSH_LADP_FORM controller;
+   property IMSH_LADP:Utils:StringBuffer buffer;
+end-class;
+
+method ConfirmationView
+   /+ &calling_controller as IMSH_LADP:Controllers:Controller_IMSH_LADP_FORM +/
+   rem %Super = create IMSH_LADP:Base:View(&calling_controller As IMSH_LADP:Controller);
+   %This.controller = &calling_controller;
+   %This.buffer = CreateObject("IMSH_LADP:Utils:StringBuffer", "");
+end-method;
+
+method render
+   /+ &args as IMSH_LADP:Types:Arguments +/
+   /+ Extends/implements IMSH_LADP:View.render +/
+   Local string &status_change_bind;
+   Local string &action;
+   Evaluate %This.controller.arguments.string_args [1]
+   When "status_next"
+      &status_change_bind = %This.controller.document.next_status_long_xlat;
+      &action = %This.controller.document.status | "F";
+      Break;
+   When "status_back"
+      &status_change_bind = %This.controller.document.previous_status_long_xlat;
+      &action = %This.controller.document.status | "B";
+      Break;
+   End-Evaluate;
+   
+   IMSH_LADP_WRK.HTMLAREA6.Value = GetHTMLText(HTML.IMSH_LADP_STYLE) | GetHTMLText(@("HTML.IMSH_LCO_" | &action));
+   IMSH_LADP_WRK.CONTINUE_PB.Label = GetHTMLText(@("HTML.IMSH_LCO_PB_" | &action))
+end-method;
+

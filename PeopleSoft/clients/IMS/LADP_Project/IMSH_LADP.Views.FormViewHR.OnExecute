@@ -1,0 +1,68 @@
+import IMSH_LADP:*;
+import IMSH_LADP:Types:*;
+import IMSH_LADP:Utils:*;
+import IMSH_LADP:Controllers:*;
+import IMSH_LADP:Views:*;
+
+class FormViewHR extends IMSH_LADP:Views:FormView
+   method FormViewHR(&calling_controller As IMSH_LADP:Controllers:Controller_IMSH_LADP_FORM);
+   method render(&args As IMSH_LADP:Types:Arguments);
+   method status_handler();
+   
+   property IMSH_LADP:Controllers:Controller_IMSH_LADP_FORM controller;
+   property IMSH_LADP:Utils:StringBuffer buffer;
+   
+private
+   rem method set_employee_form_read_only();
+end-class;
+
+method FormViewHR
+   /+ &calling_controller as IMSH_LADP:Controllers:Controller_IMSH_LADP_FORM +/
+   %Super = CreateObject("IMSH_LADP:Views:FormView", &calling_controller);
+   %This.controller = &calling_controller;
+   %This.buffer = CreateObject("IMSH_LADP:Utils:StringBuffer", "");
+   %This.buffer.reset();
+   %This.buffer.append(GetHTMLText(HTML.IMSH_LADP_SCRIPT_MANAGER, GetHTMLText(HTML.IMSH_LADP_STYLE)));
+   GetLevel0()(1).IMSH_LADP_WRK.HTMLAREA.Value = %This.buffer.value;
+end-method;
+
+method render
+   /+ &args as IMSH_LADP:Types:Arguments +/
+   /+ Extends/implements IMSH_LADP:Views:FormView.render +/
+   %Super.render(&args);
+   rem %This.set_employee_form_read_only();
+   %This.status_handler();
+   
+   /* Show the Current Level and PMP ratings */
+   GetLevel0()(1).IMSH_LADP_WRK.HTMLAREA3.Value = GetHTMLText(HTML.IMSH_PERF_RAT_GRE_FRAGMENT, %This.controller.employee_current_perf_rating, %This.controller.employee_previous_perf_rating, %This.controller.employee.GetField(Field.GRADE).Value, %This.controller.employee_current_perf_year, %This.controller.employee_previous_perf_year);
+   
+   /* Show the Employee Self Evaluation stuff on the manager tab */
+   GetLevel0()(1).IMSH_LADP_WRK.HTMLAREA4.Value = GetHTMLText(HTML.IMSH_SA_SDO_REVEAL_FRAGMENT, IMSH_LADP.IMSH_EMP_STR1.Value, IMSH_LADP.IMSH_EMP_STR2.Value, IMSH_LADP.IMSH_EMP_STR3.Value, IMSH_LADP.IMSH_EMP_DEV1.Value, IMSH_LADP.IMSH_EMP_DEV2.Value, IMSH_LADP.IMSH_EMP_DEV3.Value);
+end-method;
+
+method status_handler
+   /+ Extends/implements IMSH_LADP:Views:FormView.status_handler +/
+   %Super.status_handler();
+   Evaluate %This.controller.document.status
+   When "IP"
+      %This.controller.document.hr_updateable();
+      GetLevel0()(1).IMSH_LADP_WRK.STATUS_PB.Visible = True;
+      GetLevel0()(1).IMSH_LADP_WRK.RESET_PB.Visible = False;
+   When "EC"
+      %This.controller.document.hr_updateable();
+      GetLevel0()(1).IMSH_LADP_WRK.STATUS_PB.Visible = True;
+      GetLevel0()(1).IMSH_LADP_WRK.RESET_PB.Visible = True;
+      Break;
+   When "MC"
+      %This.controller.document.hr_updateable();
+      
+      GetLevel0()(1).IMSH_LADP_WRK.STATUS_PB.Visible = True;
+      GetLevel0()(1).IMSH_LADP_WRK.RESET_PB.Visible = True;
+   When "HC"
+      %This.controller.document.hr_readonly();
+      GetLevel0()(1).IMSH_LADP_WRK.STATUS_PB.Visible = False;
+      GetLevel0()(1).IMSH_LADP_WRK.RESET_PB.Visible = True;
+      Break;
+   End-Evaluate;
+end-method;
+

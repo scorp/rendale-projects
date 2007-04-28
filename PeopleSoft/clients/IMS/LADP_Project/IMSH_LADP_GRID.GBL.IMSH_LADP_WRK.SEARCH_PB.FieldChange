@@ -1,0 +1,7 @@
+import IMSH_LADP:*;
+import IMSH_LADP:Types:*;
+
+Component IMSH_LADP:Controller &controller;
+
+&args = CreateObject("IMSH_LADP:Types:Arguments");
+&controller.do("search", &args);

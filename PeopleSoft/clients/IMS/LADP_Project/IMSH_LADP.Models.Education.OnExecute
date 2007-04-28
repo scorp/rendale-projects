@@ -1,0 +1,44 @@
+import IMSH_LADP:*;
+
+class Education extends IMSH_LADP:Model;
+   method Education();
+   
+   method save_to_db() Returns boolean;
+end-class;
+
+method Education
+   %Super = CreateObject("IMSH_LADP:Model", "IMSH_LADPEDU_VW");
+end-method;
+
+method save_to_db
+   /+ Returns Boolean +/
+   /+ Extends/implements IMSH_LADP:Model.save_to_db +/
+   
+   Local File &FILE = GetFile("LOG.TXT", "W");
+   
+   Local boolean &result;
+   Local Record &accomp = CreateRecord(Record.ACCOMPLISHMENTS);
+   &FILE.WriteLine("before " | %This.to_string());
+   %This.CopyFieldsTo(&accomp);
+   If %This.modified Then
+      If &accomp.Update() Then
+         &FILE.WriteLine("UPDATE");
+         Return True;
+      Else
+         &FILE.WriteLine("INSERT");
+         &result = &accomp.Insert();
+      End-If;
+      Return &result;
+   Else
+      If %This.deleted Then
+         &FILE.WriteLine("DELETE");
+         &result = &accomp.Delete();
+         &FILE.WriteLine("result: " | String(&result));
+         &FILE.WriteLine("after: " | %This.to_string());
+         &FILE.Close();
+         Return &result;
+      End-If;
+      Return False;
+   End-If;
+end-method;
+

@@ -1,0 +1,13 @@
+import IMSH_LADP:*;
+import IMSH_LADP:Utils:*;
+import IMSH_LADP:Types:Arguments;
+
+class ResultsCollection extends IMSH_LADP:ModelCollection
+   method ResultsCollection(&rowset As Rowset);
+end-class;
+
+method ResultsCollection
+   /+ &rowset as Rowset +/
+   %Super = CreateObject("IMSH_LADP:ModelCollection", &rowset);
+end-method;
+

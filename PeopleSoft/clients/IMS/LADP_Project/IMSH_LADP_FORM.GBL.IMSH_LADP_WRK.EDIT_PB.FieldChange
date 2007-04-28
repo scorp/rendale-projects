@@ -1,0 +1,132 @@
+import IMSH_LADP:*;
+import IMSH_LADP:Types:*;
+import IMSH_LADP:Models:*;
+
+Component IMSH_LADP:Controller &controller;
+Component boolean &edit;
+Local string &page;
+
+Evaluate GetRow().ParentRowset.DBRecordName
+When "IMSH_PRIOR_POS"
+   &page = "PP";
+   Break;
+When "IMSH_LADPEDU_VW"
+   &page = "EDU";
+   Break;
+When "IMSH_LADPCRT_VW"
+   &page = "CRT";
+   Break;
+When "TRAINING"
+   &page = "TRN";
+   Break;
+When "IMSH_LADPLNG_VW"
+   &page = "LNG";
+When "IMSH_B_ITEM_VW"
+   &page = "DP";
+   Break;
+End-Evaluate;
+
+
+&edit = True;
+&page = "IMSH_LADP_" | &page | "_DG";
+DoModal(@("Page." | &page), "", 0, 0);
+
+Evaluate GetRow().ParentRowset.DBRecordName
+When "IMSH_PRIOR_POS"
+   If None(GetRow().IMSH_PRIOR_POS.FROM_DT.Value, GetRow().IMSH_PRIOR_POS.THRU_DT.Value) Then
+      If None(IMSH_PRIOR_POS.DESCR100.Value) Then
+         GetRow().IMSH_LADP_WRK.DESCR100.Label = "Add Employment Dates";
+      Else
+         GetRow().IMSH_LADP_WRK.DESCR100.Label = IMSH_PRIOR_POS.DESCR100.Value;
+      End-If;
+      GetRow().IMSH_LADP_WRK.DESCR100.Enabled = True;
+   Else
+      If None(GetRow().IMSH_PRIOR_POS.FROM_DT.Value) Then
+         &from = "";
+      Else
+         &from = DateTimeToLocalizedString(GetRow().IMSH_PRIOR_POS.FROM_DT.Value, "MMM yyyy");
+      End-If;
+      
+      If None(GetRow().IMSH_PRIOR_POS.THRU_DT.Value) Then
+         &thru = "current";
+      Else
+         &thru = DateTimeToLocalizedString(GetRow().IMSH_PRIOR_POS.THRU_DT.Value, "MMM yyyy");
+      End-If;
+      rem GetRow().IMSH_LADP_WRK.DESCR100.Value = &from | " - " | &thru;
+      GetRow().IMSH_LADP_WRK.DESCR100.Label = &from | " - " | &thru;
+      GetRow().IMSH_LADP_WRK.DESCR100.Enabled = False;
+      try
+         Local Grid &grid = GetGrid(%Page, "IMSH_PRIOR_POS");
+         &grid.DESCR100.Label = "Employment Dates";
+      catch Exception &grid_ex
+         
+      end-try;
+   End-If;
+   Break;
+When "IMSH_LADPEDU_VW"
+   If None(GetRow().IMSH_LADPEDU_VW.DT_ISSUED.Value) Then
+      If None(GetRow().IMSH_LADPEDU_VW.IMSH_YEAR.Value) Then
+         GetRow().IMSH_LADP_WRK.DESCR100.Label = "Add Graduation Date";
+      Else
+         GetRow().IMSH_LADP_WRK.DESCR100.Label = GetRow().IMSH_LADPEDU_VW.IMSH_YEAR.Value;
+      End-If;
+      
+      
+      GetRow().IMSH_LADP_WRK.DESCR100.Enabled = True;
+   Else
+      GetRow().IMSH_LADP_WRK.DESCR100.Label = DateTimeToLocalizedString(GetRow().IMSH_LADPEDU_VW.DT_ISSUED.Value, "MMM yyyy");
+      GetRow().IMSH_LADP_WRK.DESCR100.Enabled = False;
+      try
+         GetGrid(%Page, "IMSH_LADP_EDU_VW").DESCR100_EDU.Label = "Graduation Date";
+      catch Exception &grid_ex2
+         
+      end-try;
+   End-If;
+   Break;
+When "IMSH_LADPCRT_VW"
+   If None(GetRow().IMSH_LADPCRT_VW.DT_ISSUED.Value) Then
+      If None(GetRow().IMSH_LADPCRT_VW.IMSH_YEAR.Value) Then
+         GetRow().IMSH_LADP_WRK.DESCR100.Label = "Add Issue Date";
+      Else
+         GetRow().IMSH_LADP_WRK.DESCR100.Label = GetRow().IMSH_LADPCRT_VW.IMSH_YEAR.Value;
+      End-If;
+      GetRow().IMSH_LADP_WRK.DESCR100.Enabled = True;
+   Else
+      GetRow().IMSH_LADP_WRK.DESCR100.Label = DateTimeToLocalizedString(GetRow().IMSH_LADPCRT_VW.DT_ISSUED.Value, "MMM yyyy");
+      GetRow().IMSH_LADP_WRK.DESCR100.Enabled = False;
+      try
+         GetGrid(%Page, "IMSH_LADP_CRT_VW").DESCR100_CRT.Label = "Issue Date";
+      catch Exception &grid_ex3
+         
+      end-try;
+   End-If;
+   Break;
+When "TRAINING"
+   If None(GetRow().TRAINING.COURSE_START_DT.Value) Then
+      
+      If None(GetRow().TRAINING.IMSH_YEAR.Value) Then
+         GetRow().IMSH_LADP_WRK.DESCR100.Label = "Add Course Date";
+      Else
+         GetRow().IMSH_LADP_WRK.DESCR100.Label = GetRow().TRAINING.IMSH_YEAR.Value;
+      End-If;
+      GetRow().IMSH_LADP_WRK.DESCR100.Enabled = True;
+   Else
+      GetRow().IMSH_LADP_WRK.DESCR100.Label = DateTimeToLocalizedString(GetRow().TRAINING.COURSE_START_DT.Value, "MMM yyyy");
+      GetRow().IMSH_LADP_WRK.DESCR100.Enabled = False;
+      try
+         GetGrid(%Page, "TRAINING").DESCR100_TRN.Label = "Course Date";
+      catch Exception &grid_ex4
+         
+      end-try;
+   End-If;
+   Break;
+When "IMSH_LADPLNG_VW"
+   Break;
+When "IMSH_B_ITEM_VW"
+   Local IMSH_LADP:Models:DevelopmentPlan &dp = create IMSH_LADP:Models:DevelopmentPlan(GetRow().GetRecord(@("record." | GetRow().ParentRowset.DBRecordName)));
+   Break;
+End-Evaluate;
+DoSaveNow();
+/* todo */
+&args = CreateObject("IMSH_LADP:Types:Arguments");
+&controller.do("render_form", &args);

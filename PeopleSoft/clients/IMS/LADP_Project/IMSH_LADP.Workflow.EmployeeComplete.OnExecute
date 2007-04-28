@@ -1,0 +1,46 @@
+import IMSH_LADP:Models:*;
+import PT_WF_NOTIFICATION:*;
+import IMSH_LADP:Base:*;
+
+class EmployeeComplete extends IMSH_LADP:Base:LadpNotification
+   property IMSH_LADP:Models:LadpDocument document;
+   property IMSH_LADP:Models:Employee employee;
+   
+   method EmployeeComplete(&in_document As IMSH_LADP:Models:LadpDocument, &in_employee As IMSH_LADP:Models:Employee);
+   method get_recipients() Returns array of PT_WF_NOTIFICATION:NotificationAddress;
+   method send();
+end-class;
+
+method EmployeeComplete
+   /+ &in_document as IMSH_LADP:Models:LadpDocument, +/
+   /+ &in_employee as IMSH_LADP:Models:Employee +/
+   %This.employee = &in_employee;
+   %This.document = &in_document;
+   
+   %Super = create IMSH_LADP:Base:LadpNotification();
+   %Super.EmailReplyTo = "PSWORKFLOW@IMSHEALTH.COM";
+   %Super.Subject = GetHTMLText(HTML.IMSH_EMPLOYEECOMPLETE_SBJ);
+   Local string &link;
+   Local Record &IMSH_LADP_SRCH = CreateRecord(Record.IMSH_LADP_SRCH);
+   %This.document.CopyFieldsTo(&IMSH_LADP_SRCH);
+   &link = GenerateComponentPortalURL(%Portal, %Node, MenuName.IMSH_LADP_MGR, %Market, Component.IMSH_LADP_FORM, Page.IMSH_LADP_FORM, "C", &IMSH_LADP_SRCH);
+   
+   %Super.Message = GetHTMLText(HTML.IMSH_EMPLOYEECOMPLETE_BDY, %This.employee.GetField(Field.NAME_DISPLAY).Value, String(Year(%This.document.GetField(Field.PERIOD_END_DT).Value)), &link);
+end-method;
+
+method get_recipients
+   /+ Returns Array of PT_WF_NOTIFICATION:NotificationAddress +/
+   /+ Extends/implements IMSH_LADP:Base:LadpNotification.get_recipients +/
+   Local array of PT_WF_NOTIFICATION:NotificationAddress &recipients = CreateArrayRept(create PT_WF_NOTIFICATION:NotificationAddress("", "", "", "", ""), 0);
+   Local IMSH_LADP:Models:Employee &manager = %This.employee.find_manager();
+   &recipients.Push(&manager.email_address);
+   &recipients = %Super.add_recipients_from_list(&recipients, "MGR");
+   Return &recipients;
+end-method;
+
+method send
+   /+ Extends/implements IMSH_LADP:Base:LadpNotification.send +/
+   %Super.NotifyTo = %This.get_recipients();
+   %Super.send();
+end-method;
+

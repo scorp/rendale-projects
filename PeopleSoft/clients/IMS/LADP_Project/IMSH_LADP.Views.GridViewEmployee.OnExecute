@@ -1,0 +1,36 @@
+import IMSH_LADP:*;
+import IMSH_LADP:Types:*;
+import IMSH_LADP:Utils:*;
+import IMSH_LADP:Controllers:*;
+import IMSH_LADP:Views:*;
+
+class GridViewEmployee extends IMSH_LADP:Views:GridView
+   method GridViewEmployee(&calling_controller As IMSH_LADP:Controllers:Controller_IMSH_LADP_GRID);
+   method render(&args As IMSH_LADP:Types:Arguments);
+end-class;
+
+method GridViewEmployee
+   /+ &calling_controller as IMSH_LADP:Controllers:Controller_IMSH_LADP_GRID +/
+   %Super = CreateObject("IMSH_LADP:Views:GridView", &calling_controller);
+end-method;
+
+method render
+   /+ &args as IMSH_LADP:Types:Arguments +/
+   /+ Extends/implements IMSH_LADP:Views:GridView.render +/
+   %Super.render(&args);
+   Local integer &a;
+   
+   For &a = 1 To %This.controller.current_forms.ActiveRowCount
+      Evaluate %This.controller.current_forms.GetRow(&a).IMSH_LADP_VW.IMSH_LADP_STATUS.Value
+      When "IP"
+         %This.controller.current_forms.GetRow(&a).Style = "IMSH_YELLOW";
+         Break;
+      When "CO"
+      When "EC"
+      When "MC"
+         %This.controller.current_forms.GetRow(&a).Style = "IMSH_GREEN";
+         Break;
+      End-Evaluate;
+   End-For;
+end-method;
+
