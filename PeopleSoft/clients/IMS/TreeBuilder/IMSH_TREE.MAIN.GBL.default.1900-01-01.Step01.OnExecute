@@ -1,0 +1,88 @@
+/******
+Will Bailey
+Towers Perrin
+7-15-06
+******/
+
+Local string &orgcode, &prevParentOrgCode, &prevNewOrgCode;
+Local array of string &stack;
+Global number &topLevelOrgCode;
+
+Function CreateOrgCode(&parent, &root) Returns string
+   SQLExec("select imsh_orgcode, counter from ps_imsh_tree where emplid = (select supervisor_id from ps_imsh_tree where emplid = :1)", &parent, &parentOrgCode, &counter);
+   
+   If None(&parentOrgCode) Then
+      &newOrgCode = &root | "-";
+   Else
+      &counter = &counter + 1;
+      &newOrgCode = &parentOrgCode | Rept("0", 3 - Len(String(&counter))) | String(&counter) | "-";
+      
+      SQLExec("update ps_imsh_tree set counter = :1 where emplid = (select supervisor_id from ps_imsh_tree where emplid = :2)", &counter, &parent);
+      CommitWork();
+      
+   End-If;
+   
+   
+   Return &newOrgCode;
+End-Function;
+
+Function FindDirectReports(&parent, &root)
+   Local Record &update_rec = CreateRecord(Record.IMSH_TREE);
+   Local Record &read_rec = CreateRecord(Record.IMSH_TREE);
+   
+   &update_rec.EMPLID.Value = &parent;
+   &update_rec.IMSH_ORGCODE.Value = String(CreateOrgCode(&parent, &root));
+   &update_rec.LASTUPDDTTM.Value = %Date;
+   &update_rec.Update();
+   CommitWork();
+   &SQLrecurse = CreateSQL("Select * from PS_imsh_TREE where supervisor_id = :1 AND imsh_ORGCODE = ' '", &parent);
+   
+   While &SQLrecurse.fetch(&read_rec)
+      &stack.Push(&read_rec.EMPLID.Value);
+   End-While;
+   
+   
+End-Function;
+
+
+Function RecurseTree(&parent As string, &level As string, &root As string)
+   &stack.Push(&parent);
+   
+   While &stack.Len > 0
+      &cur = &stack.Pop();
+      FindDirectReports(&cur, &root);
+   End-While;
+   
+   
+End-Function;
+
+&topLevelOrgCode = - 1;
+&orgcode = "";
+&stack = CreateArrayRept("", 0);
+&x = 0;
+
+
+SQLExec("delete from PS_IMSH_TREE");
+CommitWork();
+
+Local SQL &emplidSQL = CreateSQL("Select emplid, empl_rcd from PS_JOB_CURR_EFF_VW where EMPL_STATUS in ('A', 'L', 'P')");
+While &emplidSQL.Fetch(&emplid, &empl_rcd)
+   SQLExec(SQL.EP_REPORTSTOID_MGR, &emplid, &empl_rcd, %Date, &mgr);
+   Local Record &IMSH_TREE = CreateRecord(Record.IMSH_TREE);
+   &IMSH_TREE.EMPLID.Value = &emplid;
+   &IMSH_TREE.SUPERVISOR_ID.Value = &mgr;
+   &result = &IMSH_TREE.Save();
+   If &x > 100 Then
+      &x = 0;
+      CommitWork();
+   End-If;
+   &x = &x + 1;
+End-While;
+
+Local Record &imsh_tree_roots = CreateRecord(Record.IMSH_TREE);
+Local SQL &get_roots = CreateSQL("%selectall(imsh_tree) where supervisor_id = emplid or supervisor_id = ' ' and emplid = '12203' order by emplid desc");
+
+While &get_roots.Fetch(&imsh_tree_roots)
+   &topLevelOrgCode = &topLevelOrgCode + 1;
+   RecurseTree(&imsh_tree_roots.EMPLID.Value, "0", Rept("0", 3 - Len(String(&topLevelOrgCode))) | String(&topLevelOrgCode));
+End-While;
