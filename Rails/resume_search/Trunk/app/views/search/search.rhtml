@@ -1,0 +1,10 @@
+<%= form_tag :action => "index" %>	
+  Search <%= text_field :search, :keywords %>
+  <%=submit_tag "Search"%>
+</form>
+
+<div>
+  <% for resume in @resumes %>
+	<div>* <%=link_to resume.name, :action=>"view", :id=>resume.id %> <%=resume.ferret_score%></div>
+  <% end unless @resumes.nil? %>
+</div>

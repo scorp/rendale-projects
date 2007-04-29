@@ -1,0 +1,29 @@
+<h1>Listing resumes</h1>
+<table border="1" cellpadding="5" cellspacing="0">
+  <tr>
+    <th>filename</th>
+	<th>type</th>
+	<th>date</th>
+	<th>action</th>
+	<th>action</th>
+	<th>action</th>
+  </tr>
+  
+<% for resume in @resumes %>
+  <tr>
+	<td><%= resume.name %></td>
+	<td><%= resume.content_type%></td>
+	<td><%= resume.date %></td>
+    <td><%= link_to 'Show', :action => 'show', :id => resume %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => resume %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => resume }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @resume_pages.current.previous } if @resume_pages.current.previous %>
+<%= link_to 'Next page', { :page => @resume_pages.current.next } if @resume_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New resume', :action => 'new' %>

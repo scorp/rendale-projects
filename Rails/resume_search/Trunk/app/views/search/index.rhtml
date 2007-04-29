@@ -1,0 +1,15 @@
+<%= form_tag :action => "" %>	
+  Search <%= text_field :search, :keywords %>
+  <%=submit_tag "Search"%>
+<%= end_form_tag %>
+
+<div>
+  <ol>
+  <% for resume in @resumes %>
+	<li style="margin-bottom:5px;font-size:18px"><%=link_to resume.name, :action=>"view", :id=>resume.id %> 
+		<div id="excerpt" style="font-size:12px"><pre><%= resume.clear_text%></pre></div>
+		<div id="relevancy" style="font-weight:bold;font-size:12px">relevancy: <%=number_to_percentage(resume.ferret_score)%></div>
+	</li>
+  <% end unless @resumes.nil? %>
+  </ol>
+</div>

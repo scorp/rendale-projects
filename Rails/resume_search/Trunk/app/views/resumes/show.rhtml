@@ -1,0 +1,8 @@
+<% for column in Resume.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @resume.send(column.name) %>
+</p>
+<% end %>
+
+<%= link_to 'Edit', :action => 'edit', :id => @resume %> |
+<%= link_to 'Back', :action => 'list' %>
