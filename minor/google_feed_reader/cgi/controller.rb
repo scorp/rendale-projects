@@ -19,7 +19,8 @@ module FeedReader
             max_file_number = current_file_number > max_file_number ? current_file_number : max_file_number
           end
           @storage_file = "feeds#{(max_file_number + 1).to_s}"
-          File.new("../feeds/" + @storage_file,"w").close
+          file = File.new("../feeds/" + @storage_file,"w")
+          file.close
         end
       else 
         @storage_file = cookie.value[0]
@@ -47,23 +48,17 @@ module FeedReader
     end
 
     def send_feeds()
+      begin
       @cgi.out("cookie"=>@cookie) {
        File.open("../feeds/#{@cookie.value}", "r") do |file|
          feeds="<div id='saved_feeds'>\n"
          file.each_line{|line| feeds+="<div class='feed'>#{line.chomp("\n")}</div>\n"}
          feeds+="</div>\n"
        end
-        # @cgi.html{
-        #         @cgi.head{} +
-        #         @cgi.body{"\n" +
-        #           File.open("../feeds/#{@cookie.value}", "r") do |file|
-        #             feeds="<div id='saved_feeds'>\n"
-        #             file.each_line{|line| feeds+="<div class='feed'>#{line.chomp("\n")}</div>\n"}
-        #             feeds+="</div>\n"
-        #           end
-        #         }
-        #       }
       }
+      rescue
+	@cgi.out("cookie"=>@cookie){"no feeds"}
+      end
     end
   end
 end
