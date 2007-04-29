@@ -63,7 +63,7 @@ h3 a{
 	margin:10px;
 	float:left;	
 	background: url(../images/sidebar.gif) repeat-x -100px;
-	display:none;
+	xdisplay:none;
 }
 
 .feed ol{

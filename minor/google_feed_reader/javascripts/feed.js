@@ -78,7 +78,7 @@ RENDALE.FeedReader.Controller.prototype.load_feed = function(url){
 
 RENDALE.FeedReader.Controller.prototype.render = function(feed){
 			$('#feeds').append(feed.html);
-			$('#' + feed.dom_id).fadeIn('slow');
+			//$('#' + feed.dom_id).fadeIn('slow');
 }
 // end of Controller
 
