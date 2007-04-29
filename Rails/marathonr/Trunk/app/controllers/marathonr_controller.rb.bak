@@ -1,0 +1,16 @@
+require_dependency "login_system"
+
+class MarathonrController < ApplicationController
+include LoginSystem
+	model :user, :running_log
+    
+    def index
+    	
+    	logs = RunningLog.find(:all);
+    	#render :text => logs.inspect if logs.length == 0
+   	render :text => Date.today::MONTHNAMES.inspect	
+    end
+   
+    
+    
+end

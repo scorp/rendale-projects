@@ -1,0 +1,16 @@
+<%= error_messages_for 'schedule_entry' %>
+
+<!--[form:schedule_entry]-->
+<p><label for="schedule_entry_date">Date</label><br/>
+<%= date_select 'schedule_entry', 'date'  %></p>
+
+<p><label for="schedule_entry_miles">Miles</label><br/>
+<%= text_field 'schedule_entry', 'miles'  %></p>
+
+<p><label for="schedule_entry_time">Time</label><br/>
+<%= text_field 'schedule_entry', 'time'  %></p>
+
+<p><label for="schedule_entry_comments">Comments</label><br/>
+<%= text_area 'schedule_entry', 'comments'  %></p>
+<!--[eoform:schedule_entry]-->
+

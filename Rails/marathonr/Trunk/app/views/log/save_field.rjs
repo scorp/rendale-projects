@@ -1,0 +1,4 @@
+if @old_pace != @new_pace
+  page.replace_html 'day_row_' + @id + '_pace', number_with_precision(@new_pace,2).to_s 
+  #page.visual_effect(:highlight, 'day_row_' + @id + '_pace', :startcolor=>"'#FF9EB0'",:duration => 3)
+end

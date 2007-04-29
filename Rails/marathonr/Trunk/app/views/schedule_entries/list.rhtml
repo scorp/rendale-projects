@@ -1,0 +1,27 @@
+<h1>Listing schedule_entries</h1>
+
+<table>
+  <tr>
+  <% for column in ScheduleEntry.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for schedule_entry in @schedule_entries %>
+  <tr>
+  <% for column in ScheduleEntry.content_columns %>
+    <td><%=h schedule_entry.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => schedule_entry %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => schedule_entry %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => schedule_entry }, :confirm => 'Are you sure?', :post => true %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @schedule_entry_pages.current.previous } if @schedule_entry_pages.current.previous %>
+<%= link_to 'Next page', { :page => @schedule_entry_pages.current.next } if @schedule_entry_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New schedule_entry', :action => 'new' %>

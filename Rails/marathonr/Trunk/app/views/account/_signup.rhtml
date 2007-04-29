@@ -1,0 +1,38 @@
+<div title="Account signup" id="signupform">
+<div style="padding-left:25px">
+<%= start_form_tag :action=> "signup" %>
+  <h3>Signup</h3>
+  <div id="message">
+    <%= error_messages_for 'user' %>
+  </div>
+  
+  <div id="login_form">
+	Please fill out the following information.  Once your account is created you'll be able to fill in additional information to create your personal profile.<br/><br/>
+	  <table>
+	  	<tr>
+	  		<td align="right"><label for="user_login">Desired login:</label></td>
+	  		<td><%= text_field "user", "login", :size => 30 %></td>
+	  	</tr>
+			<tr>
+	  		<td align="right"><label for="user_login">Email Address:</label></td>
+	  		<td><%= text_field "user", "email", :size => 30 %></td>
+	  	</tr>
+	  	<tr>
+	  		<td align="right"><label for="user_password">Choose password:</label></td>
+	  	  <td><%= password_field "user", "password", :size => 30 %></td>
+	  	</tr>
+	  	<tr>
+	  		<td align="right"><label for="user_password_confirmation">Confirm password:</label></td>
+	  		<td><%= password_field "user", "password_confirmation", :size => 30 %></td>
+	  	</tr>
+		<tr>
+			<td></td>
+			<td><input type="submit" value="Signup" class="primary" /></td>
+	        </tr>  	
+	  </table>
+	<%= end_form_tag %>
+	</div>
+  </div>
+
+
+

@@ -1,0 +1,30 @@
+
+	<h1 class="logo_large"></h1>
+	<div class="emphasis" style="margin:0px;">
+		<div id="login_form">
+<%= start_form_tag :action=> "login" %>    
+    <% if @message %>
+      <div id="message"><%= @message %></div>
+    <% end %>
+
+		<table id="login_form" cellspacing="10">
+			<tr>
+				<td align="right"><label for="user_login" class="login_label">Username:</label></td>
+				<td><input style="height:30px; font-size:24px" class="text_field" type="text" name="user_login" id="user_login" size="12" value=""/></td>
+			</tr>
+			<tr>
+				<td align="right"><label for="user_password" class="login_label">Password:</label></td>
+				<td><input style="height:30px; font-size:24px" class="text_field" type="password" name="user_password" id="user_password" size="12"/></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="right"><a href="#" onclick="Effect.toggle('signup_wrapper','slide', {duration: 1})">sign up for an account</a>&nbsp;&nbsp;&nbsp;<input class="button" type="submit" name="login" value="Login" class="primary" /></td>
+			</tr>
+		</table>
+		
+<%= end_form_tag %>
+</div>
+	</div>
+	<div id="signup_wrapper" style="width:400px; display:none;" >
+		<%=render_partial "signup" %>
+	</div>
+	<div></div>

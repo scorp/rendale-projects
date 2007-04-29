@@ -1,0 +1,261 @@
+html,body,div,span,td,tr,th
+{
+	font-family:arial;
+	font-size:12px;
+}
+
+body{
+	background: url(/images/bg.jpg) ;
+	margin:0 0 0 0;
+}
+
+h3{
+	padding:0px;
+	margin:0px;
+}
+
+html, body{margin:0 0 0 0}
+
+div#page{
+	padding:25px;
+}
+
+.text_field{
+	background: url(/images/text_field_bg.jpg) #fff repeat-x;
+	border:1px solid #fff;
+}
+
+.button{
+	font-size:24px;
+}
+
+.login_label{
+	font-size:24px;
+	color:#fff;
+}
+
+/* login form style */
+/* styles for IE 5 Mac */
+#login_form{
+	padding:20px;
+}
+
+div#signupform{
+	background: #353131;
+	color:#fff;
+	margin:0px; 
+	padding:0px; 
+	border-top:1px solid #353131;
+	border-bottom:1px solid #554C4C;
+}
+
+a{
+	color:#fff;
+}
+
+ #horizon {
+	background-color: transparent;
+	position: absolute;
+	top: 20px;
+	left: 20px;
+ }
+ 
+ /* following rules are invisible to IE 5 \*/
+ #horizon {
+   top: 50%;
+   left: 0px;
+   width: 100%;
+   margin-top: -200px;
+   text-align: center;
+   min-width: 900px; 
+ }
+ /* end IE 5 hack */ 
+	  
+#wrapper {
+	position: relative;
+	text-align: left;
+	width: 100%;
+	height: 380px;
+	margin: 0px auto;
+	}
+
+
+h1.logo_large{
+	background: url(/images/logo_large.jpg);
+	width:301px;
+	height:56px;
+	padding:0px;
+	margin:0px;
+}
+
+div.emphasis{
+	height:202px;
+	width:100%;
+	padding-left:25px;
+	background: #ff0000 url(/images/red_gradient_login.jpg) repeat-x;
+}
+
+h1.header_large span#highlight{
+	color:#FF3333;
+	font-size:36px;
+}
+
+div#loginform{
+	margin:auto;
+	width:300px;
+	background:#000;
+	text-align:center;
+	padding:2px;
+}
+
+div#loginform form{
+
+text-align:left;
+}
+
+
+
+/* log styles */
+h2.small_logo{
+	background: url(/images/logo_small.jpg) no-repeat;
+	width:200px;
+	height:37px;
+	padding:0px;
+	margin:0px;
+	float:left;
+	border:0px solid #000;
+}
+
+h1.header{
+	margin:0px;
+	font-size:24px;
+	width:60%;
+	float:left;
+}
+
+h1 span#highlight{
+	color:#FF3333;
+	font-size:24px;
+}
+
+div#settings_navigation{
+	width:40%
+	float:right;	
+	text-align:right;
+}
+
+
+table.log_table th{
+	background:#cc0000;
+	color:#fff;
+	padding:5px;
+}
+
+table.log_table {
+width:100%;
+}
+
+.log_row_alt{
+	text-align:center;
+	background:#353131;
+	padding:15px;
+	border-bottom:1px solid #554C4C;
+	color:#ccc;
+	font-size:14px;
+}
+
+.log_row{
+	text-align:center;
+	padding:15px;
+	color: #ccc;
+	font-size:14px;
+}
+
+table.log_table th{
+	padding:5px;
+}
+
+table.calendar{
+	margin:25px;
+}
+
+.day{
+	text-align:center;
+	padding:2px;
+}
+
+.day a{
+	color:#333;
+}
+
+.day{
+	font-size:10px;
+}
+
+.today{
+	background:#FF3333;
+	color:#fff;
+	text-align:center;
+	padding:2px;
+	border:1px solid #B30000;
+}
+
+.today a{
+	color:#fff;	
+	font-size:10px;
+}
+
+div#week_navigation{
+    text-align:center;
+	background:#353131;
+	padding:5px;
+	border-bottom:1px solid #554C4C;
+}
+
+div#week_navigation a{
+	font-size:16px;
+}
+
+div#week_log{
+margin:auto;
+margin-top:30px;
+}
+
+div#form{
+	float:left;
+	margin-left:auto;
+	width:75%;
+}
+
+div#form div
+{
+}
+
+div#form table{
+}
+
+div#weeks_wrapper{
+	float:right;
+	width:22%;
+	background:#eee;
+	background:#353131;
+	padding:5px;
+	border-bottom:1px solid #554C4C;
+	margin:auto;
+	width:225px;
+}
+
+.dayName, .monthName{
+	color:#ccc;
+	font-size:10px;
+}
+
+div#weeks_wrapper a{
+	color: #ccc;
+}
+
+table.calendar{
+	padding:0px;
+	margin:0px;
+	padding-bottom:10px;
+}

@@ -1,0 +1,13 @@
+<%= link_to "previous week", "/date/" + (@current_date - 7).year.to_s + "/" + (@current_date - 7).month.to_s + "/" + (@current_date - 7).mday.to_s + "/" %>
+|
+<%= link_to "Today", "/date/" %>
+|
+<%= link_to "next week", "/date/" + (@current_date + 7).year.to_s + "/" + (@current_date + 7).month.to_s + "/" + (@current_date + 7).mday.to_s + "/" %>
+|
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+<a href="#" onclick="Effect.toggle('graph','slide',{duration: 1})">View Progress</a>

@@ -1,0 +1,2 @@
+class Running_Log < ActiveRecord::Base
+end

@@ -1,0 +1,9 @@
+<h1>Editing schedule_entry</h1>
+
+<%= start_form_tag :action => 'update', :id => @schedule_entry %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag 'Edit' %>
+<%= end_form_tag %>
+
+<%= link_to 'Show', :action => 'show', :id => @schedule_entry %> |
+<%= link_to 'Back', :action => 'list' %>

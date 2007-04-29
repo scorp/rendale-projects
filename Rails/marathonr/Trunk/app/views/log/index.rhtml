@@ -1,0 +1,20 @@
+<div id="week_log">
+<div id="form">
+	<%= render :partial=>'log_form' %>
+</div>
+
+<div id="weeks_wrapper">
+	<%= render :partial=>'calendars' %>
+</div>
+
+
+<div style="clear:both">
+
+
+<div id="week_navigation">
+	<%= render :partial=>'week_navigation' %> 
+</div>
+
+<div id="graph" style="display:none">
+	<img src="/graph/progress_graph?start_dt=2006-05-22&end_dt=2006-11-15">
+</div>
