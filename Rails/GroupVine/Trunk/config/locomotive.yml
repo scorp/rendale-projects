@@ -1,0 +1,6 @@
+---
+mode: development
+runs_at_launch: 0
+identifier: GroupThread
+port: 3004
+bundle: /Applications/Locomotive/Bundles/rmagickRailsSept2006_x86.locobundle

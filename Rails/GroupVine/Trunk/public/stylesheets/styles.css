@@ -1,0 +1,25 @@
+*{
+	font-family:trebuchet,arial,sans-serif;
+ }
+
+body{
+	background: #3C5486;
+}
+
+
+ul.nav{
+	background:#253453;
+	padding:10px;
+}
+
+ul.nav a{
+	color:#fff;
+}
+
+ul.nav li{
+	display:inline;
+}
+
+form{
+	padding-left:20px;
+}

@@ -1,0 +1,5 @@
+class SharedController < ApplicationController
+  
+    
+    
+end

@@ -1,0 +1,33 @@
+<div>
+	<h1>Your Profile</h1>
+	<div id="flash" style="display:none"><%=flash[:notice]%></div>
+	<script>
+		if ($('flash').innerHTML != "")
+			new Effect.Appear('flash');			
+	</script>
+	<img class="profile_picture" src="<%= url_for(:controller=>"profile", :action=>"display_picture", :id=> @user_profile)%>"/>
+	<div>
+		<%= link_to @user_profile.resume.name, :controller=>"profile", :action=>"display_resume", :id=>@user_profile %>
+	</div>
+	<% form_for :user_profile, :html => { :multipart => true } do | p | %>
+		<label for="first_name">first name:</label><br />
+		<%= p.text_field :first_name %>
+		<br /><br />
+		<label for="first_name">last name:</label><br />	
+		<%= p.text_field :last_name %>
+		<br /><br />
+		<label for="birth_date">birth date:</label><br />	
+		<%= p.date_select :birth_date, :order => [:month, :day, :year], :start_year=>1900 %>
+		<br /><br />
+		<label for="attach_file">add a picture:</label><br />
+		<%= file_field "attachment", "picture"%>
+		<br /><br />
+		<!--
+		<label for="attach_file">add a resume:</label><br />
+		<%= file_field "attachment", "resume"%>
+		<br /><br />
+	    -->
+		<%= submit_tag %>
+	    
+	<% end %>
+</div>
