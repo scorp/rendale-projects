@@ -15,7 +15,7 @@ RENDALE.FeedReader.Feed = function(url, controller){
 RENDALE.FeedReader.Feed.prototype.get_html = function(){
 	return this.html
 }
-RENDALE.FeedReader.Feed.prototype.load = function(i){
+RENDALE.FeedReader.Feed.prototype.load = function(i, add_mode){
 	var feed_obj = this;
 	feed_obj.dom_id = "feed_" + i;
 	this.feed.load(
@@ -35,6 +35,9 @@ RENDALE.FeedReader.Feed.prototype.load = function(i){
 				feed_obj.html = html;
 				feed_obj.controller.feeds.push(feed_obj)
 				feed_obj.controller.render(feed_obj)
+                                if (add_mode){
+        				$.get("/dev/feed_reader/cgi/controller.rb",{add: feed_obj.url});
+                                }
 			}
 			else
 			{
@@ -52,9 +55,26 @@ RENDALE.FeedReader.Controller = function(){
 }
 RENDALE.FeedReader.Controller.prototype.add_feed = function(url){
 	var new_feed = new RENDALE.FeedReader.Feed(url, this);
-	new_feed.load(this.feeds.length)
+        var exists = false;
+        $.each(this.feeds, function(){
+          if (this.url == url && !exists){
+            alert('You have already added this feed');
+            exists = true;
+          }          
+        });
+
+        if (!exists){
+	  new_feed.load(this.feeds.length, true);
+        }
 	return this;
 }
+
+RENDALE.FeedReader.Controller.prototype.load_feed = function(url){
+        var load_feed = new RENDALE.FeedReader.Feed(url, this);
+        load_feed.load(this.feeds.length, false);
+        return this;
+}
+
 
 RENDALE.FeedReader.Controller.prototype.render = function(feed){
 			$('#feeds').append(feed.html);
@@ -72,10 +92,14 @@ RENDALE.FeedReader.Application = function(){
 		return {
 			init : function(){
 				controller = new RENDALE.FeedReader.Controller();
-				controller.add_feed("http://www.digg.com/rss/index.xml");
-				controller.add_feed("http://feeds.feedburner.com/37signals/beMH");
-				controller.add_feed("http://feeds.feedburner.com/too-biased/xml");
-				
+
+
+                                $.get("/dev/feed_reader/cgi/controller.rb", function(data){
+                                  $(data).find(".feed").each(function(i){
+                                    controller.load_feed($(this).html());
+				  });
+                                });
+
 				$('#add').bind('click', add);
 			}
 		}
