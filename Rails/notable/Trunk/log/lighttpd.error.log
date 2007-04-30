@@ -1,0 +1,733 @@
+2006-04-12 22:16:12: (log.c.75) server started 
+2006-04-12 22:16:32: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-12 22:16:32: (connections.c.1396) returning the original status 404 
+2006-04-12 22:16:32: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-12 22:17:48: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/views/notes/_file_upload_control.rhtml:1: warning: don't put space before argument parentheses
+ 
+2006-04-12 22:17:48: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-12 22:18:11: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/views/notes/_file_upload_control_done.rhtml:3: warning: don't put space before argument parentheses
+ 
+2006-04-12 22:18:11: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-12 23:39:50: (server.c.1216) [note] graceful shutdown started 
+2006-04-12 23:39:50: (log.c.135) server stopped 
+2006-04-12 23:43:21: (log.c.75) server started 
+2006-04-12 23:43:29: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/views/notes/_file_upload_control.rhtml:1: warning: don't put space before argument parentheses
+ 
+2006-04-12 23:43:29: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-12 23:44:20: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-12 23:44:20: (connections.c.1396) returning the original status 404 
+2006-04-12 23:44:20: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-12 23:44:20: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-12 23:44:20: (connections.c.1396) returning the original status 404 
+2006-04-12 23:44:20: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-12 23:44:21: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-12 23:44:21: (connections.c.1396) returning the original status 404 
+2006-04-12 23:44:21: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-12 23:44:21: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-12 23:44:21: (connections.c.1396) returning the original status 404 
+2006-04-12 23:44:21: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-12 23:44:21: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-12 23:44:21: (connections.c.1396) returning the original status 404 
+2006-04-12 23:44:21: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-12 23:59:38: (server.c.1216) [note] graceful shutdown started 
+2006-04-12 23:59:38: (log.c.135) server stopped 
+2006-04-12 23:59:44: (log.c.75) server started 
+2006-04-12 23:59:50: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/views/notes/_file_upload_control.rhtml:1: warning: don't put space before argument parentheses
+ 
+2006-04-12 23:59:50: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-13 00:03:46: (server.c.1216) [note] graceful shutdown started 
+2006-04-13 00:03:46: (mod_fastcgi.c.2430) unexpected end-of-file (perhaps the fastcgi process died): pid: 29314 socket: unix:/Users/willBailey/rails/notable/tmp/sockets/fcgi.socket-0 
+2006-04-13 00:03:46: (mod_fastcgi.c.3168) child exited, pid: 29314 status: 0 
+2006-04-13 00:03:46: (mod_fastcgi.c.3230) response already sent out, but backend returned error on socket: unix:/Users/willBailey/rails/notable/tmp/sockets/fcgi.socket-0 for /dispatch.fcgi , terminating connection 
+2006-04-13 00:03:46: (log.c.135) server stopped 
+2006-04-13 00:06:22: (log.c.75) server started 
+2006-04-13 00:06:28: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/views/notes/_file_upload_control.rhtml:1: warning: don't put space before argument parentheses
+ 
+2006-04-13 00:06:28: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-13 00:09:05: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/views/notes/_file_upload_control_done.rhtml:3: warning: don't put space before argument parentheses
+ 
+2006-04-13 00:09:05: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-13 00:09:05: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 00:09:05: (connections.c.1396) returning the original status 404 
+2006-04-13 00:09:05: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 00:09:06: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 00:09:06: (connections.c.1396) returning the original status 404 
+2006-04-13 00:09:06: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 00:09:40: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 00:09:40: (connections.c.1396) returning the original status 404 
+2006-04-13 00:09:40: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 00:55:31: (server.c.1216) [note] graceful shutdown started 
+2006-04-13 00:55:31: (log.c.135) server stopped 
+2006-04-13 00:55:35: (log.c.75) server started 
+2006-04-13 00:56:56: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/views/notes/_file_upload_control.rhtml:1: warning: don't put space before argument parentheses
+ 
+2006-04-13 00:56:56: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-13 01:07:14: (server.c.1216) [note] graceful shutdown started 
+2006-04-13 01:07:14: (log.c.135) server stopped 
+2006-04-13 01:07:18: (log.c.75) server started 
+2006-04-13 01:11:19: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/views/notes/_file_upload_control.rhtml:1: warning: don't put space before argument parentheses
+ 
+2006-04-13 01:11:19: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-13 01:23:00: (server.c.1216) [note] graceful shutdown started 
+2006-04-13 01:23:00: (log.c.135) server stopped 
+2006-04-13 01:23:04: (log.c.75) server started 
+2006-04-13 01:23:54: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/views/notes/_file_upload_control.rhtml:1: warning: don't put space before argument parentheses
+ 
+2006-04-13 01:23:54: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-13 01:26:33: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 01:26:33: (connections.c.1396) returning the original status 404 
+2006-04-13 01:26:33: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 01:27:24: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 01:27:24: (connections.c.1396) returning the original status 404 
+2006-04-13 01:27:24: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 01:33:06: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 01:33:06: (connections.c.1396) returning the original status 404 
+2006-04-13 01:33:06: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 01:33:36: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/views/notes/_file_upload_control_done.rhtml:3: warning: don't put space before argument parentheses
+ 
+2006-04-13 01:33:36: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-13 01:33:36: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 01:33:36: (connections.c.1396) returning the original status 404 
+2006-04-13 01:33:36: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 01:33:37: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 01:33:37: (connections.c.1396) returning the original status 404 
+2006-04-13 01:33:37: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 01:35:15: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 01:35:15: (connections.c.1396) returning the original status 404 
+2006-04-13 01:35:15: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 01:35:15: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 01:35:15: (connections.c.1396) returning the original status 404 
+2006-04-13 01:35:15: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 01:35:35: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 01:35:35: (connections.c.1396) returning the original status 404 
+2006-04-13 01:35:35: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 01:35:36: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 01:35:36: (connections.c.1396) returning the original status 404 
+2006-04-13 01:35:36: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 01:37:18: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 01:37:18: (connections.c.1396) returning the original status 404 
+2006-04-13 01:37:18: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 01:37:19: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 01:37:19: (connections.c.1396) returning the original status 404 
+2006-04-13 01:37:19: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 01:37:31: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 01:37:31: (connections.c.1396) returning the original status 404 
+2006-04-13 01:37:31: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 01:37:31: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 01:37:31: (connections.c.1396) returning the original status 404 
+2006-04-13 01:37:31: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 01:37:47: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 01:37:47: (connections.c.1396) returning the original status 404 
+2006-04-13 01:37:47: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 01:37:48: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 01:37:48: (connections.c.1396) returning the original status 404 
+2006-04-13 01:37:48: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 01:43:46: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 01:43:46: (connections.c.1396) returning the original status 404 
+2006-04-13 01:43:46: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 01:43:46: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 01:43:46: (connections.c.1396) returning the original status 404 
+2006-04-13 01:43:46: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 01:43:47: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 01:43:47: (connections.c.1396) returning the original status 404 
+2006-04-13 01:43:47: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 01:43:56: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 01:43:56: (connections.c.1396) returning the original status 404 
+2006-04-13 01:43:56: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 01:43:56: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 01:43:56: (connections.c.1396) returning the original status 404 
+2006-04-13 01:43:56: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 01:44:34: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 01:44:34: (connections.c.1396) returning the original status 404 
+2006-04-13 01:44:34: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 01:44:34: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 01:44:34: (connections.c.1396) returning the original status 404 
+2006-04-13 01:44:34: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 01:44:58: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 01:44:58: (connections.c.1396) returning the original status 404 
+2006-04-13 01:44:58: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 01:44:59: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 01:44:59: (connections.c.1396) returning the original status 404 
+2006-04-13 01:44:59: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 01:45:44: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 01:45:44: (connections.c.1396) returning the original status 404 
+2006-04-13 01:45:44: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 01:45:44: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 01:45:44: (connections.c.1396) returning the original status 404 
+2006-04-13 01:45:44: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 01:47:23: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 01:47:23: (connections.c.1396) returning the original status 404 
+2006-04-13 01:47:23: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 01:47:38: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 01:47:38: (connections.c.1396) returning the original status 404 
+2006-04-13 01:47:38: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 01:47:39: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 01:47:39: (connections.c.1396) returning the original status 404 
+2006-04-13 01:47:39: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 01:50:45: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 01:50:45: (connections.c.1396) returning the original status 404 
+2006-04-13 01:50:45: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 01:51:54: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 01:51:54: (connections.c.1396) returning the original status 404 
+2006-04-13 01:51:54: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 21:54:41: (server.c.1216) [note] graceful shutdown started 
+2006-04-13 21:54:41: (log.c.135) server stopped 
+2006-04-13 21:54:48: (log.c.75) server started 
+2006-04-13 21:55:56: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/views/notes/_file_upload_control.rhtml:1: warning: don't put space before argument parentheses
+ 
+2006-04-13 21:55:56: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-13 21:55:57: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 21:55:57: (connections.c.1396) returning the original status 404 
+2006-04-13 21:55:57: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 21:56:20: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 21:56:20: (connections.c.1396) returning the original status 404 
+2006-04-13 21:56:20: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 22:03:58: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 22:03:58: (connections.c.1396) returning the original status 404 
+2006-04-13 22:03:58: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 22:04:38: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 22:04:38: (connections.c.1396) returning the original status 404 
+2006-04-13 22:04:38: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 22:04:48: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 22:04:48: (connections.c.1396) returning the original status 404 
+2006-04-13 22:04:48: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 22:05:03: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 22:05:03: (connections.c.1396) returning the original status 404 
+2006-04-13 22:05:03: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 22:05:29: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 22:05:29: (connections.c.1396) returning the original status 404 
+2006-04-13 22:05:29: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 22:06:46: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 22:06:46: (connections.c.1396) returning the original status 404 
+2006-04-13 22:06:46: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 22:09:34: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 22:09:34: (connections.c.1396) returning the original status 404 
+2006-04-13 22:09:34: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 22:10:40: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 22:10:40: (connections.c.1396) returning the original status 404 
+2006-04-13 22:10:40: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 22:17:30: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 22:17:30: (connections.c.1396) returning the original status 404 
+2006-04-13 22:17:30: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 22:17:38: (mod_fastcgi.c.2536) FastCGI-stderr: /usr/local/lib/ruby/gems/1.8/gems/RedCloth-3.0.4/lib/redcloth.rb:169: warning: already initialized constant VERSION
+/usr/local/lib/ruby/gems/1.8/gems/RedCloth-3.0.4/lib/redcloth.rb:170: warning: already initialized constant DEFAULT_RULES
+/usr/local/lib/ruby/gems/1.8/gems/RedCloth-3.0.4/lib/redcloth.rb:325: warning: already initialized constant TEXTILE_TAGS
+/usr/local/lib/ruby/gems/1.8/gems/RedCloth-3.0.4/lib/redcloth.rb:338: warning: already initialized constant A_HLGN
+/usr/local/lib/ruby/gems/1.8/g 
+2006-04-13 22:17:38: (mod_fastcgi.c.2536) FastCGI-stderr: ems/RedCloth-3.0.4/lib/redcloth.rb:339: warning: already initialized constant A_VLGN
+/usr/local/lib/ruby/gems/1.8/gems/RedCloth-3.0.4/lib/redcloth.rb:340: warning: already initialized constant C_CLAS
+/usr/local/lib/ruby/gems/1.8/gems/RedCloth-3.0.4/lib/redcloth.rb:341: warning: already initialized constant C_LNGE
+/usr/local/lib/ruby/gems/1.8/gems/RedCloth-3.0.4/lib/redcloth.rb:342: warning: already initialized constant C_STYL
+/usr/local/lib/ruby/gems/1.8/gems/RedCloth-3.0.4/lib/redcloth.rb:343: warn 
+2006-04-13 22:17:38: (mod_fastcgi.c.2536) FastCGI-stderr: ing: already initialized constant S_CSPN
+/usr/local/lib/ruby/gems/1.8/gems/RedCloth-3.0.4/lib/redcloth.rb:344: warning: already initialized constant S_RSPN
+/usr/local/lib/ruby/gems/1.8/gems/RedCloth-3.0.4/lib/redcloth.rb:345: warning: already initialized constant A
+/usr/local/lib/ruby/gems/1.8/gems/RedCloth-3.0.4/lib/redcloth.rb:346: warning: already initialized constant S
+/usr/local/lib/ruby/gems/1.8/gems/RedCloth-3.0.4/lib/redcloth.rb:347: warning: already initialized constant C
+/usr/local/lib/rub 
+2006-04-13 22:17:38: (mod_fastcgi.c.2536) FastCGI-stderr: y/gems/1.8/gems/RedCloth-3.0.4/lib/redcloth.rb:349: warning: already initialized constant PUNCT
+/usr/local/lib/ruby/gems/1.8/gems/RedCloth-3.0.4/lib/redcloth.rb:350: warning: already initialized constant PUNCT_NOQ
+/usr/local/lib/ruby/gems/1.8/gems/RedCloth-3.0.4/lib/redcloth.rb:351: warning: already initialized constant PUNCT_Q
+/usr/local/lib/ruby/gems/1.8/gems/RedCloth-3.0.4/lib/redcloth.rb:352: warning: already initialized constant HYPERLINK
+/usr/local/lib/ruby/gems/1.8/gems/RedCloth-3.0.4/lib/red 
+2006-04-13 22:17:38: (mod_fastcgi.c.2536) FastCGI-stderr: cloth.rb:358: warning: already initialized constant SIMPLE_HTML_TAGS
+/usr/local/lib/ruby/gems/1.8/gems/RedCloth-3.0.4/lib/redcloth.rb:371: warning: already initialized constant QTAGS
+/usr/local/lib/ruby/gems/1.8/gems/RedCloth-3.0.4/lib/redcloth.rb:416: warning: already initialized constant GLYPHS
+/usr/local/lib/ruby/gems/1.8/gems/RedCloth-3.0.4/lib/redcloth.rb:423: warning: already initialized constant H_ALGN_VALS
+/usr/local/lib/ruby/gems/1.8/gems/RedCloth-3.0.4/lib/redcloth.rb:429: warning: already 
+2006-04-13 22:17:38: (mod_fastcgi.c.2536) FastCGI-stderr:  initialized constant V_ALGN_VALS
+/usr/local/lib/ruby/gems/1.8/gems/RedCloth-3.0.4/lib/redcloth.rb:493: warning: already initialized constant TABLE_RE
+/usr/local/lib/ruby/gems/1.8/gems/RedCloth-3.0.4/lib/redcloth.rb:531: warning: already initialized constant LISTS_RE
+/usr/local/lib/ruby/gems/1.8/gems/RedCloth-3.0.4/lib/redcloth.rb:532: warning: already initialized constant LISTS_CONTENT_RE
+/usr/local/lib/ruby/gems/1.8/gems/RedCloth-3.0.4/lib/redcloth.rb:583: warning: already initialized constant COD 
+2006-04-13 22:17:38: (mod_fastcgi.c.2536) FastCGI-stderr: E_RE
+/usr/local/lib/ruby/gems/1.8/gems/RedCloth-3.0.4/lib/redcloth.rb:601: warning: already initialized constant BLOCKS_GROUP_RE
+/usr/local/lib/ruby/gems/1.8/gems/RedCloth-3.0.4/lib/redcloth.rb:673: warning: already initialized constant BLOCK_RE
+/usr/local/lib/ruby/gems/1.8/gems/RedCloth-3.0.4/lib/redcloth.rb:689: warning: already initialized constant SETEXT_RE
+/usr/local/lib/ruby/gems/1.8/gems/RedCloth-3.0.4/lib/redcloth.rb:704: warning: already initialized constant ATX_RE
+/usr/local/lib/ruby/gems/ 
+2006-04-13 22:17:38: (mod_fastcgi.c.2536) FastCGI-stderr: 1.8/gems/RedCloth-3.0.4/lib/redcloth.rb:714: warning: already initialized constant MARKDOWN_BQ_RE
+/usr/local/lib/ruby/gems/1.8/gems/RedCloth-3.0.4/lib/redcloth.rb:727: warning: already initialized constant MARKDOWN_RULE_RE
+/usr/local/lib/ruby/gems/1.8/gems/RedCloth-3.0.4/lib/redcloth.rb:764: warning: already initialized constant LINK_RE
+/usr/local/lib/ruby/gems/1.8/gems/RedCloth-3.0.4/lib/redcloth.rb:796: warning: already initialized constant MARKDOWN_REFLINK_RE
+/usr/local/lib/ruby/gems/1.8/gems/Red 
+2006-04-13 22:17:38: (mod_fastcgi.c.2536) FastCGI-stderr: Cloth-3.0.4/lib/redcloth.rb:828: warning: already initialized constant MARKDOWN_LINK_RE
+/usr/local/lib/ruby/gems/1.8/gems/RedCloth-3.0.4/lib/redcloth.rb:842: warning: already initialized constant TEXTILE_REFS_RE
+/usr/local/lib/ruby/gems/1.8/gems/RedCloth-3.0.4/lib/redcloth.rb:843: warning: already initialized constant MARKDOWN_REFS_RE
+/usr/local/lib/ruby/gems/1.8/gems/RedCloth-3.0.4/lib/redcloth.rb:883: warning: already initialized constant IMAGE_RE
+/usr/local/lib/ruby/gems/1.8/gems/RedCloth-3.0.4/l 
+2006-04-13 22:17:38: (mod_fastcgi.c.2536) FastCGI-stderr: ib/redcloth.rb:976: warning: already initialized constant OFFTAGS
+/usr/local/lib/ruby/gems/1.8/gems/RedCloth-3.0.4/lib/redcloth.rb:977: warning: already initialized constant OFFTAG_MATCH
+/usr/local/lib/ruby/gems/1.8/gems/RedCloth-3.0.4/lib/redcloth.rb:978: warning: already initialized constant OFFTAG_OPEN
+/usr/local/lib/ruby/gems/1.8/gems/RedCloth-3.0.4/lib/redcloth.rb:979: warning: already initialized constant OFFTAG_CLOSE
+/usr/local/lib/ruby/gems/1.8/gems/RedCloth-3.0.4/lib/redcloth.rb:980: warnin 
+2006-04-13 22:17:39: (mod_fastcgi.c.2536) FastCGI-stderr: g: already initialized constant HASTAG_MATCH
+/usr/local/lib/ruby/gems/1.8/gems/RedCloth-3.0.4/lib/redcloth.rb:981: warning: already initialized constant ALLTAG_MATCH
+/usr/local/lib/ruby/gems/1.8/gems/RedCloth-3.0.4/lib/redcloth.rb:1102: warning: already initialized constant BASIC_TAGS
+ 
+2006-04-13 22:17:39: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-13 22:18:01: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 22:18:01: (connections.c.1396) returning the original status 404 
+2006-04-13 22:18:01: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 23:00:56: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-13 23:00:56: (connections.c.1396) returning the original status 404 
+2006-04-13 23:00:56: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-13 23:07:34: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/views/notes/_file_upload_control_done.rhtml:3: warning: don't put space before argument parentheses
+ 
+2006-04-13 23:07:34: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-14 20:42:14: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-14 20:42:14: (connections.c.1396) returning the original status 404 
+2006-04-14 20:42:14: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-14 21:04:35: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-14 21:04:35: (connections.c.1396) returning the original status 404 
+2006-04-14 21:04:35: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-15 10:22:55: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-15 10:22:55: (connections.c.1396) returning the original status 404 
+2006-04-15 10:22:55: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-15 10:22:56: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-15 10:22:56: (connections.c.1396) returning the original status 404 
+2006-04-15 10:22:56: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-15 10:26:31: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-15 10:26:31: (connections.c.1396) returning the original status 404 
+2006-04-15 10:26:31: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-15 10:36:50: (log.c.75) server started 
+2006-04-15 10:39:29: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/views/notes/_file_upload_control.rhtml:1: warning: don't put space before argument parentheses
+ 
+2006-04-15 10:39:29: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-15 10:39:30: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-15 10:39:30: (connections.c.1396) returning the original status 404 
+2006-04-15 10:39:30: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-15 10:43:20: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/views/notes/_file_upload_control_done.rhtml:3: warning: don't put space before argument parentheses
+ 
+2006-04-15 10:43:20: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-15 10:45:17: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-15 10:45:17: (connections.c.1396) returning the original status 404 
+2006-04-15 10:45:17: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-15 14:55:37: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-15 14:55:37: (connections.c.1396) returning the original status 404 
+2006-04-15 14:55:37: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-15 21:45:21: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/helpers/notes_helper.rb:48: warning: multiple values for a block parameter (2 for 1)
+	from /Users/willBailey/rails/notable/public/../config/../app/helpers/notes_helper.rb:48
+ 
+2006-04-15 21:45:21: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-15 21:45:40: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/helpers/notes_helper.rb:48: warning: multiple values for a block parameter (2 for 1)
+	from /Users/willBailey/rails/notable/public/../config/../app/helpers/notes_helper.rb:48
+ 
+2006-04-15 21:45:40: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-15 21:45:57: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/helpers/notes_helper.rb:48: warning: multiple values for a block parameter (2 for 1)
+	from /Users/willBailey/rails/notable/public/../config/../app/helpers/notes_helper.rb:48
+ 
+2006-04-15 21:45:57: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-15 21:46:59: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/helpers/notes_helper.rb:48: warning: multiple values for a block parameter (2 for 1)
+	from /Users/willBailey/rails/notable/public/../config/../app/helpers/notes_helper.rb:48
+ 
+2006-04-15 21:46:59: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-15 22:01:16: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-15 22:01:16: (connections.c.1396) returning the original status 404 
+2006-04-15 22:01:16: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-15 22:26:47: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-15 22:26:47: (connections.c.1396) returning the original status 404 
+2006-04-15 22:26:47: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-15 22:28:14: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-15 22:28:14: (connections.c.1396) returning the original status 404 
+2006-04-15 22:28:14: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-15 22:29:51: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-15 22:29:51: (connections.c.1396) returning the original status 404 
+2006-04-15 22:29:51: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-15 22:31:41: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-15 22:31:41: (connections.c.1396) returning the original status 404 
+2006-04-15 22:31:41: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-15 22:34:29: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-15 22:34:29: (connections.c.1396) returning the original status 404 
+2006-04-15 22:34:29: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-15 22:41:02: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-15 22:41:02: (connections.c.1396) returning the original status 404 
+2006-04-15 22:41:02: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-15 22:45:34: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-15 22:45:34: (connections.c.1396) returning the original status 404 
+2006-04-15 22:45:34: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-15 22:45:38: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-15 22:45:38: (connections.c.1396) returning the original status 404 
+2006-04-15 22:45:38: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-15 22:46:56: (server.c.1216) [note] graceful shutdown started 
+2006-04-15 22:47:03: (log.c.135) server stopped 
+2006-04-15 22:47:08: (log.c.75) server started 
+2006-04-15 22:47:21: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/views/notes/_file_upload_control.rhtml:1: warning: don't put space before argument parentheses
+ 
+2006-04-15 22:47:21: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-15 22:47:21: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-15 22:47:21: (connections.c.1396) returning the original status 404 
+2006-04-15 22:47:21: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-15 22:47:36: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/views/notes/_file_upload_control_done.rhtml:3: warning: don't put space before argument parentheses
+ 
+2006-04-15 22:47:36: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-16 16:56:41: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-16 16:56:41: (connections.c.1396) returning the original status 404 
+2006-04-16 16:56:41: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-16 16:56:47: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-16 16:56:47: (connections.c.1396) returning the original status 404 
+2006-04-16 16:56:47: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-17 22:58:36: (log.c.75) server started 
+2006-04-17 23:37:20: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-17 23:37:20: (connections.c.1396) returning the original status 404 
+2006-04-17 23:37:20: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-17 23:37:57: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-17 23:37:57: (connections.c.1396) returning the original status 404 
+2006-04-17 23:37:57: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-18 22:04:19: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-18 22:04:19: (connections.c.1396) returning the original status 404 
+2006-04-18 22:04:19: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-18 22:04:29: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-18 22:04:29: (connections.c.1396) returning the original status 404 
+2006-04-18 22:04:29: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-18 22:04:37: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-18 22:04:37: (connections.c.1396) returning the original status 404 
+2006-04-18 22:04:37: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-18 22:06:11: (server.c.1216) [note] graceful shutdown started 
+2006-04-18 22:06:11: (log.c.135) server stopped 
+2006-04-18 22:06:20: (log.c.75) server started 
+2006-04-18 22:13:36: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/views/notes/_file_upload_control.rhtml:1: warning: don't put space before argument parentheses
+ 
+2006-04-18 22:13:36: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-18 22:19:24: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-18 22:19:24: (connections.c.1396) returning the original status 404 
+2006-04-18 22:19:24: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-18 22:21:56: (server.c.1216) [note] graceful shutdown started 
+2006-04-18 22:21:56: (log.c.135) server stopped 
+2006-04-18 22:22:05: (log.c.75) server started 
+2006-04-18 22:22:11: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/views/notes/_file_upload_control.rhtml:1: warning: don't put space before argument parentheses
+ 
+2006-04-18 22:22:11: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-18 22:27:10: (server.c.1216) [note] graceful shutdown started 
+2006-04-18 22:27:10: (log.c.135) server stopped 
+2006-04-18 22:32:05: (log.c.75) server started 
+2006-04-18 22:32:10: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/views/notes/_file_upload_control.rhtml:1: warning: don't put space before argument parentheses
+ 
+2006-04-18 22:32:10: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-18 22:43:02: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/views/notes/_file_upload_control_done.rhtml:3: warning: don't put space before argument parentheses
+ 
+2006-04-18 22:43:02: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-18 23:02:15: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-18 23:02:15: (connections.c.1396) returning the original status 404 
+2006-04-18 23:02:15: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-19 08:42:56: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-19 08:42:56: (connections.c.1396) returning the original status 404 
+2006-04-19 08:42:56: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-19 08:43:43: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-19 08:43:43: (connections.c.1396) returning the original status 404 
+2006-04-19 08:43:43: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-19 08:44:32: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-19 08:44:32: (connections.c.1396) returning the original status 404 
+2006-04-19 08:44:32: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-19 18:23:17: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-19 18:23:17: (connections.c.1396) returning the original status 404 
+2006-04-19 18:23:17: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-19 19:23:49: (server.c.1216) [note] graceful shutdown started 
+2006-04-19 19:23:49: (log.c.135) server stopped 
+2006-04-19 19:40:01: (log.c.75) server started 
+2006-04-19 19:54:09: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/views/notes/_file_upload_control.rhtml:1: warning: don't put space before argument parentheses
+ 
+2006-04-19 19:54:09: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-19 21:58:13: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/views/notes/_file_upload_control.rhtml:1: warning: don't put space before argument parentheses
+ 
+2006-04-19 21:58:13: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-19 21:58:32: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/views/notes/_file_upload_control_done.rhtml:3: warning: don't put space before argument parentheses
+ 
+2006-04-19 21:58:32: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-19 22:05:47: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/views/notes/_file_upload_control.rhtml:1: warning: don't put space before argument parentheses
+ 
+2006-04-19 22:05:47: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-19 22:06:27: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-19 22:06:27: (connections.c.1396) returning the original status 404 
+2006-04-19 22:06:27: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-19 22:06:41: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-19 22:06:41: (connections.c.1396) returning the original status 404 
+2006-04-19 22:06:41: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-19 22:07:35: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/views/notes/_file_upload_control.rhtml:1: warning: don't put space before argument parentheses
+ 
+2006-04-19 22:07:35: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-19 22:15:18: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/views/notes/_file_upload_control.rhtml:1: warning: don't put space before argument parentheses
+ 
+2006-04-19 22:15:18: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-19 22:16:03: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/views/notes/_file_upload_control.rhtml:1: warning: don't put space before argument parentheses
+ 
+2006-04-19 22:16:03: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-19 22:16:24: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-19 22:16:24: (connections.c.1396) returning the original status 404 
+2006-04-19 22:16:24: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-19 22:32:07: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/views/notes/_file_upload_control.rhtml:1: warning: don't put space before argument parentheses
+ 
+2006-04-19 22:32:07: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-19 22:33:27: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-19 22:33:27: (connections.c.1396) returning the original status 404 
+2006-04-19 22:33:27: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-19 22:35:43: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/views/notes/_file_upload_control.rhtml:1: warning: don't put space before argument parentheses
+ 
+2006-04-19 22:35:43: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-19 22:35:43: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-19 22:35:43: (connections.c.1396) returning the original status 404 
+2006-04-19 22:35:43: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-19 22:36:17: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/views/notes/_file_upload_control.rhtml:1: warning: don't put space before argument parentheses
+ 
+2006-04-19 22:36:17: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-19 22:36:18: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-19 22:36:18: (connections.c.1396) returning the original status 404 
+2006-04-19 22:36:18: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-19 22:37:29: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/views/notes/_file_upload_control.rhtml:1: warning: don't put space before argument parentheses
+ 
+2006-04-19 22:37:29: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-19 22:37:50: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/views/notes/_file_upload_control.rhtml:1: warning: don't put space before argument parentheses
+ 
+2006-04-19 22:37:50: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-19 22:43:20: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/views/notes/_file_upload_control.rhtml:1: warning: don't put space before argument parentheses
+ 
+2006-04-19 22:43:20: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-19 22:49:35: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/views/notes/_file_upload_control.rhtml:1: warning: don't put space before argument parentheses
+ 
+2006-04-19 22:49:35: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-19 22:51:09: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/views/notes/_file_upload_control.rhtml:1: warning: don't put space before argument parentheses
+ 
+2006-04-19 22:51:09: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-19 22:53:03: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/views/notes/_file_upload_control.rhtml:1: warning: don't put space before argument parentheses
+ 
+2006-04-19 22:53:03: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-19 22:53:53: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/views/notes/_file_upload_control.rhtml:1: warning: don't put space before argument parentheses
+ 
+2006-04-19 22:53:53: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-19 23:00:45: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-19 23:00:45: (connections.c.1396) returning the original status 404 
+2006-04-19 23:00:45: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-19 23:37:41: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/views/notes/_file_upload_control.rhtml:1: warning: don't put space before argument parentheses
+ 
+2006-04-19 23:37:41: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-19 23:38:10: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/views/notes/_file_upload_control_done.rhtml:3: warning: don't put space before argument parentheses
+ 
+2006-04-19 23:38:10: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-20 09:22:32: (server.c.1216) [note] graceful shutdown started 
+2006-04-20 09:22:32: (log.c.135) server stopped 
+2006-04-20 21:56:54: (log.c.75) server started 
+2006-04-20 22:21:38: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/views/notes/_file_upload_control.rhtml:1: warning: don't put space before argument parentheses
+ 
+2006-04-20 22:21:38: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-20 22:22:29: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable/public/../config/../app/views/notes/_file_upload_control_done.rhtml:3: warning: don't put space before argument parentheses
+ 
+2006-04-20 22:22:29: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-20 22:39:42: (server.c.1216) [note] graceful shutdown started 
+2006-04-20 22:39:42: (log.c.135) server stopped 
+2006-04-20 22:55:50: (log.c.75) server started 
+2006-04-20 22:56:01: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable_svn_working/public/../config/../app/views/notes/_file_upload_control.rhtml:1: warning: don't put space before argument parentheses
+ 
+2006-04-20 22:56:01: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-20 22:56:18: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable_svn_working/public/../config/../app/views/notes/_file_upload_control_done.rhtml:3: warning: don't put space before argument parentheses
+ 
+2006-04-20 22:56:18: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-20 22:59:47: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-20 22:59:47: (connections.c.1396) returning the original status 404 
+2006-04-20 22:59:47: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-20 23:08:42: (server.c.1216) [note] graceful shutdown started 
+2006-04-20 23:08:42: (log.c.135) server stopped 
+2006-04-20 23:12:12: (log.c.75) server started 
+2006-04-20 23:16:25: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable_svn_working/public/../config/../app/views/notes/_file_upload_control.rhtml:1: warning: don't put space before argument parentheses
+ 
+2006-04-20 23:16:25: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-20 23:25:29: (server.c.1216) [note] graceful shutdown started 
+2006-04-20 23:25:29: (log.c.135) server stopped 
+2006-04-20 23:33:13: (log.c.75) server started 
+2006-04-20 23:33:31: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable_svn_working/public/../config/../app/views/notes/_file_upload_control.rhtml:1: warning: don't put space before argument parentheses
+ 
+2006-04-20 23:33:31: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-21 00:04:17: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable_svn_working/public/../config/../app/views/notes/_file_upload_control_done.rhtml:3: warning: don't put space before argument parentheses
+ 
+2006-04-21 00:04:17: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-21 00:38:26: (server.c.1216) [note] graceful shutdown started 
+2006-04-21 00:38:26: (log.c.135) server stopped 
+2006-04-21 00:38:32: (log.c.75) server started 
+2006-04-21 00:38:42: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-21 00:38:42: (connections.c.1396) returning the original status 404 
+2006-04-21 00:38:42: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-21 00:39:16: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable_svn_working/public/../config/../app/views/notes/_file_upload_control.rhtml:1: warning: don't put space before argument parentheses
+ 
+2006-04-21 00:39:16: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-21 18:57:26: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-21 18:57:26: (connections.c.1396) returning the original status 404 
+2006-04-21 18:57:26: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-21 19:13:25: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-21 19:13:25: (connections.c.1396) returning the original status 404 
+2006-04-21 19:13:25: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-21 19:20:40: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable_svn_working/public/../config/../app/views/notes/_file_upload_control_done.rhtml:3: warning: don't put space before argument parentheses
+ 
+2006-04-21 19:20:40: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-22 10:17:31: (server.c.1216) [note] graceful shutdown started 
+2006-04-22 10:17:31: (log.c.135) server stopped 
+2006-04-22 10:17:38: (log.c.75) server started 
+2006-04-22 10:17:48: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable_svn_working/public/../config/../app/views/notes/_file_upload_control.rhtml:1: warning: don't put space before argument parentheses
+ 
+2006-04-22 10:17:48: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-22 10:18:49: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable_svn_working/public/../config/../app/views/notes/_file_upload_control_done.rhtml:3: warning: don't put space before argument parentheses
+ 
+2006-04-22 10:18:49: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-22 11:45:00: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-22 11:45:00: (connections.c.1396) returning the original status 404 
+2006-04-22 11:45:00: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-23 10:31:29: (server.c.1216) [note] graceful shutdown started 
+2006-04-23 10:31:29: (log.c.135) server stopped 
+2006-04-23 10:31:39: (log.c.75) server started 
+2006-04-23 14:35:08: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-23 14:35:08: (connections.c.1396) returning the original status 404 
+2006-04-23 14:35:08: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-23 14:35:11: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable_svn_working/public/../config/../app/views/notes/_file_upload_control.rhtml:1: warning: don't put space before argument parentheses
+ 
+2006-04-23 14:35:11: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-23 14:35:38: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable_svn_working/public/../config/../app/views/notes/_file_upload_control_done.rhtml:3: warning: don't put space before argument parentheses
+ 
+2006-04-23 14:35:38: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-23 14:35:38: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-23 14:35:38: (connections.c.1396) returning the original status 404 
+2006-04-23 14:35:38: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-23 14:35:38: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-23 14:35:38: (connections.c.1396) returning the original status 404 
+2006-04-23 14:35:38: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-23 14:35:49: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-23 14:35:49: (connections.c.1396) returning the original status 404 
+2006-04-23 14:35:49: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-23 14:38:49: (server.c.1216) [note] graceful shutdown started 
+2006-04-23 14:38:49: (log.c.135) server stopped 
+2006-04-23 14:38:57: (log.c.75) server started 
+2006-04-23 14:39:06: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable_svn_working/public/../config/../app/views/notes/_file_upload_control.rhtml:1: warning: don't put space before argument parentheses
+ 
+2006-04-23 14:39:06: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-23 14:39:06: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-23 14:39:06: (connections.c.1396) returning the original status 404 
+2006-04-23 14:39:06: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-23 14:39:07: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-23 14:39:07: (connections.c.1396) returning the original status 404 
+2006-04-23 14:39:07: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-23 14:40:02: (server.c.1216) [note] graceful shutdown started 
+2006-04-23 14:40:02: (log.c.135) server stopped 
+2006-04-23 14:40:06: (log.c.75) server started 
+2006-04-23 14:40:15: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable_svn_working/public/../config/../app/views/notes/_file_upload_control.rhtml:1: warning: don't put space before argument parentheses
+ 
+2006-04-23 14:40:15: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-23 14:40:16: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-23 14:40:16: (connections.c.1396) returning the original status 404 
+2006-04-23 14:40:16: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-23 14:41:03: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable_svn_working/public/../config/../app/views/notes/_file_upload_control_done.rhtml:3: warning: don't put space before argument parentheses
+ 
+2006-04-23 14:41:03: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-04-23 14:41:12: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-23 14:41:12: (connections.c.1396) returning the original status 404 
+2006-04-23 14:41:12: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-23 14:41:14: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-23 14:41:14: (connections.c.1396) returning the original status 404 
+2006-04-23 14:41:14: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-23 14:41:16: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-23 14:41:16: (connections.c.1396) returning the original status 404 
+2006-04-23 14:41:16: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-23 14:41:42: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-23 14:41:42: (connections.c.1396) returning the original status 404 
+2006-04-23 14:41:42: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-23 14:42:35: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-23 14:42:35: (connections.c.1396) returning the original status 404 
+2006-04-23 14:42:35: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-23 14:42:35: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-23 14:42:35: (connections.c.1396) returning the original status 404 
+2006-04-23 14:42:35: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-23 14:42:35: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-23 14:42:35: (connections.c.1396) returning the original status 404 
+2006-04-23 14:42:35: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-23 14:42:54: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-23 14:42:54: (connections.c.1396) returning the original status 404 
+2006-04-23 14:42:54: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-23 14:42:55: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-23 14:42:55: (connections.c.1396) returning the original status 404 
+2006-04-23 14:42:55: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-23 14:42:55: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-04-23 14:42:55: (connections.c.1396) returning the original status 404 
+2006-04-23 14:42:55: (connections.c.1398) If this is a rails app: check your production.log 
+2006-04-24 20:36:12: (log.c.129) logfiles cycled 
+2006-04-24 20:36:13: (log.c.129) logfiles cycled 
+2006-05-03 22:47:40: (log.c.75) server started 
+2006-05-03 22:48:20: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable_svn_working/public/../config/../app/views/notes/_file_upload_control.rhtml:1: warning: don't put space before argument parentheses
+ 
+2006-05-03 22:48:20: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-05-03 22:49:41: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable_svn_working/public/../config/../app/views/notes/_file_upload_control_done.rhtml:3: warning: don't put space before argument parentheses
+ 
+2006-05-03 22:49:41: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-05-03 22:50:34: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-05-03 22:50:34: (connections.c.1396) returning the original status 404 
+2006-05-03 22:50:34: (connections.c.1398) If this is a rails app: check your production.log 
+2006-05-04 16:09:30: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable_svn_working/public/../config/../app/views/notes/_file_upload_control_done.rhtml:3: warning: don't put space before argument parentheses
+ 
+2006-05-04 16:09:30: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-05-04 16:10:03: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable_svn_working/public/../config/../app/views/notes/_file_upload_control_done.rhtml:3: warning: don't put space before argument parentheses
+ 
+2006-05-04 16:10:03: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-05-04 16:10:07: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-05-04 16:10:07: (connections.c.1396) returning the original status 404 
+2006-05-04 16:10:07: (connections.c.1398) If this is a rails app: check your production.log 
+2006-05-04 16:10:07: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-05-04 16:10:07: (connections.c.1396) returning the original status 404 
+2006-05-04 16:10:07: (connections.c.1398) If this is a rails app: check your production.log 
+2006-05-04 16:10:08: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-05-04 16:10:08: (connections.c.1396) returning the original status 404 
+2006-05-04 16:10:08: (connections.c.1398) If this is a rails app: check your production.log 
+2006-05-04 16:10:08: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-05-04 16:10:08: (connections.c.1396) returning the original status 404 
+2006-05-04 16:10:08: (connections.c.1398) If this is a rails app: check your production.log 
+2006-05-04 16:10:19: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-05-04 16:10:19: (connections.c.1396) returning the original status 404 
+2006-05-04 16:10:19: (connections.c.1398) If this is a rails app: check your production.log 
+2006-05-04 16:10:20: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-05-04 16:10:20: (connections.c.1396) returning the original status 404 
+2006-05-04 16:10:20: (connections.c.1398) If this is a rails app: check your production.log 
+2006-05-04 16:10:20: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-05-04 16:10:20: (connections.c.1396) returning the original status 404 
+2006-05-04 16:10:20: (connections.c.1398) If this is a rails app: check your production.log 
+2006-05-04 16:10:20: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-05-04 16:10:20: (connections.c.1396) returning the original status 404 
+2006-05-04 16:10:20: (connections.c.1398) If this is a rails app: check your production.log 
+2006-05-04 16:11:39: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-05-04 16:11:39: (connections.c.1396) returning the original status 404 
+2006-05-04 16:11:39: (connections.c.1398) If this is a rails app: check your production.log 
+2006-05-04 16:11:39: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-05-04 16:11:39: (connections.c.1396) returning the original status 404 
+2006-05-04 16:11:39: (connections.c.1398) If this is a rails app: check your production.log 
+2006-05-04 16:11:40: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-05-04 16:11:40: (connections.c.1396) returning the original status 404 
+2006-05-04 16:11:40: (connections.c.1398) If this is a rails app: check your production.log 
+2006-05-04 16:11:40: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-05-04 16:11:40: (connections.c.1396) returning the original status 404 
+2006-05-04 16:11:40: (connections.c.1398) If this is a rails app: check your production.log 
+2006-05-04 16:15:57: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-05-04 16:15:57: (connections.c.1396) returning the original status 404 
+2006-05-04 16:15:57: (connections.c.1398) If this is a rails app: check your production.log 
+2006-05-04 16:15:58: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-05-04 16:15:58: (connections.c.1396) returning the original status 404 
+2006-05-04 16:15:58: (connections.c.1398) If this is a rails app: check your production.log 
+2006-05-04 16:15:58: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-05-04 16:15:58: (connections.c.1396) returning the original status 404 
+2006-05-04 16:15:58: (connections.c.1398) If this is a rails app: check your production.log 
+2006-05-04 16:15:58: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-05-04 16:15:58: (connections.c.1396) returning the original status 404 
+2006-05-04 16:15:58: (connections.c.1398) If this is a rails app: check your production.log 
+2006-05-05 13:35:39: (server.c.1216) [note] graceful shutdown started 
+2006-05-05 13:35:39: (log.c.135) server stopped 
+2006-05-17 22:19:31: (log.c.75) server started 
+2006-05-17 22:19:45: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-05-17 22:19:45: (connections.c.1396) returning the original status 404 
+2006-05-17 22:19:45: (connections.c.1398) If this is a rails app: check your production.log 
+2006-05-17 22:25:11: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable_svn_working/public/../config/../app/views/notes/_file_upload_control.rhtml:1: warning: don't put space before argument parentheses
+ 
+2006-05-17 22:25:11: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-05-17 22:26:21: (mod_fastcgi.c.2536) FastCGI-stderr: /Users/willBailey/rails/notable_svn_working/public/../config/../app/views/notes/_file_upload_control_done.rhtml:3: warning: don't put space before argument parentheses
+ 
+2006-05-17 22:26:21: (mod_fastcgi.c.2536) FastCGI-stderr:  
+2006-05-17 23:35:31: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-05-17 23:35:31: (connections.c.1396) returning the original status 404 
+2006-05-17 23:35:31: (connections.c.1398) If this is a rails app: check your production.log 
+2006-05-17 23:35:35: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-05-17 23:35:35: (connections.c.1396) returning the original status 404 
+2006-05-17 23:35:35: (connections.c.1398) If this is a rails app: check your production.log 
+2006-05-17 23:35:50: (connections.c.1394) Warning: Either the error-handler returned status 404 or the error-handler itself was not found: /dispatch.fcgi 
+2006-05-17 23:35:50: (connections.c.1396) returning the original status 404 
+2006-05-17 23:35:50: (connections.c.1398) If this is a rails app: check your production.log 

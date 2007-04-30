@@ -1,0 +1,17 @@
+<div class="cloud" id="cloud" style="position:absolute; top:170px; font-size:12px; margin-left:550px;line-height:16px; width:275px;">
+	<%=generate_tag_cloud()%>
+</div>
+
+
+<div class="notes_block" id="notes_block" style="width:500px;">
+<% 
+if @notes != nil then
+%>
+<%= render(:partial => 'note_listing', :collection=> @notes) %>
+<% 
+end 
+%>
+</div>
+
+
+

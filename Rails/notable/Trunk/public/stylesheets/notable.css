@@ -1,0 +1,229 @@
+body { background-color: #ccc; color: #333; margin: 0px 0px 0px 0px; text-align: center;}
+
+body, p, ol, ul, td {
+  font-family: 'trebuchet ms';
+  font-size:   13px;
+  line-height: 18px;
+}
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+a { text-decoration:none; }
+a { color: #990000; }
+a:visited { color: #550000; }
+a:hover { color: #CC0000; }
+
+.fieldWithErrors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#ErrorExplanation {
+  width: 400px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#ErrorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#ErrorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#ErrorExplanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+/*########################################################*/
+div#content_wrapper{
+  margin: 0 auto;
+  width: 800px;
+  text-align: left;
+}
+
+div.header{
+	height: 90px;
+	background:#990000;
+	text-align: left;
+}
+
+div.account_links a{
+	color:#fff;
+	font-size:11px;
+}
+
+h1.logo{
+	color:#fff;
+	font-size:32px;
+	padding:0px;
+	margin:0px;
+}
+
+div.navigation{
+	background:#990000;
+	height:30px;
+	}
+
+div.navigation ul {
+padding:0px;
+margin:0px;
+}
+
+div.navigation li {
+	display: inline;
+	list-style: none;	
+}
+
+div.navigation li a.active{
+	width: 8em;
+	float: left;
+	padding: 6px 0;
+	margin: 0 4px 0 0;
+	text-align: center;
+	text-decoration: none;
+	color: #333;
+	background:#fff url(/images/gray_fad.jpg) bottom repeat-x;
+}
+
+div.navigation li a.inactive{
+	width: 8em;
+	display: block;
+	float: left;
+	padding: 6px 0;
+	margin: 0 4px 0 0;
+	text-align: center;
+	text-decoration: none;
+	color: #fff;
+	background:#660000;
+}
+
+div.navigation li a.inactive:hover{
+	background:#CC0000;
+}
+
+div.navigation li a.link{
+	background:#CC0000;
+	color:#fff;
+}
+
+
+
+.top-bar{
+	height:35px;
+	background:#ccc;
+	width:100%;
+	margin:10px 0px 0px 14px;
+}
+
+.top-bar input{
+	font-size:18px;
+}
+
+.button{
+
+}
+
+.note_wrapper{
+background: #fff;
+text-align: left;
+}
+
+.note_listing{
+	font-size:18px;
+	margin:10px;
+	width:500px;
+	text-align:left;
+}
+
+.shadow
+{
+	background-color:#ccc;
+	float:left;
+    background: url(/images/shadowAlpha.png) no-repeat bottom right !important;
+    background: url(/images/shadow.gif) no-repeat bottom right;
+    margin: 10px 0 0 10px !important;
+    margin: 10px 0 0 5px;
+  	text-align:left;
+}
+
+.inner_note{
+  display: block;
+  margin: -6px 6px 6px -6px;
+  padding: 5px 5px 3px 15px;
+  background: #fff;
+  text-align:left;
+}
+
+.note_description{
+	font-size:18px;
+	margin:10px;
+	padding:5px;
+    text-align:left;
+}
+
+.note_listing a{
+	font-size:11px;
+}
+
+.tags{
+	font-size:11px;
+	color: 333;
+	background-color: #FFF;
+	padding:3px;	
+}
+
+.small{
+	font-size: 11px;
+}
+
+h3 {
+	font-size: 11px;	
+}
+
+
+
+.img{
+	border:0px solid #fff;
+}
+
+textarea{
+	background: #fff;
+	border: 1px solid #fff;
+	color: #000;
+	font:  13px 'trebuchet ms';
+	margin: 1px;
+	padding: 3px;
+	overflow:visible;
+
+}
+
+.file_block
+{
+	border-top: 1px solid #ccc;
+	margin-top:5px;
+	padding-top:10px;
+	width:440px;
+}
+
+.cloud a{
+	color:#333;
+}

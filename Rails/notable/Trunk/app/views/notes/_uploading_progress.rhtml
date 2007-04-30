@@ -1,0 +1,11 @@
+<body style="background:#fff">
+<%= javascript_include_tag :defaults %>
+<%= stylesheet_link_tag 'notable' %>
+	<%= periodically_call_remote(
+	:complete => "eval(request.responseText)",
+	:position => :top,
+	:url => {:action=>'check_for_file', :id=>uploading_progress.id},
+	:frequency => 2
+	)
+	%>
+</body>
