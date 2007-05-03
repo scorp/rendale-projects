@@ -16,6 +16,10 @@ module LoginSystem
      true
   end
   
+  def current_user
+  	@session['user']
+  end
+  
   # overwrite this method if you only want to protect certain actions of the controller
   # example:
   # 

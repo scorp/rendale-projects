@@ -4,5 +4,4 @@ require 'login_system'
 
 class ApplicationController < ActionController::Base
     include LoginSystem
-    model :user
 end

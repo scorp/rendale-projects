@@ -1,29 +1,29 @@
-<div id="file<%= file_listing.id %>" style="position:relative; width:100px; text-align:center; float:left; margin:3px;">
-<% if file_listing.systempath != nil && file_listing.filename != nil then%>
-  <a href="<%= asset_url(file_listing) %>" target="blank" style="text-decoration:none; font-size:10px">
+<div id="file<%= file_listing.id %>" class="file">
+
+<% if file_listing.systempath != nil && file_listing.filename != nil then %>
+  <a href="<%= url_for(:controller=>'notes', :action=>'get_file', :id => file_listing.note.id, :file_id => file_listing.id)%>" target="blank">
 	<%
-	if file_listing.filetype.to_s.upcase != "JPG" and file_listing.filetype.to_s.upcase != "GIF"
+	if !file_listing.filetype.to_s.upcase=~/IMAGE/
 	%>
 	  <img src=<%= GetFileIcon(file_listing) %> border="0"/><br/><%= file_listing.filename %>	
+
    	  <%= link_to_remote '<img src="/images/buttonDelete.gif" border="0"/>', 
 						{:complete => "new Effect.Fade($('file#{file_listing.id}'))",
-						:url=>{:action => 'delete_file', :id => file_listing.note.id, :note_file_id => file_listing.id}},
-						{:style => "position:absolute; top:0px; right:15px; z-index:99;"}
+						:url=>{:action => 'delete_file', :id => file_listing.note.id, :note_file_id => file_listing.id}}
 						%>
 	<%
 	else
-	%>
-	  <img src="<%= asset_thumb_url(file_listing) %>" border="0"/>
-	  <br/><%= file_listing.filename %>		
-	  <%= link_to_remote '<img src="/images/buttonDelete.gif" border="0"/>', 
+	%>  
+	  <img src="<%= url_for(:controller=>'notes', :action=>'get_file', :id => file_listing.note.id, :file_id => file_listing.id, :type=>'thumb') %>" border="0"/>		
+	  <%= link_to_remote '<img class="delete_btn" src="/images/buttonDelete.gif" border="0"/>', 
 						{:complete => "new Effect.Fade($('file#{file_listing.id}'))",
-						:url=>{:action => 'delete_file', :id => file_listing.note.id, :note_file_id => file_listing.id}},
-						{:style => "position:absolute; top:0px; right:0px; z-index:99; background:#fff"}
+						:url=>{:action => 'delete_file', :id => file_listing.note.id, :note_file_id => file_listing.id}}
 						%>
 	<%
 	end
 	%>
   </a>
 <% end %>
+
 </div>
 

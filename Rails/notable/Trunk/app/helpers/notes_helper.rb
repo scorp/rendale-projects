@@ -45,17 +45,17 @@ module NotesHelper
         tag_key = pair[0]
         count = pair[1]  
         size = if count == max 
-          48
+          3
         elsif count == min  
-          16
+          1
         elsif count > distrib * 2
-          40
+          2.5
         elsif count > distrib
-          32
+          2
         else
-          24
+          1.5
         end
-          cloud += link_to(tag_key, {:controller=>'notes', :action=>'search_by_tag', :tag_search=>tag_key},{:style=>"font-size:#{size}px;line-height:1.1em;text-decoration:none "}) + " "
+          cloud += link_to(tag_key, {:controller=>'notes', :action=>'search_by_tag', :tag_search=>tag_key},{:class=>"cloud_link", :style=>"font-size:#{size}em;"}) + " "
         end
       rescue
       end

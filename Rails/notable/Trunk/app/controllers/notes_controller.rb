@@ -34,10 +34,10 @@ before_filter :login_required
     @note.date = Time.now
     @note.user_id = session['user'].id
     @note.save
-    @new_style = 'style="display:none"'
+    #@new_style = 'style="display:none"'
     render :update do |page|
       page.insert_html(:top, 'notes_block', :partial => 'note_listing', :object => @note)
-      page.visual_effect(:slideDown, 'note' + @note.id.to_s)
+      #page.visual_effect(:slideDown, 'note' + @note.id.to_s)
     end
 
   end
@@ -72,14 +72,12 @@ before_filter :login_required
 
      note.save
      
-     #todo do I need this?
-     note = Note.find(params[:id]) 
-     
+     note = current_user.notes.find(params[:id])      
      #respond
      render :update do |page|
        page.replace_html('tags' + params[:id].to_s, note.tags.collect{|tag| tag.name}.join(", "))
        page.replace_html('cloud', generate_tag_cloud())
-       page.visual_effect(:shake, 'cloud')
+       #page.visual_effect(:shake, 'cloud')
      end
    end
   
@@ -94,26 +92,24 @@ before_filter :login_required
     render :update do |page|
       if tag_count > 0 
         page.replace_html('cloud', generate_tag_cloud())
-        page.visual_effect(:shake, 'cloud')
+        #page.visual_effect(:shake, 'cloud')
       end    
-      page.visual_effect(:fade, 'note'+@note.id.to_s)
-      page.visual_effect(:fade, 'inner_note'+@note.id.to_s)
-      page.visual_effect(:fade, 'shadow'+@note.id.to_s)
-
+      page.remove('note'+@note.id.to_s)
+      page.remove('inner_note'+@note.id.to_s)
+      page.remove('shadow'+@note.id.to_s)
     end
 
   end
   
   def add_file
- 	  @note = Note.find(params[:id])
-	  @note_file = @note.note_files.create
-	  @note_file.save unless not @note_file.add_file(params[:note_file][:file])
-
-    render :partial => 'uploading_progress', :object => @note
+ 	  @note = current_user.notes.find(params[:id])
+	  @note_file = @note.note_files.build
+	  @note_file.save unless !@note_file.add_file(params[:note_file][:file])
+      render :partial => 'uploading_progress', :object => @note
   end 
   
   def check_for_file    
-    @note = Note.find(params[:id])
+    @note = current_user.notes.find(params[:id])
     if File.exists?("tmp/#{@note.id}")
       File.delete("tmp/#{@note.id}")
       render :text => "window.location='/notes/file_upload_control_done/#{@note.id}';",
@@ -121,24 +117,34 @@ before_filter :login_required
     else
       render :nothing => true
     end
-  
   end
   
   def delete_file
-    @note = Note.find(params[:id])
+    @note = current_user.notes.find(params[:id])
     @note_file = @note.note_files.find(params[:note_file_id])
     @note_file.destroy
     redirect_to :action => 'home'
   end
   
   def file_upload_control   
-    @note = Note.find(params[:id]) 
+    @note = current_user.notes.find(params[:id]) 
     render :partial => 'file_upload_control', :object => @note
   end
   
   def file_upload_control_done   
-    @note = Note.find(params[:id]) 
+    @note = current_user.notes.find(params[:id]) 
     render :partial => 'file_upload_control_done', :object => @note
+  end
+
+  # get the file from the restricted folder
+  # there are better ways to do this 
+  def get_file
+	@note_file = current_user.notes.find(params[:id]).note_files.find(params[:file_id])	  
+  	if params[:type].nil? 
+	  send_file ("../files/" + @note_file.systempath + @note_file.filename, :disposition => 'inline', :type => @note_file.filetype)
+	else
+	  send_file ("../files/" + @note_file.systempath + "thumb_" + @note_file.filename, :disposition => 'inline', :type=>@note_file.filetype)
+	end
   end
   
 end

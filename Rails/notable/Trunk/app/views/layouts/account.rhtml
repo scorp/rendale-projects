@@ -12,15 +12,7 @@
 		<div style="padding-left:25px;">Notable!</div>
 	</h1>				
 </div>
-<div class="navigation">
-<ul>
-	  <li><%= link_to 'home', {:controller => 'notes', :action=>'home'}, :class=>'inactive' %></li>
-	  <li><%= link_to 'files', {:controller => 'notes', :action=> 'files'}, :class=>'inactive'  %></li>
-	  <li><%= link_to 'account', {:controller=> 'account', :action=>'account'}, :class=>'active' %></li>
-	  <li><%= link_to 'logout', {:controller=> 'account', :action=>'logout'}, :class=>'link' %></li>
-  </ul>		
-</div>
-<div id="content_wrapper">
+<div id="container">
 <%= @content_for_layout %>
 </div>
 </body>

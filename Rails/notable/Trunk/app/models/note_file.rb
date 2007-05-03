@@ -3,15 +3,11 @@ class NoteFile < ActiveRecord::Base
 	before_destroy :remove_file  
 
 	def add_file(file)
-	  begin
+#	  begin
   	  self.filename = sanitize_filename(file.original_filename)
       self.systempath = self.note.user.login + "/" + self.note.id.to_s + "/"
 
-	    if self.filename.split(".").length > 1
-	      self.filetype = self.filename.split(".")[1]
-      else
-	      self.filetype = ""
-	    end
+	    self.filetype = file.content_type
 	    
 	    FileUtils.mkdir_p(RAILS_ROOT + "/files/" + self.systempath)
 
@@ -19,17 +15,25 @@ class NoteFile < ActiveRecord::Base
 	    File.open("tmp/" + self.note.id.to_s, "wb"){ |f| f.write("done")}
 
       # create thumbnails of images
-      if self.filetype.to_s.upcase == "JPEG" || self.filetype.to_s.upcase == "JPG" || self.filetype.to_s.upcase == "GIF" || self.filetype.to_s.upcase == "PNG"
+      if file.content_type=~/image/
             img = Magick::Image::read(RAILS_ROOT + "/files/" + self.systempath + self.filename).first        
-            xyratio = (img.columns.to_f/img.rows.to_f) * 100
-            thumb = img.scale(xyratio.to_i,100)
-            thumb.write RAILS_ROOT + "/files/" + self.systempath + "thumb_" + self.filename
+			yxratio = (img.rows.to_f/img.columns.to_f) * 75
+            xyratio = (img.columns.to_f/img.rows.to_f) * 75
+            yxratio > xyratio ? img.scale!(75, yxratio.to_i) : img.scale!(xyratio.to_i,75)
+            #img.change_geometry!('100x100') { |cols, rows, img|
+            #				img.resize!(cols, rows)
+			#}
+			begin
+			img.crop!(Magick::CenterGravity,75,75)
+            rescue 
+            end
+            img.write RAILS_ROOT + "/files/" + self.systempath + "thumb_" + self.filename
       end  
 
-	  rescue Exception
-      puts Exception.inspect
-    return false
-    end
+#	  rescue Exception
+#     puts Exception.inspect
+#	  return false
+#     end
     return true
   end
 
