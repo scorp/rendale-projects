@@ -95,10 +95,11 @@ text-decoration:none;
 /****************************
 NOTE
 *****************************/
+
+
 .note{
-width:300px;
-height:300px;
-position:relative;
+width:325px;
+position:absolute;
 overflow-x: hidden;
 background:#fff;
 margin:5px;
@@ -109,7 +110,7 @@ border-left:1px solid #ccc;
 }
 
 .note_header{
-font-size:10px;
+font-size:1px;
 background:#C8E0F9;
 border-bottom:#8BD1F8 1px solid;
 height:17px;
@@ -118,15 +119,17 @@ height:17px;
 
 div.note_date{
 float:left;
-font-size:12px;
+font-size:14px;
+line-height:17px;
 font-weight:bold;
-width:270px;
+width:300px;
 padding:1px 0px 1px 2px;
 color:#3883D6;
 }
 
 div.note_text{
 margin-bottom:3px;
+margin-left:6	px;
 }
 
 div.note_delete{
@@ -149,9 +152,8 @@ margin-right:0px;
 .editor_field
 {
 border:0px solid #fff;
-width:280px;
-height:220px;
 overflow:auto;
+text-align:left;
 }
 
 .file_listing{
@@ -171,9 +173,17 @@ padding-top:3px;
 border-top:1px dotted #ccc;
 }
 
+
 /****************************
 FILES
 *****************************/
+.file{
+float:left;
+}
+
 .file a:hover{
 background:url();
+}
+
+.upload_control{
 }

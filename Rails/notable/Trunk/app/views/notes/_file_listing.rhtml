@@ -1,29 +1,31 @@
 <div id="file<%= file_listing.id %>" class="file">
 
 <% if file_listing.systempath != nil && file_listing.filename != nil then %>
-  <a href="<%= url_for(:controller=>'notes', :action=>'get_file', :id => file_listing.note.id, :file_id => file_listing.id)%>" target="blank">
+  <a href="<%= url_for(:controller=>'notes', :action=>'get_file', :id => file_listing.note.id, :file_id => file_listing.id)%>" target="blank" title="<%=file_listing.filename%>">
 	<%
-	if !file_listing.filetype.to_s.upcase=~/IMAGE/
+	if file_listing.filetype=~(/image/i)
 	%>
-	  <img src=<%= GetFileIcon(file_listing) %> border="0"/><br/><%= file_listing.filename %>	
 
-   	  <%= link_to_remote '<img src="/images/buttonDelete.gif" border="0"/>', 
-						{:complete => "new Effect.Fade($('file#{file_listing.id}'))",
-						:url=>{:action => 'delete_file', :id => file_listing.note.id, :note_file_id => file_listing.id}}
-						%>
-	<%
-	else
-	%>  
 	  <img src="<%= url_for(:controller=>'notes', :action=>'get_file', :id => file_listing.note.id, :file_id => file_listing.id, :type=>'thumb') %>" border="0"/>		
 	  <%= link_to_remote '<img class="delete_btn" src="/images/buttonDelete.gif" border="0"/>', 
 						{:complete => "new Effect.Fade($('file#{file_listing.id}'))",
 						:url=>{:action => 'delete_file', :id => file_listing.note.id, :note_file_id => file_listing.id}}
 						%>
 	<%
+	else
+	%>  
+	
+		  <img src=<%= GetFileIcon(file_listing) %> border="0"/>	
+   	  <%= link_to_remote '<img src="/images/buttonDelete.gif" border="0" alt="#{file_listing.filename}"/>', 
+						{:complete => "new Effect.Fade($('file#{file_listing.id}'))",
+						:url=>{:action => 'delete_file', :id => file_listing.note.id, :note_file_id => file_listing.id}}
+						%>
+	
+	
+	<%
 	end
 	%>
   </a>
 <% end %>
-
 </div>
 

@@ -3,7 +3,6 @@ class NoteFile < ActiveRecord::Base
 	before_destroy :remove_file  
 
 	def add_file(file)
-#	  begin
   	  self.filename = sanitize_filename(file.original_filename)
       self.systempath = self.note.user.login + "/" + self.note.id.to_s + "/"
 
@@ -14,26 +13,17 @@ class NoteFile < ActiveRecord::Base
 	    File.open(RAILS_ROOT + "/files/" + self.systempath + self.filename, "wb") { |f| f.write(file.read) }
 	    File.open("tmp/" + self.note.id.to_s, "wb"){ |f| f.write("done")}
 
-      # create thumbnails of images
       if file.content_type=~/image/
             img = Magick::Image::read(RAILS_ROOT + "/files/" + self.systempath + self.filename).first        
-			yxratio = (img.rows.to_f/img.columns.to_f) * 75
-            xyratio = (img.columns.to_f/img.rows.to_f) * 75
-            yxratio > xyratio ? img.scale!(75, yxratio.to_i) : img.scale!(xyratio.to_i,75)
-            #img.change_geometry!('100x100') { |cols, rows, img|
-            #				img.resize!(cols, rows)
-			#}
-			begin
-			img.crop!(Magick::CenterGravity,75,75)
+			yxratio = (img.rows.to_f/img.columns.to_f) * 50
+            xyratio = (img.columns.to_f/img.rows.to_f) * 50
+            yxratio > xyratio ? img.scale!(50, yxratio.to_i) : img.scale!(xyratio.to_i,50)
+  			begin
+			img.crop!(Magick::CenterGravity,50,50)
             rescue 
             end
             img.write RAILS_ROOT + "/files/" + self.systempath + "thumb_" + self.filename
       end  
-
-#	  rescue Exception
-#     puts Exception.inspect
-#	  return false
-#     end
     return true
   end
 
@@ -55,8 +45,6 @@ class NoteFile < ActiveRecord::Base
   end
   
   def sanitize_filename(name)
-      # get only the filename, not the whole path and
-      # replace all none alphanumeric, underscore or periods with underscore
       return File.basename(name.gsub('\\', '/')).gsub(/[^\w\.\-]/,'_') 
   end
   

@@ -1,10 +1,5 @@
 var Notable = {}
-/*
-Notable.Note = function(note){
-	note.css("background","red")
-	return note;
-}
-*/
+ 
 Notable.Page = function(){
 	
 	return {
@@ -15,10 +10,13 @@ Notable.Page = function(){
 				var note = jQuery(this)
 				note.Draggable(
 				{
-					zIndex: 	1000
+					zIndex: 	1000,
+					containment: '#container',
+					handle: 'div.note_header',
+					ghosting: true,
+					opacity: .8
 				});
-				note.Resizable({});			
-			}
+ 			}
 			)
 		}
 		

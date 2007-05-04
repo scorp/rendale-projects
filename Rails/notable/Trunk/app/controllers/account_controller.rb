@@ -24,7 +24,7 @@ class AccountController < ApplicationController
         if @user.save      
           @session['user'] = User.authenticate(@user.login, @params['user']['password'])
           flash['notice']  = "Signup successful"
-          redirect_back_or_default :action => "welcome"          
+          redirect_back_or_default :action => "index"          
         end
       when :get
         @user = User.new
@@ -36,7 +36,7 @@ class AccountController < ApplicationController
       @user = User.find(@params['id'])
       @user.destroy
     end
-    redirect_back_or_default :action => "welcome"
+    redirect_back_or_default :action => "index"
   end  
     
   def logout
@@ -44,7 +44,7 @@ class AccountController < ApplicationController
   end
     
   def welcome
-    redirect_to :controller=>'notes', :action=>'home'
+    redirect_to :controller=>'notes', :action=>'index'
   end
   
   def account

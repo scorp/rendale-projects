@@ -2,7 +2,8 @@ class NotesController < ApplicationController
 before_filter :login_required  
   
   def index
-    redirect_to :controller=> 'notes', :action => 'home'
+    @current_user = session['user']  
+    @notes = @current_user.notes.find(:all,:order => "date desc, id desc")
   end
   
   def search_by_tag
@@ -17,29 +18,18 @@ before_filter :login_required
       flash[:notice] = 'No notes found with that tag'
       redirect_to :action => 'home'
     end 
+    render :index
   end  
   
-  def home
-    @current_user = session['user']  
-    @notes = @current_user.notes.find(:all,:order => "date desc, id desc")
-  end
-
-  def show
-      @note = Note.find(params[:id])
-  end
-
   def new
     @note = Note.new
     @note.description = "Sample text for your new note"
     @note.date = Time.now
     @note.user_id = session['user'].id
     @note.save
-    #@new_style = 'style="display:none"'
     render :update do |page|
       page.insert_html(:top, 'notes_block', :partial => 'note_listing', :object => @note)
-      #page.visual_effect(:slideDown, 'note' + @note.id.to_s)
     end
-
   end
   
   def update_descr
@@ -73,11 +63,10 @@ before_filter :login_required
      note.save
      
      note = current_user.notes.find(params[:id])      
-     #respond
+
      render :update do |page|
        page.replace_html('tags' + params[:id].to_s, note.tags.collect{|tag| tag.name}.join(", "))
        page.replace_html('cloud', generate_tag_cloud())
-       #page.visual_effect(:shake, 'cloud')
      end
    end
   
@@ -98,7 +87,6 @@ before_filter :login_required
       page.remove('inner_note'+@note.id.to_s)
       page.remove('shadow'+@note.id.to_s)
     end
-
   end
   
   def add_file
@@ -136,8 +124,6 @@ before_filter :login_required
     render :partial => 'file_upload_control_done', :object => @note
   end
 
-  # get the file from the restricted folder
-  # there are better ways to do this 
   def get_file
 	@note_file = current_user.notes.find(params[:id]).note_files.find(params[:file_id])	  
   	if params[:type].nil? 
