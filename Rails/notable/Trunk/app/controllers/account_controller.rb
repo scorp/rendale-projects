@@ -40,7 +40,9 @@ class AccountController < ApplicationController
   end  
     
   def logout
-    @session['user'] = nil
+    @session['user'] = nil 
+    @message = "You have logged out of Notable"
+  	render :action=>'login'
   end
     
   def welcome

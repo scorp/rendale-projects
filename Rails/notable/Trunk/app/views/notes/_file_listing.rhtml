@@ -6,7 +6,7 @@
 	if file_listing.filetype=~(/image/i)
 	%>
 
-	  <img src="<%= url_for(:controller=>'notes', :action=>'get_file', :id => file_listing.note.id, :file_id => file_listing.id, :type=>'thumb') %>" border="0"/>		
+	  <img class="thumb" src="<%= url_for(:controller=>'notes', :action=>'get_file', :id => file_listing.note.id, :file_id => file_listing.id, :type=>'thumb') %>" border="0"/>		
 	  <%= link_to_remote '<img class="delete_btn" src="/images/buttonDelete.gif" border="0"/>', 
 						{:complete => "new Effect.Fade($('file#{file_listing.id}'))",
 						:url=>{:action => 'delete_file', :id => file_listing.note.id, :note_file_id => file_listing.id}}

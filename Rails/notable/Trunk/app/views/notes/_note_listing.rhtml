@@ -1,4 +1,10 @@
 <div class="note" id="note<%=note_listing.id%>" <%=@new_style%>>	
+		<div style="display:none">
+			<div class="noteId"><%=note_listing.id%></div>
+			<div class="noteX"><%=note_listing.x%></div>
+			<div class="noteY"><%=note_listing.y%></div>
+			<div class="noteZ"><%=note_listing.z%></div>
+		</div>
 		<div class="note_header">	
 			<div class="note_date">
 				<%= note_listing.date.strftime("%A %B %d, %Y").downcase %>

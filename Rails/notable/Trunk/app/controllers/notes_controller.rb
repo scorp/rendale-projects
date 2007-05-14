@@ -6,21 +6,6 @@ before_filter :login_required
     @notes = @current_user.notes.find(:all,:order => "date desc, id desc")
   end
   
-  def search_by_tag
-    @notes = if tag_name = params[:tag_search] 
-    begin
-    Tag.find_by_name(tag_name).tagged 
-    rescue
-      flash[:notice] = 'No notes found with that tag'
-      redirect_to :action => 'home'
-    end
-    else 
-      flash[:notice] = 'No notes found with that tag'
-      redirect_to :action => 'home'
-    end 
-    render :index
-  end  
-  
   def new
     @note = Note.new
     @note.description = "Sample text for your new note"
@@ -42,6 +27,21 @@ before_filter :login_required
   def get_descr
     @note = Note.find(params[:id])
     render :text=> @note.description, :layout=>false
+  end
+  
+  def update_position
+  	@note = current_user.notes.find(params[:id])
+	if !@note.nil?
+	  	@note.x = params[:x]
+  		@note.y = params[:y]
+  		@note.z = params[:z]
+  		@note.save
+	end
+	render :nothing => true
+  end
+  
+  def update_color
+  
   end
   
   def tag 
@@ -71,6 +71,20 @@ before_filter :login_required
    end
   
   end
+
+  def search_by_tag
+    @notes = if tag_name = params[:tag_search] 
+    begin
+    Tag.find_by_name(tag_name).tagged 
+    rescue
+      flash[:notice] = 'No notes found with that tag'
+      redirect_to :action => 'index'
+    end
+    else 
+      flash[:notice] = 'No notes found with that tag'
+      redirect_to :action => 'index'
+    end 
+  end  
 
   def destroy
     @note = Note.find(params[:id])
