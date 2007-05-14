@@ -1,9 +1,0 @@
-login: &login
-  adapter: mysql
-  host: db.rendale.com
-  username: rendale
-  password: tr1vial
-  
-production:
-  database: notable
-  <<: *login
