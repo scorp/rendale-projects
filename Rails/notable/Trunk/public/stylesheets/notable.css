@@ -221,16 +221,29 @@ CONTROLS
 *****************************/
 
 div.search{
-margin: 10px 0 10px 0;
+padding: 10px 0 5px 0;
+background:#bbb;
+border-bottom:1px dotted #999;
+border-top:2px solid #999;
+color:#fff;
 }
 
 .cloud{
-margin:10px;
+margin:3px 3px 0px 3px;
 font-size:10px;
 }
 
+.cloud a{
+	color:#777;
+}
+
+.cloud a:hover{
+	background:#777;
+	color:#bbb;
+}
+
 .search_form input, .search_form a{
-font-size:2em;
+font-size:1.5em;
 text-decoration:none;
 }
 
@@ -275,7 +288,18 @@ color:#000;
 
 div.note_text{
 margin-bottom:3px;
-margin-left:6	px;
+margin-left:6px;
+font-size:1.25em;
+}
+
+div.note_text ul{
+	margin-left:0px;
+	margin-top:.25em;
+	padding-left:.7em;
+}
+
+div.note_text ul{
+
 }
 
 div.note_delete{
@@ -319,6 +343,9 @@ padding-top:3px;
 border-top:1px dotted #ccc;
 }
 
+.editor_field{
+	background:#ffffcc;
+}
 
 /****************************
 FILES

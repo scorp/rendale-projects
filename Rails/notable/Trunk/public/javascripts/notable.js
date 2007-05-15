@@ -10,14 +10,15 @@ Notable.Page = function(){
 				var note = jQuery(this)
 				note.Draggable(
 				{
-					zIndex: 1,
+					zIndex: 3,
 					containment: '#container',
 					handle: 'div.note_header',
 					ghosting: false,
 					opacity: .8,
 					onChange: function(){
-						jQuery.post("/notes/update_position/" + jQuery(this).find(".noteId").html(), {x: jQuery(this).get()[0].offsetLeft, y: jQuery(this).get()[0].offsetTop, z: jQuery(this).find(".noteZ").html()})
-
+						jQuery.post("/notes/update_position/" + jQuery(this).find(".noteId").html(), {x: jQuery(this).get()[0].offsetLeft, y: jQuery(this).get()[0].offsetTop, z: 2})
+						jQuery(".note").css("z-index","1")
+						jQuery(this).css("z-index","2")
 				}
 				});
  			note.css({position:"absolute", top: jQuery(this).find(".noteY").html() + "px", left:jQuery(this).find(".noteX").html() + "px"})

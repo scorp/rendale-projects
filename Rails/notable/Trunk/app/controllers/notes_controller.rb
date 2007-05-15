@@ -7,11 +7,10 @@ before_filter :login_required
   end
   
   def new
-    @note = Note.new
-    @note.description = "Sample text for your new note"
-    @note.date = Time.now
-    @note.user_id = session['user'].id
-    @note.save
+    @note = current_user.notes.create(:date=>Time.now)
+#    @note.date = Time.now
+#    @note.user_id = session['user'].id
+# =>     @note.save
     render :update do |page|
       page.insert_html(:top, 'notes_block', :partial => 'note_listing', :object => @note)
     end
@@ -25,8 +24,12 @@ before_filter :login_required
   end
   
   def get_descr
-    @note = Note.find(params[:id])
-    render :text=> @note.description, :layout=>false
+    @note = current_user.notes.find(params[:id])
+    if @note.description.nil?
+      render :nothing => true    
+    else
+      render :text => @note.description, :layout=>false    
+    end
   end
   
   def update_position
@@ -141,9 +144,9 @@ before_filter :login_required
   def get_file
 	@note_file = current_user.notes.find(params[:id]).note_files.find(params[:file_id])	  
   	if params[:type].nil? 
-	  send_file ("../files/" + @note_file.systempath + @note_file.filename, :disposition => 'inline', :type => @note_file.filetype)
+	  send_file ("files/" + @note_file.systempath + @note_file.filename, :disposition => 'inline', :type => @note_file.filetype)
 	else
-	  send_file ("../files/" + @note_file.systempath + "thumb_" + @note_file.filename, :disposition => 'inline', :type=>@note_file.filetype)
+	  send_file ("files/" + @note_file.systempath + "thumb_" + @note_file.filename, :disposition => 'inline', :type=>@note_file.filetype)
 	end
   end
   
