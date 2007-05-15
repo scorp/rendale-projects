@@ -186,7 +186,7 @@ float:right;
 width:5%;
 font-size:1em;
 font-weight:bold;
-padding-right:10px;
+
 margin-top:1.75em;
 }
 
@@ -202,13 +202,14 @@ HEADER
 div.header{
 float:left;
 text-align:left;
-padding-left:10px;
+
 background:#000;
 width:100%;
 }
 
 
 h1.logo{
+padding-left:5px;
 margin:0px;
 color:#fff;
 font-size:1.75em;
