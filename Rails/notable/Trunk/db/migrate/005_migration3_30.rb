@@ -24,10 +24,7 @@ class Migration330 < ActiveRecord::Migration
   		t.column :filetype, :string
   	end
   	
-  	create_table :users do |t| 
-      t.column "username", :string 
-      t.column "password", :string 
-    end
+
     
   end
 
@@ -37,7 +34,7 @@ class Migration330 < ActiveRecord::Migration
     drop_table :note_files
     drop_table :taggings
     drop_table :tags
-    drop_table :users
+
   
   end
   
