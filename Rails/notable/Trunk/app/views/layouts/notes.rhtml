@@ -1,3 +1,5 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
   <title>Notable</title>
@@ -26,7 +28,8 @@
 		<%= end_form_tag %>
 		</div>
 		-->
-		<%= link_to_remote '<img src="/images/icons/add.png" />Add a Note', 
+		<%= link_to_remote '<img src="/images/icons/add.png" 
+alt="add a note" />Add a Note', 
 		{:url=>{:controller=>'notes',:action=>'new'},
 		:complete=>"Notable.Page.load_notes()"},
 		{:id=>"add_note"}		                       		     

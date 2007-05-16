@@ -10,7 +10,8 @@
 				<%= note_listing.date.strftime("%A %B %d, %Y").downcase %>
 			</div>
 			<div class="note_delete">
-	    	<%= link_to_remote '<img src="/images/buttonDelete.gif" border="0" />', 
+	    	<%= link_to_remote '<img src="/images/buttonDelete.gif" 
+alt="delete note" border="0" />', 
 					:url=>{ :action => 'destroy', :id => note_listing } %>		
 			</div>
 			<div style="clear:both"></div>
