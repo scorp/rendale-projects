@@ -2,17 +2,13 @@ class NotesController < ApplicationController
 before_filter :login_required  
   
   def index
-    @current_user = session['user']  
-    @notes = @current_user.notes.find(:all,:order => "date desc, id desc")
+    @notes = current_user.notes.find(:all,:order => "date desc, id desc")
   end
   
   def new
     @note = current_user.notes.create(:date=>Time.now)
-#    @note.date = Time.now
-#    @note.user_id = session['user'].id
-# =>     @note.save
     render :update do |page|
-      page.insert_html(:top, 'notes_block', :partial => 'note_listing', :object => @note)
+      page.insert_html(:top, 'notes_block', :partial => 'new_note', :object => @note)
     end
   end
   
@@ -47,26 +43,26 @@ before_filter :login_required
   
   end
   
-  def tag 
+  def add_tag 
+   @notes = current_user.notes
    note = Note.find(params[:id]) 
    note.taggings.each{|n| n.destroy}
 
    if params[:value].blank? || params[:value] == 'add tags to this note'
      render :text => 'add tags to this note'
    else
-     tagArray = params[:value].split(" ")
      
+     
+     tagArray = params[:value].split(" ")
      tagArray.each do | tag |
        if note.tags.find_by_name(tag) != nil
        else
-       note.tag_with(tag)        
+         note.tag_with(tag)        
        end
      end
-
-     note.save
+           
      
      note = current_user.notes.find(params[:id])      
-
      render :update do |page|
        page.replace_html('tags' + params[:id].to_s, note.tags.collect{|tag| tag.name}.join(", "))
        page.replace_html('cloud', generate_tag_cloud())
@@ -144,9 +140,9 @@ before_filter :login_required
   def get_file
 	@note_file = current_user.notes.find(params[:id]).note_files.find(params[:file_id])	  
   	if params[:type].nil? 
-	  send_file ("files/" + @note_file.systempath + @note_file.filename, :disposition => 'inline', :type => @note_file.filetype)
+	  send_file (RAILS_ROOT + "/files/" + @note_file.systempath + @note_file.filename, :disposition => 'inline', :type => @note_file.filetype)
 	else
-	  send_file ("files/" + @note_file.systempath + "thumb_" + @note_file.filename, :disposition => 'inline', :type=>@note_file.filetype)
+	  send_file (RAILS_ROOT + "/files/" + @note_file.systempath + "thumb_" + @note_file.filename, :disposition => 'inline', :type=>@note_file.filetype)
 	end
   end
   

@@ -14,6 +14,12 @@ ActionController::Routing::Routes.draw do |map|
   # instead of a file named 'wsdl'
   map.connect ':controller/service.wsdl', :action => 'wsdl'
 
+  #tags
+  map.connect 'tag/:tag_search', :controller=>'notes', :action=>'search_by_tag'
+  
+  #files
+  map.connect 'file/:id/:file_id', :controller=>'notes', :action=>'get_file'
+
   # Install the default route as the lowest priority.
   map.connect ':controller/:action/:id'
 end

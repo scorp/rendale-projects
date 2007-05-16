@@ -26,9 +26,8 @@ padding:2px;
 a:hover{
 color:#fff;
 background:#000;
-paddin:2px;
+padding:2px;
 }
-
 
 /****************************
 STRUCTURE
@@ -73,7 +72,7 @@ ACCOUNT
 		margin:0 0 0 0;
 		width:400px;
 		xheight:300px;
-		background-color:#000;
+		background-color:#555;
 		color:#fff;
 		border:3px solid #fff;
 		text-align:center;
@@ -203,7 +202,7 @@ div.header{
 float:left;
 text-align:left;
 
-background:#000;
+background:#555;
 width:100%;
 }
 
@@ -226,7 +225,7 @@ padding: 10px 0 5px 0;
 background:#bbb;
 border-bottom:1px dotted #999;
 border-top:2px solid #999;
-color:#fff;
+color:#000;
 }
 
 .cloud{
@@ -248,6 +247,7 @@ font-size:1.5em;
 text-decoration:none;
 }
 
+
 /****************************
 NOTE
 *****************************/
@@ -260,8 +260,8 @@ overflow-x: hidden;
 background:#ffffcc;
 border-right:3px solid #aaa;
 border-bottom:3px solid #aaa;
-border-top:1px solid #ccc;
-border-left:1px solid #ccc;
+xborder-top:1px solid #ccc;
+xborder-left:1px solid #ccc;
 font-size:.85em;
 }
 
@@ -361,3 +361,19 @@ background:url();
 
 .upload_control{
 }
+
+
+
+
+a#add_note{
+}
+
+a#add_note img{
+ border:0px solid #fff;
+}
+
+a#add_note:hover{
+background:none;
+color:#000;
+}
+

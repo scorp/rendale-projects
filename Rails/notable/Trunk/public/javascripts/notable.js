@@ -1,39 +1,56 @@
 var Notable = {}
  
-Notable.Page = function(){
-	
+Notable.Page = function(){	
 	return {
-		
-		load_notes : function(){
-			jQuery(".note").each(function(i)
-			{	
-				var note = jQuery(this)
-				note.Draggable(
-				{
-					zIndex: 3,
-					containment: '#container',
-					handle: 'div.note_header',
-					ghosting: false,
-					opacity: .8,
-					onChange: function(){
-						jQuery.post("/notes/update_position/" + jQuery(this).find(".noteId").html(), {x: jQuery(this).get()[0].offsetLeft, y: jQuery(this).get()[0].offsetTop, z: 2})
-						jQuery(".note").css("z-index","1")
-						jQuery(this).css("z-index","2")
-				}
-				});
- 			note.css({position:"absolute", top: jQuery(this).find(".noteY").html() + "px", left:jQuery(this).find(".noteX").html() + "px"})
- 			}
-			)
-			
+		add_note : function(note){
+			alert(note.attr('id'))
+			note.Draggable(
+			{
+				zIndex: 99999,
+				containment: '#container',
+				handle: 'div.note_header',
+				ghosting: false,
+				opacity: .8,
+				onChange: function(){
+					Notable.Page.MaxZIndex++;
+					jQuery.post("/notes/update_position/" + jQuery(this).find(".noteId").html(), {x: jQuery(this).get()[0].offsetLeft, y: jQuery(this).get()[0].offsetTop, z: Notable.Page.MaxZIndex})
+					jQuery(this).css("z-index", Notable.Page.MaxZIndex)
+			}
+			});
+			note.css({position:"absolute", top: note.find(".noteY").html() + "px", left:note.find(".noteX").html() + "px", zIndex: note.find(".noteZ").html()})
+			if (note.find(".noteZ").html() > Notable.Page.MaxZIndex)
+			{
+				Notable.Page.MaxZIndex = parseInt(note.find(".noteZ").html())
+			}							
 		},
-		
-		MaxZIndex: 0,
-		
-		UpdateZIndex: function(){
-		
-		}
-				
-			
+		load_notes : function(){
+			jQuery(".note").each(
+				 function(i)
+				 {	
+				 	var note = jQuery(this)
+				 	note.Draggable(
+				 	{
+				 		zIndex: 99999,
+				 		containment: '#container',
+				 		handle: 'div.note_header',
+				 		ghosting: false,
+				 		opacity: .8,
+				 		onChange: function(){
+				 			Notable.Page.MaxZIndex++;
+				 			jQuery.post("/notes/update_position/" + jQuery(this).find(".noteId").html(), {x: jQuery(this).get()[0].offsetLeft, y: jQuery(this).get()[0].offsetTop, z: Notable.Page.MaxZIndex})
+				 			jQuery(this).css("z-index", Notable.Page.MaxZIndex)
+				 	}
+				 	});
+				 	 				note.css({position:"absolute", top: jQuery(this).find(".noteY").html() + "px", left:jQuery(this).find(".noteX").html() + "px", zIndex: jQuery(this).find(".noteZ").html()})
+				 	if (jQuery(this).find(".noteZ").html() > Notable.Page.MaxZIndex)
+				 	{
+				 		Notable.Page.MaxZIndex = parseInt(jQuery(this).find(".noteZ").html())
+				 	}				
+			}
+			);			
+		},		
+		MaxZIndex: 0,		
+		UpdateMaxZIndex: function(){}
 	}
 }()
 

@@ -15,11 +15,11 @@ class NoteFile < ActiveRecord::Base
 
       if file.content_type=~/image/
             img = Magick::Image::read(RAILS_ROOT + "/files/" + self.systempath + self.filename).first        
-			yxratio = (img.rows.to_f/img.columns.to_f) * 50
-            xyratio = (img.columns.to_f/img.rows.to_f) * 50
-            yxratio > xyratio ? img.scale!(50, yxratio.to_i) : img.scale!(xyratio.to_i,50)
+			yxratio = (img.rows.to_f/img.columns.to_f) * 32
+            xyratio = (img.columns.to_f/img.rows.to_f) * 32
+            yxratio > xyratio ? img.scale!(32, yxratio.to_i) : img.scale!(xyratio.to_i,32)
   			begin
-			img.crop!(Magick::CenterGravity,50,50)
+			img.crop!(Magick::CenterGravity,32,32)
             rescue 
             end
             img.write RAILS_ROOT + "/files/" + self.systempath + "thumb_" + self.filename

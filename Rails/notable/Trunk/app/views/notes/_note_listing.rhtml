@@ -51,7 +51,7 @@
 		%>	
     </div>
 	<%= in_place_editor 'tags' + note_listing.id.to_s, 			    	
-						:url=>{:controller=>'notes',:action=>'tag', :id=>note_listing}, :cols=>37, :script=>true
+						:url=>{:controller=>'notes',:action=>'add_tag', :id=>note_listing}, :cols=>37, :script=>true
 			            %>
 	<%= link_to_function "add a file", "showhide($('addfile#{note_listing.id}'), this)"%>
 	<div id="addfile<%=note_listing.id%>" style="display:none">

@@ -23,7 +23,7 @@ module NotesHelper
   def generate_tag_cloud
     cloud_hash = Hash.new
     if not session['user'].nil?
-          User.find(session['user'].id).notes.each do | user_note |
+          @notes.each do | user_note |
             if user_note.tags.blank?
             else
               user_note.tags.collect do | tag |
@@ -64,10 +64,11 @@ module NotesHelper
   end
   
   def GetFileIcon(file)
-    if File.exists?("../public/images/icon_#{file.filetype}_big.gif")
-      "/images/icon_#{file.filetype}_big.gif"
-    else
-      "/images/icon_Generic_big.gif"
+    if File.exists?(RAILS_ROOT + "/public/images/icon_#{file.filename.match(/\.(...)$/)[1].upcase}_big.gif")
+      "/images/icon_#{file.filename.match(/\.(...)$/)[1].upcase}_big.gif"
+    else  
+       #file.filename.match(/\.(...)$/)[1].upcase
+       "/images/icon_Generic_big.gif"
     end
   end  
   
