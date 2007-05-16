@@ -12,7 +12,8 @@
 <script>
 $(parent.document.getElementById('spinner<%=file_upload_control_done.id%>')).style.display = 'none';
 $(parent.document.getElementById('upload_controls<%=file_upload_control_done.id%>')).style.display = 'block';
-$(parent.document.getElementById('note_file_file')).disabled = false;
+$(parent.document.getElementById('uploader<%=file_upload_control_done.id%>')).disabled 
+= false; 
 
 new Insertion.Top($(parent.document.getElementById('files<%=file_upload_control_done.id.to_s%>')),$('file_wrapper<%=file_upload_control_done.note_files.last.id%>').innerHTML);
 </script>
