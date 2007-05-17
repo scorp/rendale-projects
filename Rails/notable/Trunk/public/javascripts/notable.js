@@ -31,8 +31,8 @@ Notable.Page = function(){
 				 	note.Draggable(
 				 	{
 				 		zIndex: 99999,
+						handle: 'div.note_header',
 				 		containment: '#container',
-				 		handle: 'div.note_header',
 				 		ghosting: false,
 				 		opacity: .8,
 				 		onChange: function(){

@@ -1,4 +1,4 @@
-<div class="note" id="note<%=note_listing.id%>" <%=@new_style%>>	
+<div class="note" id="note<%=note_listing.id%>" <%=@newstyle%>>	
 		<div style="display:none">
 			<div class="noteId"><%=note_listing.id%></div>
 			<div class="noteX"><%=note_listing.x%></div>
@@ -11,26 +11,28 @@
 			</div>
 			<div class="note_delete">
 	    	<%= link_to_remote '<img src="/images/buttonDelete.gif" 
-alt="delete note" border="0" />', 
-					:url=>{ :action => 'destroy', :id => note_listing } %>		
+alt="delete note" border="0" />', :url=>{ :action => 'destroy', :id => note_listing } %>		
 			</div>
 			<div style="clear:both"></div>
 		</div>
 	<div class="inner_note" id="inner_note<%=note_listing.id%>">			
+        <a href="#" style="font-size:12px;" 
+id="edit_descr<%=note_listing.id.to_s%>">Edit</a>
 	<div id="notedescr<%= note_listing.id %>" class="note_text">
 		<%= 
 			if !note_listing.description.nil? && note_listing.description > ""
 				RedCloth.new(note_listing.description).to_html 	
 			else
-				"Click Here to Edit This Note"
+				""
 			end
 		%>
 	</div>
-
 	<%= in_place_editor 'notedescr' + note_listing.id.to_s, 			    	
 						:url=>{:controller=>'notes',:action=>'update_descr', :id=>note_listing},
-						:rows => 15, 
-						:cols => 32,
+						:rows => 10, 
+						:cols => 35,
+                                                :external_control => 
+'edit_descr'+note_listing.id.to_s,
 						:load_text_url =>{:controller=>'notes',:action=>'get_descr', :id=>note_listing}
 						%>	
 

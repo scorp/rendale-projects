@@ -7,6 +7,7 @@ before_filter :login_required
   
   def new
     @note = current_user.notes.create(:date=>Time.now)
+    @newstyle = 'style="z-index:9999"'
     render :update do |page|
       page.insert_html(:top, 'notes_block', :partial => 'note_listing', 
 :object => @note)

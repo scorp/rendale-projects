@@ -24,7 +24,8 @@ class AccountController < ApplicationController
         if @user.save      
           @session['user'] = User.authenticate(@user.login, @params['user']['password'])
           flash['notice']  = "Signup successful"
-          redirect_back_or_default :action => "index"          
+          redirect_back_or_default :controller=> "notes", :action => 
+"index"          
         end
       when :get
         @user = User.new

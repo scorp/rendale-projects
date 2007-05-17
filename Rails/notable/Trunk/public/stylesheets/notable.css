@@ -265,6 +265,15 @@ xborder-left:1px solid #ccc;
 font-size:.85em;
 }
 
+.note a{
+color:blue;
+}
+
+.note a:hover{
+background:blue;
+color:white;
+}
+
 .note img.thumb{
 border:3px solid #fff;
 }
@@ -338,10 +347,17 @@ margin:10px;
 }
 
 div.tags{
-color:#3883D6;
+color:black;
 margin: 5px 0px 5px 0px;
 padding-top:3px;
 border-top:1px dotted #ccc;
+}
+
+div.tags h3{
+margin:0px;
+padding:0px;
+color:#525552;
+font-size:1em;
 }
 
 .editor_field{

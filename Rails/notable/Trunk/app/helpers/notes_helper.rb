@@ -45,13 +45,13 @@ module NotesHelper
         tag_key = pair[0]
         count = pair[1]  
         size = if count == max 
-          5
+          3.5
         elsif count == min  
           1.5
         elsif count > distrib * 2
-          4
-        elsif count > distrib
           3
+        elsif count > distrib
+          2.5
         else
           2
         end
