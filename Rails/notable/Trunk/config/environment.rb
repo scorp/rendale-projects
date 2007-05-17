@@ -7,8 +7,6 @@ ENV['RAILS_ENV'] ||= 'production'
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 
-RAILS_ROOT="/home/rendale/dev/notable"
-
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence those specified here
   

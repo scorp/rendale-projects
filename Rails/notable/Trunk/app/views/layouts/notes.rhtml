@@ -10,12 +10,14 @@
 <body>
 
 <div class="header">
-  <div class="navigation">
-	<%= link_to 'logout', {:controller=> 'account', :action=>'logout'}, :class=>'link' %>
-  </div>		
   <h1 class="logo">
 	  Notable!
   </h1>
+  <div class="navigation">
+	<%= link_to 'help', {:controller=> 'account', :action=>'logout'}, :class=>'link' %> |
+	<%= link_to 'settings', {:controller=> 'account', :action=>'logout'}, :class=>'link' %> |
+	<%= link_to 'logout', {:controller=> 'account', :action=>'logout'}, :class=>'link' %>
+  </div>		
 </div>
 <div style="clear:both"></div>
 
@@ -31,7 +33,7 @@
 		<%= link_to_remote '<img src="/images/icons/add.png" 
 alt="add a note" />Add a Note', 
 		{:url=>{:controller=>'notes',:action=>'new'},
-		:complete=>"Notable.Page.load_notes()"},
+		:complete=>"Notable.Page.add_note()"},
 		{:id=>"add_note"}		                       		     
 		%> | 
 		<a href="/">See all notes</a>		

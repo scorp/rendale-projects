@@ -1,10 +1,8 @@
 require 'digest/sha1'
 
-# this model expects a certain database layout and its based on the name/login pattern. 
 class User < ActiveRecord::Base
   has_many :notes, :dependent => :destroy
  	         
-
   def self.authenticate(login, pass)
     find_first(["login = ? AND password = ?", login, sha1(pass)])
   end  

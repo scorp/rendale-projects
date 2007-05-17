@@ -87,7 +87,6 @@ ACCOUNT
 div#account_form{
 	margin:auto;
 	text-align:left;
-	xheight:125px;
 	width:225px;
 	font-family: helvetica, sans-serif;
 }
@@ -182,11 +181,11 @@ NAVIGATION
 *****************************/
 div.navigation{
 float:right;
-width:5%;
-font-size:1em;
+font-size:.75em;
 font-weight:bold;
-
-margin-top:1.75em;
+margin-top:35px;
+padding-right:10px;
+color:#fff;
 }
 
 
@@ -208,6 +207,7 @@ width:100%;
 
 
 h1.logo{
+float:left;
 padding-left:5px;
 margin:0px;
 color:#fff;
@@ -299,7 +299,11 @@ color:#000;
 div.note_text{
 margin-bottom:3px;
 margin-left:6px;
-font-size:1.25em;
+font-size:1em;
+}
+
+.note textarea{
+font-size:1em;
 }
 
 div.note_text ul{

@@ -23,9 +23,7 @@ class AccountController < ApplicationController
         
         if @user.save      
           @session['user'] = User.authenticate(@user.login, @params['user']['password'])
-          flash['notice']  = "Signup successful"
-          redirect_back_or_default :controller=> "notes", :action => 
-"index"          
+          redirect_back_or_default :controller=> "notes", :action => "index"          
         end
       when :get
         @user = User.new
@@ -44,13 +42,5 @@ class AccountController < ApplicationController
     @session['user'] = nil 
     @message = "You have logged out of Notable"
   	render :action=>'login'
-  end
-    
-  def welcome
-    redirect_to :controller=>'notes', :action=>'index'
-  end
-  
-  def account
-  end
-  
+  end  
 end

@@ -2,8 +2,8 @@ var Notable = {}
  
 Notable.Page = function(){	
 	return {
-		add_note : function(note){
-			alert(note.attr('id'))
+		add_note : function(){
+			note = jQuery(".note:first")
 			note.Draggable(
 			{
 				zIndex: 99999,
@@ -17,18 +17,16 @@ Notable.Page = function(){
 					jQuery(this).css("z-index", Notable.Page.MaxZIndex)
 			}
 			});
-			note.css({position:"absolute", top: note.find(".noteY").html() + "px", left:note.find(".noteX").html() + "px", zIndex: note.find(".noteZ").html()})
-			if (note.find(".noteZ").html() > Notable.Page.MaxZIndex)
-			{
-				Notable.Page.MaxZIndex = parseInt(note.find(".noteZ").html())
-			}							
+			note.css({position:"absolute", top: note.find(".noteY").html() + "px", left:note.find(".noteX").html() + "px", zIndex: parseInt(Notable.Page.MaxZIndex) + 1})
 		},
 		load_notes : function(){
 			jQuery(".note").each(
+				 
 				 function(i)
 				 {	
 				 	var note = jQuery(this)
-				 	note.Draggable(
+				    note.fadeIn(i * 100)
+					note.Draggable(
 				 	{
 				 		zIndex: 99999,
 						handle: 'div.note_header',
