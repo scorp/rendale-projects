@@ -10,9 +10,37 @@ class NotesControllerTest < Test::Unit::TestCase
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
   end
-
-  # Replace this with your real tests.
-  def test_truth
-    assert true
+  
+  def test_index
+    flunk
   end
+  
+  def test_get_descr
+    flunk
+  end
+
+  def test_update_position
+    flunk
+  end
+  
+  def test_destroy
+    flunk    
+  end
+  
+  def test_add_tag
+    flunk
+  end
+  
+  def test_search_by_tag
+    flunk
+  end
+  
+  def test_add_file
+    flunk
+  end
+  
+  def test_delete_file
+    flunk
+  end
+  
 end

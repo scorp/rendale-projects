@@ -8,23 +8,19 @@ class UserTest < Test::Unit::TestCase
   def test_auth  
     assert_equal  @bob, User.authenticate("bob", "test")    
     assert_nil    User.authenticate("nonbob", "test")
-
   end
 
 
   def test_passwordchange
-        
     @longbob.change_password("nonbobpasswd")
     assert_equal @longbob, User.authenticate("longbob", "nonbobpasswd")
     assert_nil   User.authenticate("longbob", "longtest")
     @longbob.change_password("longtest")
     assert_equal @longbob, User.authenticate("longbob", "longtest")
-    assert_nil   User.authenticate("longbob", "nonbobpasswd")
-        
+    assert_nil   User.authenticate("longbob", "nonbobpasswd")        
   end
   
   def test_disallowed_passwords
-
     u = User.new    
     u.login = "nonbob"
 
@@ -42,12 +38,10 @@ class UserTest < Test::Unit::TestCase
         
     u.password = u.password_confirmation = "bobs_secure_password"
     assert u.save     
-    assert u.errors.empty?
-        
+    assert u.errors.empty?        
   end
   
   def test_bad_logins
-
     u = User.new  
     u.password = u.password_confirmation = "bobs_secure_password"
 

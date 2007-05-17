@@ -25,4 +25,29 @@ class Test::Unit::TestCase
   self.use_instantiated_fixtures  = false
 
   # Add more helper methods to be used by all tests here...
+  # get us an object that represents an uploaded file
+  def uploaded_file(path, content_type="application/octet-stream", filename=nil)
+    filename ||= File.basename(path)
+    t = Tempfile.new(filename)
+    FileUtils.copy_file(path, t.path)
+    (class << t; self; end;).class_eval do
+      alias local_path path
+      define_method(:original_filename) { filename }
+      define_method(:content_type) { content_type }
+    end
+    return t
+  end
+
+  # a JPEG helper
+  def uploaded_jpeg(path, filename=nil)
+    uploaded_file(path, 'image/jpeg', filename)
+  end
+
+  # a GIF helper
+  def uploaded_gif(path, filename=nil)
+    uploaded_file(path, 'image/gif', filename)
+  end
+  
+  
+  
 end
