@@ -3,26 +3,26 @@ class AccountController < ApplicationController
   layout 'account'
 
   def login
-    case @request.method
+    case request.method
       when :post
-        if @session['user'] = User.authenticate(@params['user_login'], @params['user_password'])
+        if session['user'] = User.authenticate(params['user_login'], params['user_password'])
 
           flash['notice']  = "Login successful"
           redirect_back_or_default :controller => "notes", :action => "index"
         else
-          @login    = @params['user_login']
+          @login    = params['user_login']
           @message  = "Login unsuccessful"
       end
     end
   end
   
   def signup
-    case @request.method
+    case request.method
       when :post
-        @user = User.new(@params['user'])
+        @user = User.new(params['user'])
         
         if @user.save      
-          @session['user'] = User.authenticate(@user.login, @params['user']['password'])
+          session['user'] = User.authenticate(@user.login, params['user']['password'])
           redirect_back_or_default :controller=> "notes", :action => "index"          
         end
       when :get
@@ -31,15 +31,15 @@ class AccountController < ApplicationController
   end  
   
   def delete
-    if @params['id']
-      @user = User.find(@params['id'])
+    if params['id']
+      @user = User.find(params['id'])
       @user.destroy
     end
     redirect_back_or_default :action => "index"
   end  
     
   def logout
-    @session['user'] = nil 
+    session['user'] = nil 
     @message = "You have logged out of Notable"
   	render :action=>'login'
   end  

@@ -2,7 +2,7 @@ class NotesController < ApplicationController
 before_filter :login_required  
 
   #list
-  def index
+  def index 
     @notes = current_user.notes.find(:all,:order => "date desc, id desc")
   end
   
@@ -71,20 +71,20 @@ before_filter :login_required
   #create  
   def add_tag 
    @notes = current_user.notes
-   note = Note.find(params[:id]) 
-   note.taggings.each{|n| n.destroy}
+   @note = Note.find(params[:id]) 
+   @note.taggings.each{|n| n.destroy}
    if params[:value].blank? || params[:value] == 'add tags to this note'
      render :text => 'add tags to this note'
    else     
      tagArray = params[:value].split(" ")
      tagArray.each do | tag |
-       if note.tags.find_by_name(tag) != nil
+       if @note.tags.find_by_name(tag) != nil
        else
-         note.tag_with(tag)        
+         @note.tag_with(tag)        
        end
      end     
      render :update do |page|
-       page.replace_html('tags' + params[:id].to_s, note.tags.collect{|tag| tag.name}.join(", "))
+       page.replace_html('tags' + params[:id].to_s, @note.tags.collect{|tag| tag.name}.join(", "))
        page.replace_html('cloud', generate_tag_cloud())
        page.visual_effect(:pulsate, 'cloud', :duration=>1)
      end
@@ -113,7 +113,7 @@ before_filter :login_required
  	  @note = current_user.notes.find(params[:id])
 	  @note_file = @note.note_files.build
 	  @note_file.save unless !@note_file.add_file(params[:note_file][:file])
-      render :partial => 'uploading_progress', :object => @note
+    render :partial => 'uploading_progress', :object => @note
   end 
   
   #delete

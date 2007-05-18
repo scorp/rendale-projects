@@ -86,10 +86,10 @@ How do I...
      
   ... check if a user is logged-in in my views?
   
-  A: @session['user'] will tell you. Here is an example helper which you can use to make this more pretty:
+  A: session['user'] will tell you. Here is an example helper which you can use to make this more pretty:
      Example: 
        def user?
-         !@session['user'].nil?
+         !session['user'].nil?
        end
 
 

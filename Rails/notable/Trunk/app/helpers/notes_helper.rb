@@ -33,7 +33,7 @@ module NotesHelper
         else
           2
         end
-          cloud += link_to(tag_key, {:controller=>'notes', :action=>'search_by_tag', :tag_search=>tag_key},{:class=>"cloud_link", :style=>"font-size:#{size}em;"}) + " "
+          cloud += link_to(tag_key, {:controller=>'notes', :action=>'search_by_tag', :tag_search=>tag_key},{:id=>"tag_#{tag_key}", :class=>"cloud_link", :style=>"font-size:#{size}em;"}) + " "
       end
     rescue
     end      

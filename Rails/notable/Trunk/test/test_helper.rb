@@ -24,6 +24,10 @@ class Test::Unit::TestCase
   # then set this back to true.
   self.use_instantiated_fixtures  = false
 
+  def login_as(login)
+    @request.session['user'] = User.find(:first, :conditions=>["login=?",login])    
+  end
+
   # Add more helper methods to be used by all tests here...
   # get us an object that represents an uploaded file
   def uploaded_file(path, content_type="application/octet-stream", filename=nil)
