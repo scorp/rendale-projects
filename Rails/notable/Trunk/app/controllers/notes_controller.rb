@@ -111,10 +111,16 @@ before_filter :login_required
   #add
   def add_file
  	  @note = current_user.notes.find(params[:id])
-    File.open(RAILS_ROOT + "/tmp/" + @note.id.to_s, "wb"){ |f| f.write("done")}
+    File.open(RAILS_ROOT + "/tmp/#{current_user.id.to_s}_#{@note.id.to_s}", "wb"){ |f| f.write("done")}
 	  @note_file = @note.note_files.build
-	  @note_file.save unless !@note_file.add_file(params[:note_file][:file])
-    render :partial => 'uploading_progress', :object => @note
+    if @note_file.add_file(params[:note_file][:file])
+      @note_file.save
+#      render :partial => 'uploading_progress', :object => @note
+       render :partial => 'file_upload_control_done', :object => @note
+    else
+      @error_message = @note_file.error_message
+      render :partial => 'file_upload_control_error', :object => @note
+    end
   end 
   
   #delete
@@ -146,10 +152,16 @@ before_filter :login_required
     render :partial => 'file_upload_control_done', :object => @note
   end
 
+  def file_upload_control_error   
+    @note = current_user.notes.find(params[:id]) 
+    render :partial => 'file_upload_control_error', :object => @note
+  end
+
+
   def check_for_file    
     @note = current_user.notes.find(params[:id])
-    if File.exists?(RAILS_ROOT + "tmp/#{@note.id}")
-      File.delete(RAILS_ROOT + "/tmp/#{@note.id}")
+    if File.exists?(RAILS_ROOT + "tmp/#{current_user.id.to_s}_#{@note.id}")
+      File.delete(RAILS_ROOT + "/tmp/#{current_user.id.to_s}_#{@note.id}")
       render :text => "window.location='/notes/file_upload_control_done/#{@note.id}';",
                       :layout => false
     else

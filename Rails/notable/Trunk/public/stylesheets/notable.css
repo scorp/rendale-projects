@@ -220,6 +220,15 @@ width:75%;
 CONTROLS
 *****************************/
 
+.error_message{
+	color:#fff;
+	padding:2px;
+	margin:2px;
+	background:red;
+	text-align:center;
+	font-weight:bold;
+}
+
 div.search{
 padding: 10px 0 5px 0;
 background:#bbb;
