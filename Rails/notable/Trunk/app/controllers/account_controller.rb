@@ -43,4 +43,8 @@ class AccountController < ApplicationController
     @message = "You have logged out of Notable"
   	render :action=>'login'
   end  
+  
+  def help
+    render :layout=>"help"
+  end
 end
