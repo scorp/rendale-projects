@@ -111,6 +111,7 @@ before_filter :login_required
   #add
   def add_file
  	  @note = current_user.notes.find(params[:id])
+    File.open(RAILS_ROOT + "/tmp/" + @note.id.to_s, "wb"){ |f| f.write("done")}
 	  @note_file = @note.note_files.build
 	  @note_file.save unless !@note_file.add_file(params[:note_file][:file])
     render :partial => 'uploading_progress', :object => @note
@@ -147,8 +148,8 @@ before_filter :login_required
 
   def check_for_file    
     @note = current_user.notes.find(params[:id])
-    if File.exists?("tmp/#{@note.id}")
-      File.delete("tmp/#{@note.id}")
+    if File.exists?(RAILS_ROOT + "tmp/#{@note.id}")
+      File.delete(RAILS_ROOT + "/tmp/#{@note.id}")
       render :text => "window.location='/notes/file_upload_control_done/#{@note.id}';",
                       :layout => false
     else

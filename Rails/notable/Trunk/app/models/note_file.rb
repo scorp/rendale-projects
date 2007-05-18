@@ -9,7 +9,6 @@ class NoteFile < ActiveRecord::Base
 	    
 	    FileUtils.mkdir_p(RAILS_ROOT + "/files/" + self.systempath)
 	    File.open(RAILS_ROOT + "/files/" + self.systempath + self.filename, "wb") { |f| f.write(file.read) }
-	    File.open("tmp/" + self.note.id.to_s, "wb"){ |f| f.write("done")}
 
       if file.content_type=~/image/
         img = Magick::Image::read(RAILS_ROOT + "/files/" + self.systempath + self.filename).first        
