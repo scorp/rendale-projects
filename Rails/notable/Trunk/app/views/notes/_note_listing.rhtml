@@ -16,23 +16,20 @@ alt="delete note" border="0" />', :url=>{ :action => 'destroy', :id => note_list
 			<div style="clear:both"></div>
 		</div>
 	<div class="inner_note" id="inner_note<%=note_listing.id%>">			
-        <a href="#" style="font-size:12px;" 
-id="edit_descr<%=note_listing.id.to_s%>">Edit</a>
+        <a href="#" style="font-size:12px;" id="edit_descr<%=note_listing.id.to_s%>">Edit</a>
 	<div id="notedescr<%= note_listing.id %>" class="note_text">
 		<%= 
 			if !note_listing.description.nil? && note_listing.description > ""
 				RedCloth.new(note_listing.description).to_html 	
 			else
-				""
 			end
 		%>
 	</div>
 	<%= in_place_editor 'notedescr' + note_listing.id.to_s, 			    	
 						:url=>{:controller=>'notes',:action=>'update_descr', :id=>note_listing},
 						:rows => 10, 
-						:cols => 41,
+						:cols => 30,
 						:highlightColor => "#FFFF33",
-						:highlightEndColor => "#FFFFCC",
                         :external_control => 'edit_descr'+note_listing.id.to_s,
 						:load_text_url =>{:controller=>'notes',:action=>'get_descr', :id=>note_listing}
 						%>	
@@ -57,8 +54,8 @@ id="edit_descr<%=note_listing.id.to_s%>">Edit</a>
 	<%= in_place_editor 'tags' + note_listing.id.to_s, 			    	
 						:url=>{:controller=>'notes',:action=>'add_tag', :id=>note_listing}, :cols=>37, :script=>true
 			            %>
-	<%= link_to_function "add a file", "showhide($('addfile#{note_listing.id}'), this)"%>
-	<div id="addfile<%=note_listing.id%>" style="display:none">
+	<%= link_to_function "add a file", "Notable.page.retrieve_note('note#{note_listing.id}').toggle_area('file_upload')", {:id=>"add_file_link_note#{note_listing.id}"} %>
+	<div id="add_file_note<%=note_listing.id%>" style="display:none">
 	<%=
 	render :partial => 'file_upload_control', :object => note_listing
 	%>

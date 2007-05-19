@@ -1,105 +1,103 @@
 var Notable = {}
- 
-Notable.Page = function(){	
-	return {
-		add_note : function(){
-			note = jQuery(".note:first")
-			note.Draggable(
-			{
-				zIndex: 99999,
-				containment: '#container',
-				handle: 'div.note_header',
-				ghosting: false,
-				opacity: .8,
-				onChange: function(){
-					Notable.Page.MaxZIndex++;
-					jQuery.post("/notes/update_position/" + jQuery(this).find(".noteId").html(), {x: jQuery(this).get()[0].offsetLeft, y: jQuery(this).get()[0].offsetTop, z: Notable.Page.MaxZIndex})
-					jQuery(this).css("z-index", Notable.Page.MaxZIndex)
+
+Notable.Page = Class.create();
+Notable.Page.prototype = {
+
+	initialize: function(){
+		this.MaxZIndex = 0;
+		this.notes = [];
+	},
+
+	render_page: function(){
+		$$(".note").each(function(item,i){
+			var note = new Notable.Note($(item));
+			note.load(i);
+		})					
+	},
+	
+	add_note: function(){
+			var note = new Notable.Note($$(".note")[0])
+			note.load(1);
+	},
+	
+	retrieve_note: function(id){
+		var target;
+		this.notes.each(function(item, i){
+			if (item.id == id){
+				target = item;
 			}
-			});
-			note.css({position:"absolute", top: note.find(".noteY").html() + "px", left:note.find(".noteX").html() + "px", zIndex: parseInt(Notable.Page.MaxZIndex) + 1})
-		},
-		load_notes : function(){
-			jQuery(".note").each(
-				 
-				 function(i)
-				 {	
-				 	var note = jQuery(this)
-				    note.fadeIn(i * 100)
-					note.Draggable(
-				 	{
-				 		zIndex: 99999,
-						handle: 'div.note_header',
-				 		containment: '#container',
-				 		ghosting: false,
-				 		opacity: .8,
-				 		onChange: function(){
-				 			Notable.Page.MaxZIndex++;
-				 			jQuery.post("/notes/update_position/" + jQuery(this).find(".noteId").html(), {x: jQuery(this).get()[0].offsetLeft, y: jQuery(this).get()[0].offsetTop, z: Notable.Page.MaxZIndex})
-				 			jQuery(this).css("z-index", Notable.Page.MaxZIndex)
-				 	}
-				 	});
-				 	 				note.css({position:"absolute", top: jQuery(this).find(".noteY").html() + "px", left:jQuery(this).find(".noteX").html() + "px", zIndex: jQuery(this).find(".noteZ").html()})
-				 	if (jQuery(this).find(".noteZ").html() > Notable.Page.MaxZIndex)
-				 	{
-				 		Notable.Page.MaxZIndex = parseInt(jQuery(this).find(".noteZ").html())
-				 	}				
-			}
-			);			
-		},		
-		MaxZIndex: 0,		
-		UpdateMaxZIndex: function(){}
-	}
-}()
+		}		
+		)
+		return target;
+	},
 
-Notable.apply_styles = function(){
-    var settings = {
-        tl: { radius: 20 },
-        tr: { radius: 20 },
-        bl: { radius: 20 },
-        br: { radius: 20 },
-        antiAlias: true,
-        autoPad: true,
-        validTags: ["div"]
-    };
-    jQuery("#account_box").curvy(settings);
-	jQuery(".signup_message").curvy(settings);
-	jQuery(".login_message").curvy(settings);
-}
-
-
-Notable.init = function(){
-	Notable.Page.load_notes();
-	Notable.apply_styles();
-}
-
-
-
-jQuery.noConflict();
-jQuery(document).ready(Notable.init)
-
-
-
-
-
-
-
-
-
-
-
-
-//OLD STUFF**********************************************
-
-//blind up or down an element based on if it is visible
-function showhide(element, sender)
-{
-  if (element.style.display == 'none')
-    { new Effect.Appear(element, {duration: .1});
-	sender.innerHTML = "done";
-	}
-  else
-    { new Effect.Fade(element, {duration: .1});
-	sender.innerHTML = "add a file";
+	remove_note: function(id){
+		
 	}
 };
+
+
+
+Notable.Note = Class.create();
+Notable.Note.prototype = {
+	initialize: function(elem){
+		this.element = elem;
+		this.id = elem.id;
+	},	
+	load: function(i){
+		var note = this;
+		var observer = this.observer;
+		setTimeout(function(){new Effect.Appear(note.element,{duration:0.3})}, i * 100);
+		//new Draggable(note.element,{onStart: function(){zIndex:null, Notable.page.start_drag(note)}, onEnd: function(){Notable.page.drop(note)}});
+		new Draggable(note.element,{onStart: function(){Notable.page.retrieve_note(note.id).start_drag();}, onEnd: function(){Notable.page.retrieve_note(note.id).drop()}});		
+		note.element.setStyle({position:"absolute", top: $(note.element).down(".noteY").innerHTML+"px",left: $(note.element).down(".noteX").innerHTML+"px",zIndex: $(note.element).down(".noteZ").innerHTML});
+		if(parseInt(note.element.down(".noteZ").innerHTML) > Notable.page.MaxZIndex)
+		{
+			Notable.page.MaxZIndex = note.element.down(".noteZ").innerHTML
+		}
+		Notable.page.notes.push(note)
+	},
+	start_drag: function(){
+		var note = this;
+		Notable.page.MaxZIndex++;
+		note.element.setStyle({zIndex: Notable.page.MaxZIndex})
+	},	
+	drop: function(){
+		var note = this;
+		new Ajax.Request("/notes/update_position/" + note.element.down(".noteId").innerHTML,
+			{
+				method: "get",
+				parameters: {x:Position.page(note.element)[0], y:Position.page(note.element)[1], z: Notable.page.MaxZIndex}
+			}
+		);
+	},
+	
+	toggle_area: function(area){
+	  switch(area){
+		case "file_upload":
+			var file_upload_area = $("add_file_" + this.id);
+			var access_link = $("add_file_link_" + this.id);
+			if(file_upload_area.style.display == 'none')
+			{
+				new Effect.Appear(file_upload_area, {duration: .2});
+				access_link.innerHTML = "done";
+			}
+			else
+			{
+				new Effect.Fade(file_upload_area, {duration: .2})
+				access_link.innerHTML = "add a file";			
+			}
+			break;
+	  }
+	}
+
+};
+
+Notable.init = function(){
+	Notable.page = new Notable.Page()
+	Notable.page.render_page();
+}
+
+Event.observe(window, 'load', function() {
+	Notable.init();
+});

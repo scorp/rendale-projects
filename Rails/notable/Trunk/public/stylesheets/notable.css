@@ -269,9 +269,11 @@ overflow-x: hidden;
 background:#ffffcc;
 border-right:3px solid #aaa;
 border-bottom:3px solid #aaa;
-xborder-top:1px solid #ccc;
-xborder-left:1px solid #ccc;
 font-size:.85em;
+position:absolute;
+top:100px;
+left:50px;
+z-index:9999;
 }
 
 .note a{
