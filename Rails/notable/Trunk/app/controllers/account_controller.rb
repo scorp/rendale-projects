@@ -47,4 +47,8 @@ class AccountController < ApplicationController
   def help
     render :layout=>"help"
   end
+  
+  def settings
+    render :layout=>"notes"
+  end
 end

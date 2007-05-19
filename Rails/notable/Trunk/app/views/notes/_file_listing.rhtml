@@ -1,7 +1,7 @@
 <div id="file<%= file_listing.id %>" class="file">
 
 <% if file_listing.systempath != nil && file_listing.filename != nil then %>
-  <a href="<%= url_for(:controller=>'notes', :action=>'get_file', :id => file_listing.note.id, :file_id => file_listing.id)%>" target="blank" title="<%=file_listing.filename%>">
+  <a href="<%= url_for(:controller=>'notes', :action=>'get_file', :id => file_listing.note.id, :file_id => file_listing.id)%>" title="<%=file_listing.filename%>">
 	<%
 	if file_listing.filetype=~(/image/i)
 	%>

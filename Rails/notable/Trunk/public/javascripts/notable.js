@@ -50,7 +50,6 @@ Notable.Note.prototype = {
 		var note = this;
 		var observer = this.observer;
 		setTimeout(function(){new Effect.Appear(note.element,{duration:0.3})}, i * 100);
-		//new Draggable(note.element,{onStart: function(){zIndex:null, Notable.page.start_drag(note)}, onEnd: function(){Notable.page.drop(note)}});
 		new Draggable(note.element,{onStart: function(){Notable.page.retrieve_note(note.id).start_drag();}, onEnd: function(){Notable.page.retrieve_note(note.id).drop()}});		
 		note.element.setStyle({position:"absolute", top: $(note.element).down(".noteY").innerHTML+"px",left: $(note.element).down(".noteX").innerHTML+"px",zIndex: $(note.element).down(".noteZ").innerHTML});
 		if(parseInt(note.element.down(".noteZ").innerHTML) > Notable.page.MaxZIndex)

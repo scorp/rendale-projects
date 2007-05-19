@@ -264,12 +264,12 @@ z-index:9999;
 }
 
 .note a{
-color:blue;
+	color:blue;
 }
 
 .note a:hover{
-background:blue;
-color:white;
+	background:blue;
+	color:white;
 }
 
 .note img.thumb{

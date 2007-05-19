@@ -18,7 +18,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'tag/:tag_search', :controller=>'notes', :action=>'search_by_tag'
   
   #files
-  map.connect 'file/:id/:file_id', :controller=>'notes', :action=>'get_file'
+  map.connect 'file/:id/:file_id/', :controller=>'notes', :action=>'get_file'
 
   # Install the default route as the lowest priority.
   map.connect ':controller/:action/:id'
