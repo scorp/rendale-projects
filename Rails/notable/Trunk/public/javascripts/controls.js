@@ -558,8 +558,11 @@ Ajax.InPlaceEditor.prototype = {
     this.form = document.createElement("form");
     this.form.id = this.options.formId;
     Element.addClassName(this.form, this.options.formClassName)
-    this.form.onsubmit = this.onSubmit.bind(this);
 
+	Element.setStyle(this.form,{width:"97%",margin:"auto",border: "0px solid #ffffcc"})
+
+    this.form.onsubmit = this.onSubmit.bind(this);
+	
     this.createEditField();
 
     if (this.options.textarea) {

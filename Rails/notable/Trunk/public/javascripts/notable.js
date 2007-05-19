@@ -32,7 +32,9 @@ Notable.Page.prototype = {
 	},
 
 	remove_note: function(id){
-		
+		this.notes = this.notes.reject(function(item){
+			return item.id == id;
+		})
 	}
 };
 

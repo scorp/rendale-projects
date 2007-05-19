@@ -10,8 +10,10 @@
 				<%= note_listing.date.strftime("%A %B %d, %Y").downcase %>
 			</div>
 			<div class="note_delete">
-	    	<%= link_to_remote '<img src="/images/buttonDelete.gif" 
-alt="delete note" border="0" />', :url=>{ :action => 'destroy', :id => note_listing } %>		
+	    	<%= link_to_remote '<img src="/images/buttonDelete.gif" alt="delete note" border="0" />', 
+								:url=>{ :action => 'destroy', :id => note_listing },
+								:loaded => "Notable.page.remove_note('note#{note_listing.id}')" 
+			%>		
 			</div>
 			<div style="clear:both"></div>
 		</div>
@@ -28,7 +30,6 @@ alt="delete note" border="0" />', :url=>{ :action => 'destroy', :id => note_list
 	<%= in_place_editor 'notedescr' + note_listing.id.to_s, 			    	
 						:url=>{:controller=>'notes',:action=>'update_descr', :id=>note_listing},
 						:rows => 10, 
-						:cols => 30,
 						:highlightColor => "#FFFF33",
                         :external_control => 'edit_descr'+note_listing.id.to_s,
 						:load_text_url =>{:controller=>'notes',:action=>'get_descr', :id=>note_listing}

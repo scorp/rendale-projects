@@ -54,17 +54,6 @@ ACCOUNT
 		left: 50%;
         top :15%;
         margin-left: -200px;  /* half of width */
-	    xmargin-top: -150px;   /* half of height */
-}
-
-#top_quarter{
-		position:absolute;
-		height:300px;
-		width:400px;
-		left: 50%;
-        top :25%;
-        margin-left: -200px;  /* half of width */
-	    margin-top: -150px;   /* half of height */
 }
 
 #account_box{
@@ -72,9 +61,9 @@ ACCOUNT
 		margin:0 0 0 0;
 		width:400px;
 		xheight:300px;
-		background-color:#555;
-		color:#fff;
-		border:3px solid #fff;
+		background-color:#ffffcc;
+		color:#000;
+		border:3px solid #000;
 		text-align:center;
 }
 
@@ -113,40 +102,38 @@ div#account_form{
 
 
 fieldset{
-  border:0px solid #fff;
+  border:0px solid #000;
 }
 
 legend{
-	color:#fff;
+	color:#000;
 }
 
 .login_message{
 background:#ffff00;
-border:3px solid #ffcc33;
 color:#000;
-width:400px;
 padding:3px;
 font-size:14px;
 text-align:center;
-margin-bottom:50px;
+margin-bottom:10px;
+border-bottom:#000 2px solid;
 }
 
 .signup_message{
 background:#ffff00;
-border:3px solid #ffcc33;
 color:#000;
-width:400px;
 padding:3px;
 font-size:14px;
 text-align:left;
-margin-bottom:50px;
+margin-bottom:10px;
+border-bottom:#000 2px solid;
 }
 
 a.account_link{
 font-size: .75em;
 line-height :1em;
 margin-left:10px;
-color:#fff;
+color:#000;
 padding:3px;
 text-decoration:underline;
 }
@@ -154,8 +141,8 @@ text-decoration:underline;
 a.account_link:hover{
 font-size:.75em;
 line-height:1em;
-color:#000;
-background:#fff;
+color:#fff;
+background:#000;
 padding:3px;
 text-decoration:none;
 }
@@ -349,6 +336,7 @@ margin-right:0px;
 border:0px solid #fff;
 overflow:auto;
 text-align:left;
+width:100%;
 }
 
 .file_listing{

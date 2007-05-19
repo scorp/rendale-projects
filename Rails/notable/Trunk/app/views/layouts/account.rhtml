@@ -8,18 +8,18 @@
 </head>
 <body>
 <div id="center">
-<% if error_messages_for('user') != "" %>
-	<div class="signup_message" style="">
-   	  <%= error_messages_for 'user' %>
-	</div>
-<% end %>
-
-<% if @message %>
-	<div class="login_message" style="">	
-	  <%= @message %>
-	</div>   
-<% end %>
 	<div id="account_box">
+		<% if error_messages_for('user') != "" %>
+			<div class="signup_message" style="">
+		   	  <%= error_messages_for 'user' %>
+			</div>
+		<% end %>
+
+		<% if @message %>
+			<div class="login_message" style="">	
+			  <%= @message %>
+			</div>   
+		<% end %>
 		<h1>Notable!</h1>
 		<div id="account_form">
 			<%= @content_for_layout %>
