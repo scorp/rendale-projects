@@ -12,7 +12,7 @@ class NoteTest < Test::Unit::TestCase
     note.date = Time.now
     bob.notes << note
     assert note.save
-    note.tag_with('test')
+    note.tag_with('test', bob)
     assert note.save
     assert_not_nil note.tags.collect{ |tag| tag.name }.find{ |result| result == 'test'}
     assert_nil note.tags.collect{ |tag| tag.name }.find{ |result| result == 'test2'}
