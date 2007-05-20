@@ -2,7 +2,9 @@ require 'digest/sha1'
 
 class User < ActiveRecord::Base
   has_many :notes, :dependent => :destroy
- 	         
+ 	has_many :taggings
+  has_many :tags, :through => :taggings, :select => "DISTINCT tags.*"
+ 	        
   def self.authenticate(login, pass)
     find(:first, :conditions=>["login = ? AND password = ?", login, sha1(pass)])
   end  

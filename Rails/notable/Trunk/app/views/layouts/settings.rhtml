@@ -16,27 +16,13 @@
 	  Notable!
   </h1>
   <div class="navigation">
-	<%= link_to 'help', {:controller=>'account', :action=>'help'}, {:class=>'link lbOn'} %> |
+	<%= link_to 'home', {:controller=>'notes', :action=>'index'} %> |
 	<%= link_to 'settings', {:controller=> 'account', :action=>'settings'}, :class=>'link' %> |
+	<%= link_to 'help', {:controller=>'account', :action=>'help'}, {:class=>'link lbOn'} %> |
 	<%= link_to 'logout', {:controller=> 'account', :action=>'logout'}, :class=>'link' %>
   </div>		
 </div>
 <div style="clear:both"></div>
-
-<iframe id="upload_target" name="upload_target" style="width:0;height:0" frameborder="0"></iframe>
-	<div class="search">
-		<%= link_to_remote '<img src="/images/icons/add.png" 
-alt="add a note" />Add a Note', 
-		{:url=>{:controller=>'notes',:action=>'new'},
-		:complete=>"Notable.page.add_note()"},
-		{:id=>"add_note"}		                       		     
-		%> | 
-		<a href="/">See all notes</a>		
-		<div class="cloud" id="cloud">
-			<%=generate_tag_cloud()%>
-		</div>
-	</div>
-
 <div id="container">
 <%= @content_for_layout %>
 </div>

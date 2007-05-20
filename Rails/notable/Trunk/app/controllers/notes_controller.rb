@@ -72,17 +72,14 @@ before_filter :login_required
   def add_tag 
    @notes = current_user.notes
    @note = Note.find(params[:id]) 
-   @note.taggings.each{|n| n.destroy}
    if params[:value].blank? || params[:value] == 'add tags to this note'
-     render :text => 'add tags to this note'
+     @note.tag_with("", current_user)
+     render :update do |page|
+       page.replace_html('tags' + params[:id].to_s, "add tags to this note")       
+       page.replace_html('cloud', generate_tag_cloud())
+     end
    else     
-     tagArray = params[:value].split(" ")
-     tagArray.each do | tag |
-       if @note.tags.find_by_name(tag) != nil
-       else
-         @note.tag_with(tag)        
-       end
-     end     
+     @note.tag_with(params[:value], current_user)
      render :update do |page|
        page.replace_html('tags' + params[:id].to_s, @note.tags.collect{|tag| tag.name}.join(", "))
        page.replace_html('cloud', generate_tag_cloud())
@@ -95,12 +92,8 @@ before_filter :login_required
   #find
   def search_by_tag
     @notes = if tag_name = params[:tag_search] 
-    begin
-    Tag.find_by_name(tag_name).tagged 
-    rescue
-      flash[:notice] = 'No notes found with that tag'
-      redirect_to :action => 'index'
-    end
+    # begin
+    Note.find_tagged_with_by_user(params[:tag_search], current_user)
     else 
       flash[:notice] = 'No notes found with that tag'
       redirect_to :action => 'index'
@@ -115,7 +108,6 @@ before_filter :login_required
 	  @note_file = @note.note_files.build
     if @note_file.add_file(params[:note_file][:file])
       @note_file.save
-#      render :partial => 'uploading_progress', :object => @note
        render :partial => 'file_upload_control_done', :object => @note
     else
       @error_message = @note_file.error_message

@@ -43,13 +43,13 @@ module NotesHelper
   def GetFileIcon(file)
     begin
     if File.exists?(RAILS_ROOT + "/public/images/icon_#{file.filename.match(/\.(...)$/)[1].upcase}_big.gif")
-      "/images/icon_#{file.filename.match(/\.(...)$/)[1].upcase}_big.gif"
+      return "/images/icon_#{file.filename.match(/\.(...)$/)[1].upcase}_big.gif"
     else  
-       #file.filename.match(/\.(...)$/)[1].upcase
-       "/images/icon_Generic_big.gif"
-    end
+      return "/images/icon_Generic_big.gif"
+    end  
     rescue
+      return "/images/icon_Generic_big.gif"
     end
-  end  
-  
+  end
+
 end

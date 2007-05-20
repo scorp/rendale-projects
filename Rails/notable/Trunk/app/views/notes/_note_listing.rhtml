@@ -1,4 +1,10 @@
-<div class="note" style="display:none" id="note<%=note_listing.id%>">	
+<div class="note <%=
+					begin 
+						color = note_listing.tags[0].color 
+					rescue 
+						color = 'yellow'
+					end 
+				 %>" style="display:none" id="note<%=note_listing.id%>">	
 		<div style="display:none">
 			<div class="noteId"><%=note_listing.id%></div>
 			<div class="noteX"><%=note_listing.x%></div>s
@@ -27,10 +33,11 @@
 			end
 		%>
 	</div>
-	<%= in_place_editor 'notedescr' + note_listing.id.to_s, 			    	
+	<%= notable_in_place_editor 'notedescr' + note_listing.id.to_s, 			    	
 						:url=>{:controller=>'notes',:action=>'update_descr', :id=>note_listing},
 						:rows => 10, 
-						:highlightColor => "#FFFF33",
+						:highlightcolor => highlightcolor(color),
+						:highlightendcolor => highlightendcolor(color),
                         :external_control => 'edit_descr'+note_listing.id.to_s,
 						:load_text_url =>{:controller=>'notes',:action=>'get_descr', :id=>note_listing}
 						%>	
@@ -52,8 +59,12 @@
 		end 
 		%>	
     </div>
-	<%= in_place_editor 'tags' + note_listing.id.to_s, 			    	
-						:url=>{:controller=>'notes',:action=>'add_tag', :id=>note_listing}, :cols=>37, :script=>true
+	<%= notable_in_place_editor 'tags' + note_listing.id.to_s, 			    	
+						:url=>{:controller=>'notes',:action=>'add_tag', :id=>note_listing}, 
+						:cols=>37, 
+						:script=>true,
+						:highlightcolor => highlightcolor(color),
+						:highlightendcolor => highlightendcolor(color)
 			            %>
 	<%= link_to_function "add a file", "Notable.page.retrieve_note('note#{note_listing.id}').toggle_area('file_upload')", {:id=>"add_file_link_note#{note_listing.id}"} %>
 	<div id="add_file_note<%=note_listing.id%>" style="display:none">

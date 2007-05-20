@@ -16,8 +16,9 @@
 	  Notable!
   </h1>
   <div class="navigation">
-	<%= link_to 'help', {:controller=>'account', :action=>'help'}, {:class=>'link lbOn'} %> |
+	<%= link_to 'home', {:controller=>'notes', :action=>'index'} %> |
 	<%= link_to 'settings', {:controller=> 'account', :action=>'settings'}, :class=>'link' %> |
+	<%= link_to 'help', {:controller=>'account', :action=>'help'}, {:class=>'link lbOn'} %> |
 	<%= link_to 'logout', {:controller=> 'account', :action=>'logout'}, :class=>'link' %>
   </div>		
 </div>
