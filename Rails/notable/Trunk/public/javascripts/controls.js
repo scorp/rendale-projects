@@ -520,7 +520,6 @@ Ajax.InPlaceEditor.prototype = {
     if (!this.originalBackground) {
       this.originalBackground = "transparent";
     }
-    this.originalBackground = "#FFFFCC";
 
     this.element.title = this.options.clickToEditText;
     
@@ -561,8 +560,7 @@ Ajax.InPlaceEditor.prototype = {
     this.form = document.createElement("form");
     this.form.id = this.options.formId;
     Element.addClassName(this.form, this.options.formClassName)
-
-	Element.setStyle(this.form,{width:"97%",margin:"auto",border: "0px solid #ffffcc"})
+	Element.setStyle(this.form,{width:"100%",margin:"auto"})
 
     this.form.onsubmit = this.onSubmit.bind(this);
 	
@@ -744,7 +742,7 @@ Ajax.InPlaceEditor.prototype = {
     if (this.saving) return;
     this.effect = new Effect.Highlight(this.element, {
       startcolor: this.options.highlightcolor,
-      endcolor: "#FFFFCC",
+      endcolor: this.options.highlightendcolor,
       restorecolor: this.originalBackground
     });
   },
@@ -752,7 +750,7 @@ Ajax.InPlaceEditor.prototype = {
     Element.removeClassName(this.element, this.options.savingClassName);
     this.removeForm();
     this.leaveHover();
-    this.element.style.backgroundColor = this.originalBackground;
+    this.element.style.backgroundColor = this.options.highlightendcolor
     Element.show(this.element);
     if (this.options.externalControl) {
       Element.show(this.options.externalControl);
