@@ -1,11 +1,12 @@
 class Tag < ActiveRecord::Base
+  belongs_to :user
   has_many :taggings
-
+  
   def self.parse(list)
     tag_names = []
 
     # first, pull out the quoted tags
-    list.gsub!(/\"(.*?)\"\s*/ ) { tag_names << $1; "" }
+    list.gsub!(/\"(.*?)\"\s*/ ) { tag_names << "\"" + $1 + "\""; "" }
 
     # then, replace all commas with a space
     list.gsub!(/,/, " ")
@@ -26,8 +27,9 @@ class Tag < ActiveRecord::Base
     @tagged ||= taggings.collect { |tagging| tagging.taggable }
   end
   
-  def on(taggable)
-    taggings.create :taggable => taggable
+  def on(taggable, user)
+    self.user_id = user.id
+    taggings.create :taggable => taggable, :user_id => user.id
   end
   
   def ==(comparison_object)
