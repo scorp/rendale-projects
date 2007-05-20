@@ -68,7 +68,7 @@ Notable.Note.prototype = {
 		new Ajax.Request("/notes/update_position/" + note.element.down(".noteId").innerHTML,
 			{
 				method: "get",
-				parameters: {x:Position.page(note.element)[0], y:Position.page(note.element)[1], z: Notable.page.MaxZIndex}
+				parameters: {x:Position.cumulativeOffset(note.element)[0], y:Position.cumulativeOffset(note.element)[1], z: Notable.page.MaxZIndex}
 			}
 		);
 	},
