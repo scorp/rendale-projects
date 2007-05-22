@@ -19,7 +19,7 @@
 		</td>
 		<td class="log_row<%=row_style%>"><%= Date::DAYNAMES[@day_row.date.wday]%>
 			<%= @day_row.date.month.to_s + "/" + @day_row.date.mday.to_s + "/" + @day_row.date.year.to_s  %>
-      <div onClick="new Effect.toggle('info<%=i%>','blind', {duration:.25});" style="cursor:pointer">details</div>
+      		<div onClick="new Effect.toggle('info<%=i%>','blind', {duration:.10});" style="cursor:pointer; color:#ff0000; margin-top:5px">Add/Edit Notes</div>
 		</td>
 		<td class="log_row<%=row_style%>">
 			<%= @view_week.schedule_entries[i] %>
@@ -28,7 +28,7 @@
 			<%= text_field("day_row[]", "miles", {:size=>5, :onblur=>"process_update(this)", :class=>"text_field"})%>
 		</td>
 		<td class="log_row<%=row_style%>">
-			<%= text_field("day_row[]", "time", {:size=>5, :onblur=>"process_update(this)", :class=>"text_field"})%>
+			<%= text_field("day_row[]", "time", {:size=>20, :onblur=>"process_update(this)", :class=>"text_field"})%>
 		</td>
 		<td class="log_row<%=row_style%>" id="day_row_<%=@day_row.id%>_pace" style="font-size:16px">
 			&nbsp;<%= number_with_precision(@day_row.time/@day_row.miles,2).to_s unless @day_row.miles == 0 || @day_row.time == 0 || @day_row.miles.nil? || @day_row.time.nil? %>
@@ -36,10 +36,11 @@
 	</tr>	
 	<tr>
 		<td colspan="6" >
-	  	<div style="display:none" id="info<%=i%>">
-      		<%= text_area("day_row[]", "comments", {:rows=>'3', :onblur=>"process_update(this)"})%>
-	  		</div>  
-			</td>
+	  	<div style="display:none" id="info<%=i%>" class="comments">
+			<div class="label">Notes:</div>
+      		<%= text_area("day_row[]", "comments", {:rows=>'3', :onblur=>"process_update(this)", :class=>"text_field", :style=>"padding:5px; width:90%; font-size:1.5em; margin:2px auto 5px auto;"})%>
+	  	</div>  
+		</td>
 	</tr>
 	<% 
 	if row_style == "_alt"

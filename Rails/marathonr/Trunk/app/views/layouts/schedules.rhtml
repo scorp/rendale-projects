@@ -1,13 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
-<head>
-  <title>Schedules: <%= controller.action_name %></title>
-  <%= stylesheet_link_tag 'scaffold' %>
-</head>
-<body>
-
-<p style="color: green"><%= flash[:notice] %></p>
-
-<%= @content_for_layout %>
-
-</body>
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<%= javascript_include_tag :defaults %> 
+		<%= stylesheet_link_tag 'marathonr' %>
+	</head>
+	<body>
+		<div id="page">
+		<h2 class="small_logo"></h2>
+		<div id="navigation">
+			<%=link_to "running log", :controller => "log", :action => "index" %> | 
+			<%=link_to "training program", :controller => "schedules", :action => "index" %> | 
+			<%=link_to "settings", :controller => "account", :action => "settings" %> |
+			<%=link_to "log out", :controller => "account", :action => "logout" %>
+		</div>
+		<div style="clear:both">
+			<%= @content_for_layout %>
+		</div>
+	</body>
 </html>

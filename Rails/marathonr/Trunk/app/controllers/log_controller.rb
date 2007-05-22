@@ -24,7 +24,7 @@ helper :calendar
     
     def save
         LogEntry.update(params[:day_row].keys, params[:day_row].values)
-				render :text => "response"
+				render :nothing => true
     end
     
     def save_field

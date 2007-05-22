@@ -18,14 +18,13 @@ class GraphController < ApplicationController
               week_labels[index] = item
     end
  
-#    render_text week_labels
-      
+  # render_text week_labels      
   g = Gruff::Bar.new(1000)
   g.title = "Progress Graph" 
 
   g.data("miles ran", miles, '#ff0000')
   g.data("schedule miles", schedule_miles, '#ffffff')
-#  g.labels = week_labels
+  #  g.labels = week_labels
   g.marker_font_size = 12.0
   g.theme = {
      :colors => %w(#ff0000),

@@ -9,9 +9,11 @@
 	<body>
 		<div id="page">
 		<h2 class="small_logo"></h2>
-		<div id="settings_navigation">
-			<%=link_to "logout", :controller => "account", :action => "logout" %> | 
-			<%=link_to "settings", :controller => "account", :action => "settings" %>
+		<div id="navigation">
+			<%=link_to "running log", :controller => "log", :action => "index" %> | 
+			<%=link_to "training program", :controller => "schedules", :action => "index" %> | 
+			<%=link_to "settings", :controller => "account", :action => "settings" %> |
+			<%=link_to "log out", :controller => "account", :action => "logout" %>
 		</div>
 		<div style="clear:both">
 			<%= @content_for_layout %>
