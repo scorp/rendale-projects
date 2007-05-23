@@ -1,0 +1,22 @@
+# Logfile created on Tue May 22 21:49:26 -0400 2007 by logger.rb/1.5.2.9
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: no such table: attachments: DROP TABLE attachments[0m
+  [4;35;1mSQL (0.427089)[0m   [0mCREATE TABLE attachments ("id" INTEGER PRIMARY KEY NOT NULL, "db_file_id" integer DEFAULT NULL, "parent_id" integer DEFAULT NULL, "thumbnail" varchar(255) DEFAULT NULL, "filename" varchar(255) DEFAULT NULL, "content_type" varchar(255) DEFAULT NULL, "size" integer DEFAULT NULL, "width" integer DEFAULT NULL, "height" integer DEFAULT NULL, "aspect_ratio" float DEFAULT NULL) [0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: no such table: file_attachments: DROP TABLE file_attachments[0m
+  [4;35;1mSQL (0.320956)[0m   [0mCREATE TABLE file_attachments ("id" INTEGER PRIMARY KEY NOT NULL, "parent_id" integer DEFAULT NULL, "thumbnail" varchar(255) DEFAULT NULL, "filename" varchar(255) DEFAULT NULL, "content_type" varchar(255) DEFAULT NULL, "size" integer DEFAULT NULL, "width" integer DEFAULT NULL, "height" integer DEFAULT NULL, "type" varchar(255) DEFAULT NULL, "aspect_ratio" float DEFAULT NULL) [0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: no such table: image_science_attachments: DROP TABLE image_science_attachments[0m
+  [4;35;1mSQL (0.257656)[0m   [0mCREATE TABLE image_science_attachments ("id" INTEGER PRIMARY KEY NOT NULL, "parent_id" integer DEFAULT NULL, "thumbnail" varchar(255) DEFAULT NULL, "filename" varchar(255) DEFAULT NULL, "content_type" varchar(255) DEFAULT NULL, "size" integer DEFAULT NULL, "width" integer DEFAULT NULL, "height" integer DEFAULT NULL, "type" varchar(255) DEFAULT NULL) [0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: no such table: mini_magick_attachments: DROP TABLE mini_magick_attachments[0m
+  [4;35;1mSQL (0.281918)[0m   [0mCREATE TABLE mini_magick_attachments ("id" INTEGER PRIMARY KEY NOT NULL, "parent_id" integer DEFAULT NULL, "thumbnail" varchar(255) DEFAULT NULL, "filename" varchar(255) DEFAULT NULL, "content_type" varchar(255) DEFAULT NULL, "size" integer DEFAULT NULL, "width" integer DEFAULT NULL, "height" integer DEFAULT NULL, "type" varchar(255) DEFAULT NULL) [0m
+  [4;36;1mSQL (0.270220)[0m   [0;1mDROP TABLE mini_magick_attachments[0m
+  [4;35;1mSQL (0.299414)[0m   [0mCREATE TABLE mini_magick_attachments ("id" INTEGER PRIMARY KEY NOT NULL, "parent_id" integer DEFAULT NULL, "thumbnail" varchar(255) DEFAULT NULL, "filename" varchar(255) DEFAULT NULL, "content_type" varchar(255) DEFAULT NULL, "size" integer DEFAULT NULL, "width" integer DEFAULT NULL, "height" integer DEFAULT NULL, "type" varchar(255) DEFAULT NULL) [0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: no such table: orphan_attachments: DROP TABLE orphan_attachments[0m
+  [4;35;1mSQL (0.286567)[0m   [0mCREATE TABLE orphan_attachments ("id" INTEGER PRIMARY KEY NOT NULL, "db_file_id" integer DEFAULT NULL, "filename" varchar(255) DEFAULT NULL, "content_type" varchar(255) DEFAULT NULL, "size" integer DEFAULT NULL) [0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: no such table: minimal_attachments: DROP TABLE minimal_attachments[0m
+  [4;35;1mSQL (0.296349)[0m   [0mCREATE TABLE minimal_attachments ("id" INTEGER PRIMARY KEY NOT NULL, "size" integer DEFAULT NULL, "content_type" varchar(255) DEFAULT NULL) [0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: no such table: db_files: DROP TABLE db_files[0m
+  [4;35;1mSQL (0.270276)[0m   [0mCREATE TABLE db_files ("id" INTEGER PRIMARY KEY NOT NULL, "data" blob DEFAULT NULL) [0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: no such table: s3_attachments: DROP TABLE s3_attachments[0m
+  [4;35;1mSQL (0.255302)[0m   [0mCREATE TABLE s3_attachments ("id" INTEGER PRIMARY KEY NOT NULL, "parent_id" integer DEFAULT NULL, "thumbnail" varchar(255) DEFAULT NULL, "filename" varchar(255) DEFAULT NULL, "content_type" varchar(255) DEFAULT NULL, "size" integer DEFAULT NULL, "width" integer DEFAULT NULL, "height" integer DEFAULT NULL, "type" varchar(255) DEFAULT NULL, "aspect_ratio" float DEFAULT NULL) [0m
+  [4;36;1mSQL (0.273261)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.283100)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.299053)[0m   [0;1mUPDATE schema_info SET version = 0[0m

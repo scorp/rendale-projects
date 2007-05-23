@@ -1,0 +1,12 @@
+<h1>Editing album</h1>
+
+<%= error_messages_for :album %>
+
+<% form_for(:album, :url => album_path(@album), :html => { :method => :put }) do |f| %>
+  <p>
+    <%= submit_tag "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', album_path(@album) %> |
+<%= link_to 'Back', albums_path %>

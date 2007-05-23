@@ -1,0 +1,1714 @@
+  [4;36;1mSQL (0.000154)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mSQL (0.002552)[0m   [0mCREATE TABLE schema_info (version int(11))[0m
+  [4;36;1mSQL (0.000758)[0m   [0;1mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mMysql::Error: #42S01Table 'schema_info' already exists: CREATE TABLE schema_info (version int(11))[0m
+  [4;36;1mSQL (0.000339)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateUsers (1)
+  [4;35;1mSQL (0.000000)[0m   [0mMysql::Error: #42S02Unknown table 'users': DROP TABLE users[0m
+  [4;36;1mSQL (0.002869)[0m   [0;1mCREATE TABLE users (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `login` varchar(255) DEFAULT NULL, `email` varchar(255) DEFAULT NULL, `crypted_password` varchar(40) DEFAULT NULL, `salt` varchar(40) DEFAULT NULL, `created_at` datetime DEFAULT NULL, `updated_at` datetime DEFAULT NULL, `remember_token` varchar(255) DEFAULT NULL, `remember_token_expires_at` datetime DEFAULT NULL, `activation_code` varchar(40) DEFAULT NULL, `activated_at` datetime DEFAULT NULL) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.000351)[0m   [0mUPDATE schema_info SET version = 1[0m
+  [4;36;1mSQL (0.000316)[0m   [0;1mSELECT * FROM schema_info[0m
+  [4;35;1mSQL (0.000558)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.003240)[0m   [0;1mSHOW FIELDS FROM users[0m
+  [4;35;1mSQL (0.002776)[0m   [0mSHOW KEYS FROM users[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2007-05-22 22:03:25) [GET]
+  Session ID: 0f246ada6ad95e5c33f3783240ede351
+  Parameters: {}
+
+
+ActionController::RoutingError (no route found to match "/account" with {:method=>:get}):
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/routing.rb:1292:in `recognize_path'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/routing.rb:1282:in `recognize'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/dispatcher.rb:40:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:78:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:76:in `synchronize'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:76:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:618:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:617:in `each'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:617:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `initialize'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `new'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `initialize'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `new'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:271:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:270:in `each'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:270:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:127:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/command.rb:211:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:243
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:342:in `new_constants_in'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/commands/servers/mongrel.rb:60
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:495:in `require'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:342:in `new_constants_in'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:495:in `require'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/commands/server.rb:39
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    ./script/server:3
+
+
+Rendering /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/templates/rescues/layout.rhtml (404 Page Not Found)
+  [4;36;1mSQL (0.000154)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mSQL (0.000000)[0m   [0mMysql::Error: #42S01Table 'schema_info' already exists: CREATE TABLE schema_info (version int(11))[0m
+  [4;36;1mSQL (0.000276)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000188)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mMysql::Error: #42S01Table 'schema_info' already exists: CREATE TABLE schema_info (version int(11))[0m
+  [4;35;1mSQL (0.000239)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateUsers (1)
+  [4;36;1mSQL (0.022200)[0m   [0;1mDROP TABLE users[0m
+  [4;35;1mSQL (0.000370)[0m   [0mUPDATE schema_info SET version = 0[0m
+  [4;36;1mSQL (0.000312)[0m   [0;1mSELECT * FROM schema_info[0m
+  [4;35;1mSQL (0.000506)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.000166)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mSQL (0.000000)[0m   [0mMysql::Error: #42S01Table 'schema_info' already exists: CREATE TABLE schema_info (version int(11))[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mMysql::Error: #42S01Table 'schema_info' already exists: CREATE TABLE schema_info (version int(11))[0m
+  [4;35;1mSQL (0.000293)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateUsers (1)
+  [4;36;1mSQL (0.000000)[0m   [0;1mMysql::Error: #42S02Unknown table 'users': DROP TABLE users[0m
+  [4;35;1mSQL (0.052048)[0m   [0mCREATE TABLE users (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `login` varchar(255) DEFAULT NULL, `email` varchar(255) DEFAULT NULL, `crypted_password` varchar(40) DEFAULT NULL, `salt` varchar(40) DEFAULT NULL, `created_at` datetime DEFAULT NULL, `updated_at` datetime DEFAULT NULL, `remember_token` varchar(255) DEFAULT NULL, `remember_token_expires_at` datetime DEFAULT NULL, `first_name` varchar(255) DEFAULT NULL, `last_name` varchar(255) DEFAULT NULL, `activation_code` varchar(40) DEFAULT NULL, `activated_at` datetime DEFAULT NULL) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.000379)[0m   [0;1mUPDATE schema_info SET version = 1[0m
+  [4;35;1mSQL (0.000366)[0m   [0mSELECT * FROM schema_info[0m
+  [4;36;1mSQL (0.000540)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.003350)[0m   [0mSHOW FIELDS FROM users[0m
+  [4;36;1mSQL (0.001042)[0m   [0;1mSHOW KEYS FROM users[0m
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 22:18:22) [GET]
+  Session ID: 0f246ada6ad95e5c33f3783240ede351
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering sessions/new
+
+
+ActionView::TemplateError (undefined local variable or method `sessions_path' for #<#<Class:0x36681d8>:0x36681b0>) on line #1 of app/views/sessions/new.rhtml:
+1: <% form_tag sessions_path do -%>
+2: <p><label for="login">Login</label><br/>
+3: <%= text_field_tag 'login' %></p>
+4: 
+
+    #{RAILS_ROOT}/app/views/sessions/new.rhtml:1:in `_run_rhtml_47app47views47sessions47new46rhtml'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_view/base.rb:326:in `send'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_view/base.rb:326:in `compile_and_render_template'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_view/base.rb:301:in `render_template'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_view/base.rb:260:in `render_file'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/base.rb:806:in `render_file'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/base.rb:711:in `render_with_no_layout'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/layout.rb:256:in `render_without_benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/local/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/base.rb:1096:in `perform_action_without_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:632:in `call_filter'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:638:in `call_filter'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:438:in `call'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:637:in `call_filter'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/local/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/rescue.rb:83:in `perform_action'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/base.rb:430:in `send'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/base.rb:430:in `process_without_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/session_management.rb:114:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/base.rb:330:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/dispatcher.rb:41:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:78:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:76:in `synchronize'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:76:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:618:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:617:in `each'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:617:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `initialize'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `new'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `initialize'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `new'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:271:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:270:in `each'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:270:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:127:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/command.rb:211:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:243
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:342:in `new_constants_in'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/commands/servers/mongrel.rb:60
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:495:in `require'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:342:in `new_constants_in'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:495:in `require'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/commands/server.rb:39
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    script/server:3
+
+
+Rendering /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2007-05-22 22:48:11) [GET]
+  Session ID: 0f246ada6ad95e5c33f3783240ede351
+  Parameters: {"action"=>"index", "controller"=>"session"}
+
+
+NameError (uninitialized constant SessionController):
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:266:in `load_missing_constant'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:452:in `const_missing'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:464:in `const_missing'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/inflector.rb:250:in `constantize'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/core_ext/string/inflections.rb:148:in `constantize'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/routing.rb:1284:in `recognize'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/dispatcher.rb:40:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:78:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:76:in `synchronize'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:76:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:618:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:617:in `each'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:617:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `initialize'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `new'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `initialize'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `new'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:271:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:270:in `each'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:270:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:127:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/command.rb:211:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:243
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:342:in `new_constants_in'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/commands/servers/mongrel.rb:60
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:495:in `require'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:342:in `new_constants_in'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:495:in `require'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/commands/server.rb:39
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    ./script/server:3
+
+
+Rendering /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 22:52:02) [GET]
+  Session ID: 0f246ada6ad95e5c33f3783240ede351
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering sessions/new
+
+
+ActionView::TemplateError (undefined local variable or method `sessions_path' for #<#<Class:0x341a19c>:0x341a174>) on line #1 of app/views/sessions/new.rhtml:
+1: <% form_tag sessions_path do -%>
+2: <p><label for="login">Login</label><br/>
+3: <%= text_field_tag 'login' %></p>
+4: 
+
+    #{RAILS_ROOT}/app/views/sessions/new.rhtml:1:in `_run_rhtml_47app47views47sessions47new46rhtml'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_view/base.rb:326:in `send'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_view/base.rb:326:in `compile_and_render_template'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_view/base.rb:301:in `render_template'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_view/base.rb:260:in `render_file'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/base.rb:806:in `render_file'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/base.rb:711:in `render_with_no_layout'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/layout.rb:256:in `render_without_benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/local/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/base.rb:1096:in `perform_action_without_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:632:in `call_filter'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:638:in `call_filter'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:438:in `call'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:637:in `call_filter'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/local/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/rescue.rb:83:in `perform_action'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/base.rb:430:in `send'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/base.rb:430:in `process_without_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/session_management.rb:114:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/base.rb:330:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/dispatcher.rb:41:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:78:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:76:in `synchronize'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:76:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:618:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:617:in `each'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:617:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `initialize'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `new'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `initialize'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `new'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:271:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:270:in `each'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:270:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:127:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/command.rb:211:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:243
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:342:in `new_constants_in'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/commands/servers/mongrel.rb:60
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:495:in `require'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:342:in `new_constants_in'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:495:in `require'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/commands/server.rb:39
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    script/server:3
+
+
+Rendering /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 22:52:03) [GET]
+  Session ID: 0f246ada6ad95e5c33f3783240ede351
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering sessions/new
+
+
+ActionView::TemplateError (undefined local variable or method `sessions_path' for #<#<Class:0x3773bf4>:0x3773bcc>) on line #1 of app/views/sessions/new.rhtml:
+1: <% form_tag sessions_path do -%>
+2: <p><label for="login">Login</label><br/>
+3: <%= text_field_tag 'login' %></p>
+4: 
+
+    #{RAILS_ROOT}/app/views/sessions/new.rhtml:1:in `_run_rhtml_47app47views47sessions47new46rhtml'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_view/base.rb:326:in `send'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_view/base.rb:326:in `compile_and_render_template'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_view/base.rb:301:in `render_template'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_view/base.rb:260:in `render_file'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/base.rb:806:in `render_file'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/base.rb:711:in `render_with_no_layout'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/layout.rb:256:in `render_without_benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/local/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/base.rb:1096:in `perform_action_without_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:632:in `call_filter'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:638:in `call_filter'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:438:in `call'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:637:in `call_filter'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/local/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/rescue.rb:83:in `perform_action'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/base.rb:430:in `send'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/base.rb:430:in `process_without_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/session_management.rb:114:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/base.rb:330:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/dispatcher.rb:41:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:78:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:76:in `synchronize'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:76:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:618:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:617:in `each'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:617:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `initialize'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `new'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `initialize'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `new'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:271:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:270:in `each'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:270:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:127:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/command.rb:211:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:243
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:342:in `new_constants_in'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/commands/servers/mongrel.rb:60
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:495:in `require'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:342:in `new_constants_in'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:495:in `require'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/commands/server.rb:39
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    script/server:3
+
+
+Rendering /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 22:52:05) [GET]
+  Session ID: 0f246ada6ad95e5c33f3783240ede351
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering sessions/new
+
+
+ActionView::TemplateError (undefined local variable or method `sessions_path' for #<#<Class:0x3748a30>:0x3748990>) on line #1 of app/views/sessions/new.rhtml:
+1: <% form_tag sessions_path do -%>
+2: <p><label for="login">Login</label><br/>
+3: <%= text_field_tag 'login' %></p>
+4: 
+
+    #{RAILS_ROOT}/app/views/sessions/new.rhtml:1:in `_run_rhtml_47app47views47sessions47new46rhtml'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_view/base.rb:326:in `send'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_view/base.rb:326:in `compile_and_render_template'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_view/base.rb:301:in `render_template'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_view/base.rb:260:in `render_file'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/base.rb:806:in `render_file'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/base.rb:711:in `render_with_no_layout'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/layout.rb:256:in `render_without_benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/local/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/base.rb:1096:in `perform_action_without_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:632:in `call_filter'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:638:in `call_filter'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:438:in `call'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:637:in `call_filter'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/local/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/rescue.rb:83:in `perform_action'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/base.rb:430:in `send'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/base.rb:430:in `process_without_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/session_management.rb:114:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/base.rb:330:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/dispatcher.rb:41:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:78:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:76:in `synchronize'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:76:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:618:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:617:in `each'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:617:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `initialize'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `new'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `initialize'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `new'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:271:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:270:in `each'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:270:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:127:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/command.rb:211:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:243
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:342:in `new_constants_in'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/commands/servers/mongrel.rb:60
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:495:in `require'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:342:in `new_constants_in'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:495:in `require'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/commands/server.rb:39
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    script/server:3
+
+
+Rendering /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 22:52:06) [GET]
+  Session ID: 0f246ada6ad95e5c33f3783240ede351
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering sessions/new
+
+
+ActionView::TemplateError (undefined local variable or method `sessions_path' for #<#<Class:0x3719d0c>:0x3719ce4>) on line #1 of app/views/sessions/new.rhtml:
+1: <% form_tag sessions_path do -%>
+2: <p><label for="login">Login</label><br/>
+3: <%= text_field_tag 'login' %></p>
+4: 
+
+    #{RAILS_ROOT}/app/views/sessions/new.rhtml:1:in `_run_rhtml_47app47views47sessions47new46rhtml'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_view/base.rb:326:in `send'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_view/base.rb:326:in `compile_and_render_template'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_view/base.rb:301:in `render_template'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_view/base.rb:260:in `render_file'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/base.rb:806:in `render_file'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/base.rb:711:in `render_with_no_layout'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/layout.rb:256:in `render_without_benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/local/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/base.rb:1096:in `perform_action_without_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:632:in `call_filter'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:638:in `call_filter'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:438:in `call'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:637:in `call_filter'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/local/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/rescue.rb:83:in `perform_action'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/base.rb:430:in `send'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/base.rb:430:in `process_without_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/session_management.rb:114:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/base.rb:330:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/dispatcher.rb:41:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:78:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:76:in `synchronize'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:76:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:618:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:617:in `each'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:617:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `initialize'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `new'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `initialize'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `new'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:271:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:270:in `each'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:270:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:127:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/command.rb:211:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:243
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:342:in `new_constants_in'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/commands/servers/mongrel.rb:60
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:495:in `require'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:342:in `new_constants_in'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:495:in `require'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/commands/server.rb:39
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    script/server:3
+
+
+Rendering /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 22:52:07) [GET]
+  Session ID: 0f246ada6ad95e5c33f3783240ede351
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering sessions/new
+
+
+ActionView::TemplateError (undefined local variable or method `sessions_path' for #<#<Class:0x36e6330>:0x36e6308>) on line #1 of app/views/sessions/new.rhtml:
+1: <% form_tag sessions_path do -%>
+2: <p><label for="login">Login</label><br/>
+3: <%= text_field_tag 'login' %></p>
+4: 
+
+    #{RAILS_ROOT}/app/views/sessions/new.rhtml:1:in `_run_rhtml_47app47views47sessions47new46rhtml'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_view/base.rb:326:in `send'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_view/base.rb:326:in `compile_and_render_template'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_view/base.rb:301:in `render_template'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_view/base.rb:260:in `render_file'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/base.rb:806:in `render_file'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/base.rb:711:in `render_with_no_layout'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/layout.rb:256:in `render_without_benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/local/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/base.rb:1096:in `perform_action_without_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:632:in `call_filter'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:638:in `call_filter'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:438:in `call'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:637:in `call_filter'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/local/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/rescue.rb:83:in `perform_action'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/base.rb:430:in `send'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/base.rb:430:in `process_without_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/session_management.rb:114:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/base.rb:330:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/dispatcher.rb:41:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:78:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:76:in `synchronize'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:76:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:618:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:617:in `each'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:617:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `initialize'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `new'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `initialize'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `new'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:271:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:270:in `each'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:270:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:127:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/command.rb:211:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:243
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:342:in `new_constants_in'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/commands/servers/mongrel.rb:60
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:495:in `require'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:342:in `new_constants_in'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:495:in `require'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/commands/server.rb:39
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    script/server:3
+
+
+Rendering /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:13:28) [GET]
+  Session ID: 0f246ada6ad95e5c33f3783240ede351
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering sessions/new
+Completed in 0.00209 (479 reqs/sec) | Rendering: 0.00109 (52%) | 200 OK [http://localhost/login]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:13:52) [GET]
+  Session ID: 0f246ada6ad95e5c33f3783240ede351
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering sessions/new
+Completed in 0.00197 (506 reqs/sec) | Rendering: 0.00103 (52%) | 200 OK [http://localhost/login]
+
+
+Processing UsersController#new (for 127.0.0.1 at 2007-05-22 23:14:04) [GET]
+  Session ID: 0f246ada6ad95e5c33f3783240ede351
+  Parameters: {"action"=>"new", "controller"=>"users"}
+Rendering users/new
+Completed in 0.00323 (309 reqs/sec) | Rendering: 0.00218 (67%) | 200 OK [http://localhost/signup]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:14:09) [GET]
+  Session ID: 0f246ada6ad95e5c33f3783240ede351
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering sessions/new
+Completed in 0.00269 (372 reqs/sec) | Rendering: 0.00176 (65%) | 200 OK [http://localhost/login]
+
+
+Processing SessionsController#destroy (for 127.0.0.1 at 2007-05-22 23:14:13) [GET]
+  Session ID: 0f246ada6ad95e5c33f3783240ede351
+  Parameters: {"action"=>"destroy", "controller"=>"sessions"}
+Cookie set: auth_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT
+Redirected to http://localhost:3000/
+Completed in 0.00729 (137 reqs/sec) | 302 Found [http://localhost/logout]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:14:17) [GET]
+  Session ID: d73a3cef33433f66429a5871ee80da5a
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering sessions/new
+Completed in 0.00197 (507 reqs/sec) | Rendering: 0.00103 (52%) | 200 OK [http://localhost/login]
+
+
+Processing UsersController#new (for 127.0.0.1 at 2007-05-22 23:14:22) [GET]
+  Session ID: d73a3cef33433f66429a5871ee80da5a
+  Parameters: {"action"=>"new", "controller"=>"users"}
+Rendering users/new
+Completed in 0.00219 (457 reqs/sec) | Rendering: 0.00125 (57%) | 200 OK [http://localhost/signup]
+
+
+Processing UsersController#create (for 127.0.0.1 at 2007-05-22 23:14:32) [POST]
+  Session ID: d73a3cef33433f66429a5871ee80da5a
+  Parameters: {"user"=>{"password_confirmation"=>"password", "login"=>"test", "password"=>"password", "email"=>"will.bailey@gmail.com"}, "commit"=>"Sign up", "action"=>"create", "controller"=>"users"}
+  [4;36;1mSQL (0.000176)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mUser Columns (0.004065)[0m   [0mSHOW FIELDS FROM users[0m
+  [4;36;1mSQL (0.000591)[0m   [0;1mBEGIN[0m
+  [4;35;1mUser Load (0.032961)[0m   [0mSELECT * FROM users WHERE (LOWER(users.login) = 'test') LIMIT 1[0m
+  [4;36;1mUser Load (0.001102)[0m   [0;1mSELECT * FROM users WHERE (LOWER(users.email) = 'will.bailey@gmail.com') LIMIT 1[0m
+  [4;35;1mSQL (0.000378)[0m   [0mINSERT INTO users (`salt`, `activated_at`, `updated_at`, `crypted_password`, `activation_code`, `remember_token_expires_at`, `remember_token`, `first_name`, `last_name`, `login`, `created_at`, `email`) VALUES('0a41711346104cfc1a961a169b1c183289e37b95', NULL, '2007-05-22 23:14:32', 'e0e07e6020219b940fb258b68294a0bfa2d11062', '369d99b207814701512072938de4e4b1fcb4c238', NULL, NULL, NULL, NULL, 'test', '2007-05-22 23:14:32', 'will.bailey@gmail.com')[0m
+  [4;36;1mSQL (0.000762)[0m   [0;1mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed in 0.08395 (11 reqs/sec) | DB: 0.04003 (47%) | 302 Found [http://localhost/users]
+  [4;36;1mSQL (0.000139)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mSQL (0.000000)[0m   [0mMysql::Error: #42S01Table 'schema_info' already exists: CREATE TABLE schema_info (version int(11))[0m
+  [4;36;1mSQL (0.000280)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000204)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mMysql::Error: #42S01Table 'schema_info' already exists: CREATE TABLE schema_info (version int(11))[0m
+  [4;35;1mSQL (0.000291)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000214)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000198)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateUsers (1)
+  [4;36;1mSQL (0.002488)[0m   [0;1mDROP TABLE users[0m
+  [4;35;1mSQL (0.000342)[0m   [0mUPDATE schema_info SET version = 0[0m
+  [4;36;1mSQL (0.000319)[0m   [0;1mSELECT * FROM schema_info[0m
+  [4;35;1mSQL (0.000487)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.000146)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mSQL (0.000000)[0m   [0mMysql::Error: #42S01Table 'schema_info' already exists: CREATE TABLE schema_info (version int(11))[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mMysql::Error: #42S01Table 'schema_info' already exists: CREATE TABLE schema_info (version int(11))[0m
+  [4;35;1mSQL (0.000306)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateUsers (1)
+  [4;36;1mSQL (0.000000)[0m   [0;1mMysql::Error: #42S02Unknown table 'users': DROP TABLE users[0m
+  [4;35;1mSQL (0.038762)[0m   [0mCREATE TABLE users (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `login` varchar(255) DEFAULT NULL, `email` varchar(255) DEFAULT NULL, `crypted_password` varchar(40) DEFAULT NULL, `salt` varchar(40) DEFAULT NULL, `created_at` datetime DEFAULT NULL, `updated_at` datetime DEFAULT NULL, `remember_token` varchar(255) DEFAULT NULL, `remember_token_expires_at` datetime DEFAULT NULL, `activation_code` varchar(40) DEFAULT NULL, `activated_at` datetime DEFAULT NULL) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.000407)[0m   [0;1mUPDATE schema_info SET version = 1[0m
+  [4;35;1mSQL (0.000353)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateAlbums (2)
+  [4;36;1mSQL (0.000000)[0m   [0;1mMysql::Error: #42000You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'date_time DEFAULT NULL) ENGINE=InnoDB' at line 1: CREATE TABLE albums (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `user_id` int(11) DEFAULT NULL, `title` varchar(255) DEFAULT NULL, `description` text DEFAULT NULL, `created_at` datetime DEFAULT NULL, `updated_at` date_time DEFAULT NULL) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.000145)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mSQL (0.000000)[0m   [0mMysql::Error: #42S01Table 'schema_info' already exists: CREATE TABLE schema_info (version int(11))[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mMysql::Error: #42S01Table 'schema_info' already exists: CREATE TABLE schema_info (version int(11))[0m
+  [4;35;1mSQL (0.000296)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000257)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateAlbums (2)
+  [4;35;1mSQL (0.002578)[0m   [0mCREATE TABLE albums (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `user_id` int(11) DEFAULT NULL, `title` varchar(255) DEFAULT NULL, `description` text DEFAULT NULL, `created_at` datetime DEFAULT NULL, `updated_at` datetime DEFAULT NULL) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.000358)[0m   [0;1mUPDATE schema_info SET version = 2[0m
+  [4;35;1mSQL (0.000372)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreatePhotos (3)
+  [4;36;1mSQL (0.111915)[0m   [0;1mCREATE TABLE photos (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `aalbum_id` int(11) DEFAULT NULL, `content_type` varchar(255) DEFAULT NULL, `filename` varchar(255) DEFAULT NULL, `thumbnail` varchar(255) DEFAULT NULL, `size` int(11) DEFAULT NULL, `width` int(11) DEFAULT NULL, `height` int(11) DEFAULT NULL) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.000373)[0m   [0mUPDATE schema_info SET version = 3[0m
+  [4;36;1mSQL (0.000366)[0m   [0;1mSELECT * FROM schema_info[0m
+  [4;35;1mSQL (0.000608)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.002701)[0m   [0;1mSHOW FIELDS FROM albums[0m
+  [4;35;1mSQL (0.001128)[0m   [0mSHOW KEYS FROM albums[0m
+  [4;36;1mSQL (0.002817)[0m   [0;1mSHOW FIELDS FROM photos[0m
+  [4;35;1mSQL (0.001235)[0m   [0mSHOW KEYS FROM photos[0m
+  [4;36;1mSQL (0.003450)[0m   [0;1mSHOW FIELDS FROM users[0m
+  [4;35;1mSQL (0.001207)[0m   [0mSHOW KEYS FROM users[0m
+
+
+Processing AlbumsController#index (for 127.0.0.1 at 2007-05-22 23:32:47) [GET]
+  Session ID: d73a3cef33433f66429a5871ee80da5a
+  Parameters: {"action"=>"index", "controller"=>"albums"}
+  [4;36;1mSQL (0.000176)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mAlbum Load (0.000525)[0m   [0mSELECT * FROM albums [0m
+Rendering content_typetext/htmllayoutfalseactionindex within layouts/albums
+Rendering albums/index
+Completed in 0.03949 (25 reqs/sec) | Rendering: 0.00262 (6%) | DB: 0.00070 (1%) | 200 OK [http://localhost/albums]
+
+
+Processing SessionsController#destroy (for 127.0.0.1 at 2007-05-22 23:32:55) [GET]
+  Session ID: d73a3cef33433f66429a5871ee80da5a
+  Parameters: {"action"=>"destroy", "controller"=>"sessions"}
+  [4;36;1mUser Columns (0.003915)[0m   [0;1mSHOW FIELDS FROM users[0m
+  [4;35;1mUser Load (0.000922)[0m   [0mSELECT * FROM users WHERE (users.`id` = 1) LIMIT 1[0m
+Cookie set: auth_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT
+Redirected to http://localhost:3000/
+Completed in 0.02169 (46 reqs/sec) | DB: 0.00484 (22%) | 302 Found [http://localhost/logout]
+
+
+Processing AlbumsController#index (for 127.0.0.1 at 2007-05-22 23:32:58) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"index", "controller"=>"albums"}
+  [4;36;1mAlbum Load (0.000587)[0m   [0;1mSELECT * FROM albums [0m
+Rendering content_typetext/htmllayoutfalseactionindex within layouts/albums
+Rendering albums/index
+Completed in 0.00617 (162 reqs/sec) | Rendering: 0.00104 (16%) | DB: 0.00059 (9%) | 200 OK [http://localhost/albums]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:33:09) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering sessions/new
+Completed in 0.00278 (359 reqs/sec) | Rendering: 0.00179 (64%) | DB: 0.00000 (0%) | 200 OK [http://localhost/login]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:33:55) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering sessions/new
+Completed in 0.00275 (363 reqs/sec) | Rendering: 0.00176 (64%) | DB: 0.00000 (0%) | 200 OK [http://localhost/login]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:34:42) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x35b7d10 @filter=:login_required>] returned false.
+Completed in 0.00121 (828 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/login]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:34:42) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x34526c8 @filter=:login_required>] returned false.
+Completed in 0.00136 (737 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:34:42) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x364f5ac @filter=:login_required>] returned false.
+Completed in 0.00124 (807 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:34:42) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x34bf278 @filter=:login_required>] returned false.
+Completed in 0.00162 (616 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:34:42) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x377a094 @filter=:login_required>] returned false.
+Completed in 0.00122 (816 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:34:43) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x35de6b8 @filter=:login_required>] returned false.
+Completed in 0.00120 (829 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:34:43) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x34897b8 @filter=:login_required>] returned false.
+Completed in 0.00122 (822 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:34:43) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x36cd894 @filter=:login_required>] returned false.
+Completed in 0.00152 (657 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:34:43) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x356e908 @filter=:login_required>] returned false.
+Completed in 0.00120 (832 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:34:43) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x33ee4e8 @filter=:login_required>] returned false.
+Completed in 0.00139 (721 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:34:44) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x362c854 @filter=:login_required>] returned false.
+Completed in 0.00124 (807 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:34:44) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x34be0a8 @filter=:login_required>] returned false.
+Completed in 0.00130 (770 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:34:44) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x3757170 @filter=:login_required>] returned false.
+Completed in 0.00134 (747 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:34:44) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x35b65b4 @filter=:login_required>] returned false.
+Completed in 0.00124 (809 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:34:44) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x345de74 @filter=:login_required>] returned false.
+Completed in 0.00122 (818 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:34:44) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x3660578 @filter=:login_required>] returned false.
+Completed in 0.00129 (773 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:34:45) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x34df6a4 @filter=:login_required>] returned false.
+Completed in 0.00123 (815 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:34:45) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x3389b10 @filter=:login_required>] returned false.
+Completed in 0.00135 (739 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:34:45) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x35fefe4 @filter=:login_required>] returned false.
+Completed in 0.00136 (735 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:34:45) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x34a14f8 @filter=:login_required>] returned false.
+Completed in 0.00121 (825 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:34:46) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x3700c80 @filter=:login_required>] returned false.
+Completed in 0.00128 (780 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:34:52) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x3580c0c @filter=:login_required>] returned false.
+Completed in 0.00126 (795 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/login]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:34:52) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x33f7c78 @filter=:login_required>] returned false.
+Completed in 0.00144 (692 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:34:52) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x362ac48 @filter=:login_required>] returned false.
+Completed in 0.00125 (801 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:34:52) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x34b1e0c @filter=:login_required>] returned false.
+Completed in 0.00124 (806 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:34:53) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x37514a0 @filter=:login_required>] returned false.
+Completed in 0.00134 (746 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:34:53) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x35b32ec @filter=:login_required>] returned false.
+Completed in 0.00128 (781 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:34:53) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x3459374 @filter=:login_required>] returned false.
+Completed in 0.00125 (801 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:34:53) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x365dc38 @filter=:login_required>] returned false.
+Completed in 0.00129 (777 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:34:53) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x34dab2c @filter=:login_required>] returned false.
+Completed in 0.00584 (171 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:34:54) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x3386974 @filter=:login_required>] returned false.
+Completed in 0.00133 (754 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:34:54) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x35fcac8 @filter=:login_required>] returned false.
+Completed in 0.00127 (790 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:34:54) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x349e460 @filter=:login_required>] returned false.
+Completed in 0.00124 (805 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:34:54) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x36edf7c @filter=:login_required>] returned false.
+Completed in 0.00130 (767 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:34:54) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x357c8c8 @filter=:login_required>] returned false.
+Completed in 0.00133 (749 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:34:55) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x33fe848 @filter=:login_required>] returned false.
+Completed in 0.00141 (711 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:34:55) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x3633fc8 @filter=:login_required>] returned false.
+Completed in 0.00129 (777 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:34:55) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x34bf0c0 @filter=:login_required>] returned false.
+Completed in 0.00125 (799 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:34:55) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x3767de0 @filter=:login_required>] returned false.
+Completed in 0.00137 (727 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:34:56) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x35c9560 @filter=:login_required>] returned false.
+Completed in 0.00169 (591 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:34:56) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x3471078 @filter=:login_required>] returned false.
+Completed in 0.00162 (616 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:34:56) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x366fa28 @filter=:login_required>] returned false.
+Completed in 0.00129 (773 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/sessions/new]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:35:05) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering sessions/new
+Completed in 0.00203 (493 reqs/sec) | Rendering: 0.00105 (51%) | DB: 0.00000 (0%) | 200 OK [http://localhost/login]
+
+
+Processing SessionsController#create (for 127.0.0.1 at 2007-05-22 23:35:07) [POST]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"commit"=>"Log in", "action"=>"create", "controller"=>"sessions", "login"=>"will", "password"=>""}
+  [4;35;1mUser Load (0.000887)[0m   [0mSELECT * FROM users WHERE (login = 'will' and activated_at IS NOT NULL) LIMIT 1[0m
+Rendering sessions/new
+Completed in 0.00959 (104 reqs/sec) | Rendering: 0.00119 (12%) | DB: 0.00089 (9%) | 200 OK [http://localhost/sessions]
+
+
+Processing SessionsController#create (for 127.0.0.1 at 2007-05-22 23:35:09) [POST]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"commit"=>"Log in", "action"=>"create", "controller"=>"sessions", "login"=>"will", "password"=>""}
+  [4;36;1mUser Load (0.000889)[0m   [0;1mSELECT * FROM users WHERE (login = 'will' and activated_at IS NOT NULL) LIMIT 1[0m
+Rendering sessions/new
+Completed in 0.00963 (103 reqs/sec) | Rendering: 0.00113 (11%) | DB: 0.00089 (9%) | 200 OK [http://localhost/sessions]
+
+
+Processing SessionsController#create (for 127.0.0.1 at 2007-05-22 23:35:09) [POST]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"commit"=>"Log in", "action"=>"create", "controller"=>"sessions", "login"=>"will", "password"=>""}
+  [4;35;1mUser Load (0.001005)[0m   [0mSELECT * FROM users WHERE (login = 'will' and activated_at IS NOT NULL) LIMIT 1[0m
+Rendering sessions/new
+Completed in 0.10050 (9 reqs/sec) | Rendering: 0.00153 (1%) | DB: 0.00100 (0%) | 200 OK [http://localhost/sessions]
+
+
+Processing SessionsController#create (for 127.0.0.1 at 2007-05-22 23:35:12) [POST]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"commit"=>"Log in", "action"=>"create", "controller"=>"sessions", "login"=>"will", "password"=>"d"}
+  [4;36;1mUser Load (0.000845)[0m   [0;1mSELECT * FROM users WHERE (login = 'will' and activated_at IS NOT NULL) LIMIT 1[0m
+Rendering sessions/new
+Completed in 0.00939 (106 reqs/sec) | Rendering: 0.00113 (12%) | DB: 0.00084 (9%) | 200 OK [http://localhost/sessions]
+
+
+Processing AlbumsController#index (for 127.0.0.1 at 2007-05-22 23:35:22) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"index", "controller"=>"albums"}
+  [4;35;1mAlbum Load (0.000615)[0m   [0mSELECT * FROM albums [0m
+Rendering content_typetext/htmllayoutfalseactionindex within layouts/albums
+Rendering albums/index
+Completed in 0.00645 (155 reqs/sec) | Rendering: 0.00105 (16%) | DB: 0.00062 (9%) | 200 OK [http://localhost/albums]
+
+
+Processing AlbumsController#new (for 127.0.0.1 at 2007-05-22 23:35:24) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"albums"}
+  [4;36;1mAlbum Columns (0.002644)[0m   [0;1mSHOW FIELDS FROM albums[0m
+Rendering  within layouts/albums
+Rendering albums/new
+Completed in 0.01023 (97 reqs/sec) | Rendering: 0.00248 (24%) | DB: 0.00264 (25%) | 200 OK [http://localhost/albums/new]
+
+
+Processing AlbumsController#create (for 127.0.0.1 at 2007-05-22 23:35:26) [POST]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"commit"=>"Create", "action"=>"create", "controller"=>"albums"}
+  [4;35;1mAlbum Columns (0.002658)[0m   [0mSHOW FIELDS FROM albums[0m
+  [4;36;1mSQL (0.000581)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.000362)[0m   [0mINSERT INTO albums (`updated_at`, `title`, `description`, `user_id`, `created_at`) VALUES('2007-05-22 23:35:26', NULL, NULL, NULL, '2007-05-22 23:35:26')[0m
+  [4;36;1mSQL (0.000732)[0m   [0;1mCOMMIT[0m
+Redirected to http://localhost:3000/albums/1
+Completed in 0.01322 (75 reqs/sec) | DB: 0.00433 (32%) | 302 Found [http://localhost/albums]
+
+
+Processing AlbumsController#show (for 127.0.0.1 at 2007-05-22 23:35:26) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"albums"}
+  [4;35;1mAlbum Columns (0.002663)[0m   [0mSHOW FIELDS FROM albums[0m
+  [4;36;1mAlbum Load (0.001763)[0m   [0;1mSELECT * FROM albums WHERE (albums.`id` = 1) [0m
+Rendering content_typetext/htmllayoutfalseactionshow within layouts/albums
+Rendering albums/show
+Completed in 0.01227 (81 reqs/sec) | Rendering: 0.00231 (18%) | DB: 0.00443 (36%) | 200 OK [http://localhost/albums/1]
+
+
+Processing AlbumsController#index (for 127.0.0.1 at 2007-05-22 23:35:29) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"index", "controller"=>"albums"}
+  [4;35;1mAlbum Load (0.000711)[0m   [0mSELECT * FROM albums [0m
+Rendering content_typetext/htmllayoutfalseactionindex within layouts/albums
+Rendering albums/index
+  [4;36;1mAlbum Columns (0.002563)[0m   [0;1mSHOW FIELDS FROM albums[0m
+Completed in 0.01061 (94 reqs/sec) | Rendering: 0.00246 (23%) | DB: 0.00327 (30%) | 200 OK [http://localhost/albums]
+
+
+Processing AlbumsController#edit (for 127.0.0.1 at 2007-05-22 23:35:31) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"edit", "id"=>"1", "controller"=>"albums"}
+  [4;35;1mAlbum Columns (0.003351)[0m   [0mSHOW FIELDS FROM albums[0m
+  [4;36;1mAlbum Load (0.001424)[0m   [0;1mSELECT * FROM albums WHERE (albums.`id` = 1) [0m
+Rendering  within layouts/albums
+Rendering albums/edit
+Completed in 0.01299 (77 reqs/sec) | Rendering: 0.00324 (24%) | DB: 0.00478 (36%) | 200 OK [http://localhost/albums/1;edit]
+
+
+Processing AlbumsController#update (for 127.0.0.1 at 2007-05-22 23:35:32) [PUT]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"commit"=>"Update", "_method"=>"put", "action"=>"update", "id"=>"1", "controller"=>"albums"}
+  [4;35;1mAlbum Columns (0.002290)[0m   [0mSHOW FIELDS FROM albums[0m
+  [4;36;1mAlbum Load (0.002142)[0m   [0;1mSELECT * FROM albums WHERE (albums.`id` = 1) [0m
+  [4;35;1mSQL (0.000222)[0m   [0mBEGIN[0m
+  [4;36;1mAlbum Update (0.000427)[0m   [0;1mUPDATE albums SET `created_at` = '2007-05-22 23:35:26', `title` = NULL, `user_id` = NULL, `description` = NULL, `updated_at` = '2007-05-22 23:35:32' WHERE `id` = 1[0m
+  [4;35;1mSQL (0.000817)[0m   [0mCOMMIT[0m
+Redirected to http://localhost:3000/albums/1
+Completed in 0.01538 (65 reqs/sec) | DB: 0.00590 (38%) | 302 Found [http://localhost/albums/1]
+
+
+Processing AlbumsController#show (for 127.0.0.1 at 2007-05-22 23:35:32) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"albums"}
+  [4;36;1mAlbum Columns (0.002794)[0m   [0;1mSHOW FIELDS FROM albums[0m
+  [4;35;1mAlbum Load (0.000697)[0m   [0mSELECT * FROM albums WHERE (albums.`id` = 1) [0m
+Rendering content_typetext/htmllayoutfalseactionshow within layouts/albums
+Rendering albums/show
+Completed in 0.01075 (93 reqs/sec) | Rendering: 0.00180 (16%) | DB: 0.00349 (32%) | 200 OK [http://localhost/albums/1]
+
+
+Processing AlbumsController#index (for 127.0.0.1 at 2007-05-22 23:35:33) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"index", "controller"=>"albums"}
+  [4;36;1mAlbum Load (0.000628)[0m   [0;1mSELECT * FROM albums [0m
+Rendering content_typetext/htmllayoutfalseactionindex within layouts/albums
+Rendering albums/index
+  [4;35;1mAlbum Columns (0.002231)[0m   [0mSHOW FIELDS FROM albums[0m
+Completed in 0.00992 (100 reqs/sec) | Rendering: 0.00236 (23%) | DB: 0.00286 (28%) | 200 OK [http://localhost/albums]
+
+
+Processing AlbumsController#index (for 127.0.0.1 at 2007-05-22 23:35:36) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"format"=>"xml", "action"=>"index", "controller"=>"albums"}
+  [4;36;1mAlbum Load (0.000656)[0m   [0;1mSELECT * FROM albums [0m
+  [4;35;1mAlbum Columns (0.002649)[0m   [0mSHOW FIELDS FROM albums[0m
+Completed in 0.01065 (93 reqs/sec) | Rendering: 0.00010 (0%) | DB: 0.00330 (31%) | 200 OK [http://localhost/albums.xml]
+
+
+Processing AlbumsController#index (for 127.0.0.1 at 2007-05-22 23:35:49) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"format"=>"js", "action"=>"index", "controller"=>"albums"}
+  [4;36;1mAlbum Load (0.000665)[0m   [0;1mSELECT * FROM albums [0m
+Completed in 0.00539 (185 reqs/sec) | Rendering: 0.00005 (0%) | DB: 0.00067 (12%) | 406 Not Acceptable [http://localhost/albums.js]
+
+
+Processing AlbumsController#index (for 127.0.0.1 at 2007-05-22 23:40:44) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"index", "controller"=>"albums"}
+  [4;35;1mAlbum Load (0.000642)[0m   [0mSELECT * FROM albums [0m
+Rendering content_typetext/htmllayoutfalseactionindex within layouts/albums
+Rendering albums/index
+  [4;36;1mAlbum Columns (0.003235)[0m   [0;1mSHOW FIELDS FROM albums[0m
+Completed in 0.01136 (88 reqs/sec) | Rendering: 0.00279 (24%) | DB: 0.00388 (34%) | 200 OK [http://localhost/albums]
+
+
+Processing AlbumsController#edit (for 127.0.0.1 at 2007-05-22 23:40:46) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"edit", "id"=>"1", "controller"=>"albums"}
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as [#<ActionController::Filters::ClassMethods::SymbolFilter:0x338b76c @filter=:login_required>] returned false.
+Completed in 0.00158 (632 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://localhost/albums/1;edit]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:40:46) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering sessions/new
+Completed in 0.00206 (486 reqs/sec) | Rendering: 0.00107 (51%) | DB: 0.00000 (0%) | 200 OK [http://localhost/sessions/new]
+
+
+Processing SessionsController#create (for 127.0.0.1 at 2007-05-22 23:40:50) [POST]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"commit"=>"Log in", "action"=>"create", "controller"=>"sessions", "login"=>"will", "password"=>"dr1chmond"}
+  [4;35;1mUser Load (0.000846)[0m   [0mSELECT * FROM users WHERE (login = 'will' and activated_at IS NOT NULL) LIMIT 1[0m
+Rendering sessions/new
+Completed in 0.00920 (108 reqs/sec) | Rendering: 0.00112 (12%) | DB: 0.00085 (9%) | 200 OK [http://localhost/sessions]
+./script/../config/../config/routes.rb:20: syntax error, unexpected kDO_BLOCK
+  map.resources :albums, do |albums|
+                           ^
+./script/../config/../config/routes.rb:21: syntax error, unexpected tSYMBEG, expecting kEND
+    albums.photos :photos
+                   ^
+./script/../config/../config/routes.rb:37: syntax error, unexpected kEND, expecting $end
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:342:in `new_constants_in'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/routing.rb:1165:in `load_routes!'
+/usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/routing.rb:1157:in `reload'
+/usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/dispatcher.rb:105:in `prepare_application'
+/usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/dispatcher.rb:39:in `dispatch'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:78:in `process'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:76:in `synchronize'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:76:in `process'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:618:in `process_client'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:617:in `each'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:617:in `process_client'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `initialize'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `new'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `initialize'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `new'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:271:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:270:in `each'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:270:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:127:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/command.rb:211:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:243
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:342:in `new_constants_in'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/commands/servers/mongrel.rb:60
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:495:in `require'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:342:in `new_constants_in'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:495:in `require'
+/usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/commands/server.rb:39
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+./script/server:3
+./script/../config/../config/routes.rb:20: syntax error, unexpected kDO_BLOCK
+  map.resources :albums, do |albums|
+                           ^
+./script/../config/../config/routes.rb:21: syntax error, unexpected tSYMBEG, expecting kEND
+    albums.photos :photos
+                   ^
+./script/../config/../config/routes.rb:37: syntax error, unexpected kEND, expecting $end
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:342:in `new_constants_in'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/routing.rb:1165:in `load_routes!'
+/usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/routing.rb:1157:in `reload'
+/usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/dispatcher.rb:105:in `prepare_application'
+/usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/dispatcher.rb:39:in `dispatch'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:78:in `process'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:76:in `synchronize'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:76:in `process'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:618:in `process_client'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:617:in `each'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:617:in `process_client'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `initialize'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `new'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `initialize'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `new'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:271:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:270:in `each'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:270:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:127:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/command.rb:211:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:243
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:342:in `new_constants_in'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/commands/servers/mongrel.rb:60
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:495:in `require'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:342:in `new_constants_in'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:495:in `require'
+/usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/commands/server.rb:39
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+./script/server:3
+./script/../config/../config/routes.rb:20: syntax error, unexpected kDO_BLOCK
+  map.resources :albums, do |albums|
+                           ^
+./script/../config/../config/routes.rb:21: syntax error, unexpected tSYMBEG, expecting kEND
+    albums.photos :photos
+                   ^
+./script/../config/../config/routes.rb:37: syntax error, unexpected kEND, expecting $end
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:342:in `new_constants_in'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/routing.rb:1165:in `load_routes!'
+/usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/routing.rb:1157:in `reload'
+/usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/dispatcher.rb:105:in `prepare_application'
+/usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/dispatcher.rb:39:in `dispatch'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:78:in `process'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:76:in `synchronize'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:76:in `process'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:618:in `process_client'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:617:in `each'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:617:in `process_client'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `initialize'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `new'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `initialize'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `new'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:271:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:270:in `each'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:270:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:127:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/command.rb:211:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:243
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:342:in `new_constants_in'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/commands/servers/mongrel.rb:60
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:495:in `require'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:342:in `new_constants_in'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:495:in `require'
+/usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/commands/server.rb:39
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+./script/server:3
+./script/../config/../config/routes.rb:20: syntax error, unexpected kDO_BLOCK
+  map.resources :albums, do |albums|
+                           ^
+./script/../config/../config/routes.rb:21: syntax error, unexpected tSYMBEG, expecting kEND
+    albums.photos :photos
+                   ^
+./script/../config/../config/routes.rb:37: syntax error, unexpected kEND, expecting $end
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:342:in `new_constants_in'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/routing.rb:1165:in `load_routes!'
+/usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/routing.rb:1157:in `reload'
+/usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/dispatcher.rb:105:in `prepare_application'
+/usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/dispatcher.rb:39:in `dispatch'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:78:in `process'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:76:in `synchronize'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:76:in `process'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:618:in `process_client'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:617:in `each'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:617:in `process_client'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `initialize'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `new'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `initialize'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `new'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:271:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:270:in `each'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:270:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:127:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/command.rb:211:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:243
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:342:in `new_constants_in'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/commands/servers/mongrel.rb:60
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:495:in `require'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:342:in `new_constants_in'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:495:in `require'
+/usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/commands/server.rb:39
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+./script/server:3
+./script/../config/../config/routes.rb:20: syntax error, unexpected kDO_BLOCK
+  map.resources :albums, do |albums|
+                           ^
+./script/../config/../config/routes.rb:21: syntax error, unexpected tSYMBEG, expecting kEND
+    albums.photos :photos
+                   ^
+./script/../config/../config/routes.rb:37: syntax error, unexpected kEND, expecting $end
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:342:in `new_constants_in'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/routing.rb:1165:in `load_routes!'
+/usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/routing.rb:1157:in `reload'
+/usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/dispatcher.rb:105:in `prepare_application'
+/usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/dispatcher.rb:39:in `dispatch'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:78:in `process'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:76:in `synchronize'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:76:in `process'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:618:in `process_client'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:617:in `each'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:617:in `process_client'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `initialize'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `new'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `initialize'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `new'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:271:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:270:in `each'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:270:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:127:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/command.rb:211:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:243
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:342:in `new_constants_in'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/commands/servers/mongrel.rb:60
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:495:in `require'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:342:in `new_constants_in'
+/usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:495:in `require'
+/usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/commands/server.rb:39
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+./script/server:3
+
+
+Processing InfoController#properties (for 127.0.0.1 at 2007-05-22 23:49:34) [GET]
+  Session ID: e24231e6ac5561b7b9f35150954a5c93
+  Parameters: {"action"=>"properties", "controller"=>"rails/info"}
+  [4;36;1mSQL (0.000322)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mSQL (0.000365)[0m   [0mSELECT version FROM schema_info[0m
+Completed in 0.43782 (2 reqs/sec) | Rendering: 0.00088 (0%) | DB: 0.00069 (0%) | 200 OK [http://localhost/rails/info/properties]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2007-05-22 23:49:48) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering sessions/new
+Completed in 0.00272 (367 reqs/sec) | Rendering: 0.00178 (65%) | DB: 0.00000 (0%) | 200 OK [http://localhost/login]
+
+
+Processing UsersController#new (for 127.0.0.1 at 2007-05-22 23:49:52) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"new", "controller"=>"users"}
+Rendering users/new
+Completed in 0.00304 (328 reqs/sec) | Rendering: 0.00204 (67%) | DB: 0.00000 (0%) | 200 OK [http://localhost/signup]
+
+
+Processing UsersController#create (for 127.0.0.1 at 2007-05-22 23:50:03) [POST]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"user"=>{"password_confirmation"=>"r1chmond", "login"=>"will.bailey", "password"=>"r1chmond", "email"=>"will.bailey@gmail.com"}, "commit"=>"Sign up", "action"=>"create", "controller"=>"users"}
+  [4;36;1mUser Columns (0.003841)[0m   [0;1mSHOW FIELDS FROM users[0m
+  [4;35;1mSQL (0.000366)[0m   [0mBEGIN[0m
+  [4;36;1mUser Load (0.000911)[0m   [0;1mSELECT * FROM users WHERE (LOWER(users.login) = 'will.bailey') LIMIT 1[0m
+  [4;35;1mUser Load (0.000822)[0m   [0mSELECT * FROM users WHERE (LOWER(users.email) = 'will.bailey@gmail.com') LIMIT 1[0m
+  [4;36;1mSQL (0.000356)[0m   [0;1mINSERT INTO users (`salt`, `activated_at`, `updated_at`, `crypted_password`, `activation_code`, `remember_token_expires_at`, `remember_token`, `login`, `created_at`, `email`) VALUES('843bc61573d58db207a1704308d14f8d2310b084', NULL, '2007-05-22 23:50:03', 'd2a2766cab11dea03b994c7d2d01d6b3f0164a33', '67169f7d754e47a9bd3c1b9832396ac4cec6d96e', NULL, NULL, 'will.bailey', '2007-05-22 23:50:03', 'will.bailey@gmail.com')[0m
+  [4;35;1mSQL (0.000764)[0m   [0mCOMMIT[0m
+Redirected to http://localhost:3000/albums/1;edit
+Completed in 0.02082 (48 reqs/sec) | DB: 0.00706 (33%) | 302 Found [http://localhost/users]
+
+
+Processing AlbumsController#edit (for 127.0.0.1 at 2007-05-22 23:50:03) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"action"=>"edit", "id"=>"1", "controller"=>"albums"}
+  [4;36;1mUser Columns (0.002732)[0m   [0;1mSHOW FIELDS FROM users[0m
+  [4;35;1mUser Load (0.001947)[0m   [0mSELECT * FROM users WHERE (users.`id` = 1) LIMIT 1[0m
+  [4;36;1mAlbum Columns (0.002636)[0m   [0;1mSHOW FIELDS FROM albums[0m
+  [4;35;1mAlbum Load (0.000705)[0m   [0mSELECT * FROM albums WHERE (albums.`id` = 1) [0m
+Rendering  within layouts/albums
+Rendering albums/edit
+Completed in 0.02885 (34 reqs/sec) | Rendering: 0.00411 (14%) | DB: 0.00802 (27%) | 200 OK [http://localhost/albums/1;edit]
+
+
+Processing PhotosController#index (for 127.0.0.1 at 2007-05-22 23:50:10) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"album_id"=>"1", "action"=>"index", "controller"=>"photos"}
+  [4;36;1mPhoto Load (0.000698)[0m   [0;1mSELECT * FROM photos [0m
+Rendering content_typetext/htmllayoutfalseactionindex within layouts/photos
+Rendering photos/index
+Completed in 0.00844 (118 reqs/sec) | Rendering: 0.00264 (31%) | DB: 0.00070 (8%) | 200 OK [http://localhost/albums/1/photos]
+
+
+Processing PhotosController#new (for 127.0.0.1 at 2007-05-22 23:50:13) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"album_id"=>"1", "action"=>"new", "controller"=>"photos"}
+  [4;35;1mUser Columns (0.003821)[0m   [0mSHOW FIELDS FROM users[0m
+  [4;36;1mUser Load (0.001394)[0m   [0;1mSELECT * FROM users WHERE (users.`id` = 1) LIMIT 1[0m
+  [4;35;1mPhoto Columns (0.002610)[0m   [0mSHOW FIELDS FROM photos[0m
+Rendering  within layouts/photos
+Rendering photos/new
+Completed in 0.02532 (39 reqs/sec) | Rendering: 0.00239 (9%) | DB: 0.00782 (30%) | 200 OK [http://localhost/albums/1/photos/new]
+
+
+Processing PhotosController#create (for 127.0.0.1 at 2007-05-22 23:50:14) [POST]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"commit"=>"Create", "album_id"=>"1", "action"=>"create", "controller"=>"photos"}
+  [4;36;1mUser Columns (0.003241)[0m   [0;1mSHOW FIELDS FROM users[0m
+  [4;35;1mUser Load (0.001851)[0m   [0mSELECT * FROM users WHERE (users.`id` = 1) LIMIT 1[0m
+  [4;36;1mPhoto Columns (0.002961)[0m   [0;1mSHOW FIELDS FROM photos[0m
+  [4;35;1mSQL (0.000164)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.000325)[0m   [0;1mINSERT INTO photos (`content_type`, `size`, `thumbnail`, `aalbum_id`, `filename`, `height`, `width`) VALUES(NULL, NULL, NULL, NULL, NULL, NULL, NULL)[0m
+  [4;35;1mSQL (0.000855)[0m   [0mCOMMIT[0m
+
+
+ActionController::RoutingError (photo_url failed to generate from {:controller=>"photos", :action=>"show", :album_id=>"1"}, expected: {:controller=>"photos", :action=>"show"}, diff: {:album_id=>"1"}):
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/routing.rb:1273:in `raise_named_route_error'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/routing.rb:1245:in `generate'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/url_rewriter.rb:104:in `rewrite_path'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/url_rewriter.rb:69:in `rewrite'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/base.rb:522:in `url_for'
+    (eval):19:in `photo_url'
+    .//app/controllers/photos_controller.rb:44:in `create'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/mime_responds.rb:135:in `call'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/mime_responds.rb:135:in `custom'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/mime_responds.rb:167:in `call'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/mime_responds.rb:167:in `respond'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/mime_responds.rb:161:in `each'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/mime_responds.rb:161:in `respond'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/mime_responds.rb:105:in `respond_to'
+    .//app/controllers/photos_controller.rb:41:in `create'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/base.rb:1095:in `send'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/base.rb:1095:in `perform_action_without_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:632:in `call_filter'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:638:in `call_filter'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:438:in `call'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:637:in `call_filter'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:638:in `call_filter'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:438:in `call'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:637:in `call_filter'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/local/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/rescue.rb:83:in `perform_action'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/base.rb:430:in `send'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/base.rb:430:in `process_without_filters'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/session_management.rb:114:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/base.rb:330:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/dispatcher.rb:41:in `dispatch'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:78:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:76:in `synchronize'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/rails.rb:76:in `process'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:618:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:617:in `each'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:617:in `process_client'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `initialize'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `new'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:736:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `initialize'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `new'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel.rb:720:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:271:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:270:in `each'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/configurator.rb:270:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:127:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/lib/mongrel/command.rb:211:in `run'
+    /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.0.1/bin/mongrel_rails:243
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:342:in `new_constants_in'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:488:in `load'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/commands/servers/mongrel.rb:60
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:495:in `require'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:342:in `new_constants_in'
+    /usr/local/lib/ruby/gems/1.8/gems/activesupport-1.4.2/lib/active_support/dependencies.rb:495:in `require'
+    /usr/local/lib/ruby/gems/1.8/gems/rails-1.2.3/lib/commands/server.rb:39
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    ./script/server:3
+
+
+Rendering /usr/local/lib/ruby/gems/1.8/gems/actionpack-1.13.3/lib/action_controller/templates/rescues/layout.rhtml (404 Page Not Found)
+
+
+Processing PhotosController#show (for 127.0.0.1 at 2007-05-22 23:50:26) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"album_id"=>"1", "action"=>"show", "id"=>"1", "controller"=>"photos"}
+  [4;36;1mPhoto Columns (0.003511)[0m   [0;1mSHOW FIELDS FROM photos[0m
+  [4;35;1mPhoto Load (0.001704)[0m   [0mSELECT * FROM photos WHERE (photos.`id` = 1) [0m
+Rendering content_typetext/htmllayoutfalseactionshow within layouts/photos
+Rendering photos/show
+Completed in 0.01376 (72 reqs/sec) | Rendering: 0.00244 (17%) | DB: 0.01461 (106%) | 200 OK [http://localhost/albums/1/photos/1]
+
+
+Processing PhotosController#show (for 127.0.0.1 at 2007-05-22 23:50:34) [GET]
+  Session ID: 845e747441c23cf91ff4fd9b4e87ffa8
+  Parameters: {"format"=>"xml", "album_id"=>"1", "action"=>"show", "id"=>"1", "controller"=>"photos"}
+  [4;36;1mPhoto Columns (0.002832)[0m   [0;1mSHOW FIELDS FROM photos[0m
+  [4;35;1mPhoto Load (0.001845)[0m   [0mSELECT * FROM photos WHERE (photos.`id` = 1) [0m
+Completed in 0.01220 (81 reqs/sec) | Rendering: 0.00007 (0%) | DB: 0.00468 (38%) | 200 OK [http://localhost/albums/1/photos/1.xml]
+  [4;36;1mSQL (0.000153)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mSQL (0.000000)[0m   [0mMysql::Error: #42S01Table 'schema_info' already exists: CREATE TABLE schema_info (version int(11))[0m
+  [4;36;1mSQL (0.000296)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000218)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mMysql::Error: #42S01Table 'schema_info' already exists: CREATE TABLE schema_info (version int(11))[0m
+  [4;35;1mSQL (0.000286)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreatePhotos (3)
+  [4;36;1mSQL (0.009831)[0m   [0;1mDROP TABLE photos[0m
+  [4;35;1mSQL (0.000345)[0m   [0mUPDATE schema_info SET version = 2[0m
+  [4;36;1mSQL (0.000319)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreateAlbums (2)
+  [4;35;1mSQL (0.001959)[0m   [0mDROP TABLE albums[0m
+  [4;36;1mSQL (0.000304)[0m   [0;1mUPDATE schema_info SET version = 1[0m
+  [4;35;1mSQL (0.000291)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateUsers (1)
+  [4;36;1mSQL (0.002382)[0m   [0;1mDROP TABLE users[0m
+  [4;35;1mSQL (0.000355)[0m   [0mUPDATE schema_info SET version = 0[0m
+  [4;36;1mSQL (0.000346)[0m   [0;1mSELECT * FROM schema_info[0m
+  [4;35;1mSQL (0.000518)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.000152)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mSQL (0.000000)[0m   [0mMysql::Error: #42S01Table 'schema_info' already exists: CREATE TABLE schema_info (version int(11))[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mMysql::Error: #42S01Table 'schema_info' already exists: CREATE TABLE schema_info (version int(11))[0m
+  [4;35;1mSQL (0.000307)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateUsers (1)
+  [4;36;1mSQL (0.000000)[0m   [0;1mMysql::Error: #42S02Unknown table 'users': DROP TABLE users[0m
+  [4;35;1mSQL (0.002438)[0m   [0mCREATE TABLE users (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `login` varchar(255) DEFAULT NULL, `email` varchar(255) DEFAULT NULL, `crypted_password` varchar(40) DEFAULT NULL, `salt` varchar(40) DEFAULT NULL, `created_at` datetime DEFAULT NULL, `updated_at` datetime DEFAULT NULL, `remember_token` varchar(255) DEFAULT NULL, `remember_token_expires_at` datetime DEFAULT NULL, `activation_code` varchar(40) DEFAULT NULL, `activated_at` datetime DEFAULT NULL) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.000349)[0m   [0;1mUPDATE schema_info SET version = 1[0m
+  [4;35;1mSQL (0.000432)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to CreateAlbums (2)
+  [4;36;1mSQL (0.030762)[0m   [0;1mCREATE TABLE albums (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `user_id` int(11) DEFAULT NULL, `title` varchar(255) DEFAULT NULL, `description` text DEFAULT NULL, `created_at` datetime DEFAULT NULL, `updated_at` datetime DEFAULT NULL) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.000406)[0m   [0mUPDATE schema_info SET version = 2[0m
+  [4;36;1mSQL (0.000392)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to CreatePhotos (3)
+  [4;35;1mSQL (0.002520)[0m   [0mCREATE TABLE photos (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `album_id` int(11) DEFAULT NULL, `content_type` varchar(255) DEFAULT NULL, `filename` varchar(255) DEFAULT NULL, `thumbnail` varchar(255) DEFAULT NULL, `size` int(11) DEFAULT NULL, `width` int(11) DEFAULT NULL, `height` int(11) DEFAULT NULL, `caption` text DEFAULT NULL, `title` varchar(255) DEFAULT NULL, `created_at` varchar(255) DEFAULT NULL) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.000334)[0m   [0;1mUPDATE schema_info SET version = 3[0m
+  [4;35;1mSQL (0.000313)[0m   [0mSELECT * FROM schema_info[0m
+  [4;36;1mSQL (0.000621)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.002866)[0m   [0mSHOW FIELDS FROM albums[0m
+  [4;36;1mSQL (0.001169)[0m   [0;1mSHOW KEYS FROM albums[0m
+  [4;35;1mSQL (0.003010)[0m   [0mSHOW FIELDS FROM photos[0m
+  [4;36;1mSQL (0.001017)[0m   [0;1mSHOW KEYS FROM photos[0m
+  [4;35;1mSQL (0.003177)[0m   [0mSHOW FIELDS FROM users[0m
+  [4;36;1mSQL (0.001258)[0m   [0;1mSHOW KEYS FROM users[0m
