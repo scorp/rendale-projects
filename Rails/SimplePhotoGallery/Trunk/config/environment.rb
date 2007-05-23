@@ -59,4 +59,3 @@ end
 
 # Include your application configuration below
 #config.active_record.observers = :user_observer
-require 'RMagick'
