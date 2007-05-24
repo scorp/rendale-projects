@@ -127,9 +127,9 @@ before_filter :login_required
   def get_file
 	@note_file = current_user.notes.find(params[:id]).note_files.find(params[:file_id])	  
   	if params[:type].nil? 
-	    send_file(RAILS_ROOT + "/files/" + @note_file.systempath + @note_file.filename, :disposition => 'attachment', :type => @note_file.filetype)
+	    send_file(RAILS_ROOT + "/files/" + @note_file.systempath + @note_file.filename, :disposition => 'inline', :type => @note_file.filetype)
 	  else
-	    send_file(RAILS_ROOT + "/files/" + @note_file.systempath + "thumb_" + @note_file.filename, :disposition => 'attachment', :type=>@note_file.filetype)
+	    send_file(RAILS_ROOT + "/files/" + @note_file.systempath + "thumb_" + @note_file.filename, :disposition => 'inline', :type=>@note_file.filetype)
 	  end
   end
 
