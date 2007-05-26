@@ -1,2 +1,4 @@
 
 <%= link_to image_tag(@photo.public_filename(:thumb)), @photo.public_filename %>
+
+<ul><li><%= link_to "Return to Album", edit_album_path(@photo.album)%></li></ul>

@@ -1,8 +1,4 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :photos
-
-  map.resources :albums
-
   # The priority is based upon order of creation: first created -> highest priority.
   
   # Sample of regular route:
@@ -18,20 +14,29 @@ ActionController::Routing::Routes.draw do |map|
   # map.connect '', :controller => "welcome"
   
   map.resources :albums do |albums|
-    albums.resources :photos
+    albums.resources :photos, :name_perfix => "album_", :controller => "album_photos"
+  end
+  
+  map.resources :users, :member=> {:signup => :get} do |users|
+    users.resources :photos, :name_prefix => "user_", :controller => "user_photos"
+    users.resources :albums, :name_prefix => "user_", :controller => "user_albums"
   end
 
-  map.resources :users, :sessions
+  map.resources :sessions
+  
+  map.resources :photos
 
-  map.signup '/signup', :controller => 'users', :action => 'new'
-  map.login '/login', :controller => 'sessions', :action => 'new'
-  map.logout '/logout', :controller => 'sessions', :action=> 'destroy'
+  map.index '/', :controller=>"sessions", :action=>"new"  
+  #map.signup '/signup', :controller => 'users', :action => 'new'
+  # map.login '/login', :controller => 'sessions', :action => 'new'
+  # map.logout '/logout', :controller => 'sessions', :action=> 'destroy'
 
+  
   # Allow downloading Web Service WSDL as a file with an extension
   # instead of a file named 'wsdl'
-  map.connect ':controller/service.wsdl', :action => 'wsdl'
+  #map.connect ':controller/service.wsdl', :action => 'wsdl'
 
   # Install the default route as the lowest priority.
-  map.connect ':controller/:action/:id.:format'
-  map.connect ':controller/:action/:id'
+  #map.connect ':controller/:action/:id.:format'
+  #map.connect ':controller/:action/:id'
 end

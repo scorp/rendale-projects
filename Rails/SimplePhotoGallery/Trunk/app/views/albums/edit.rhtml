@@ -1,12 +1,33 @@
 <h1>Editing album</h1>
 
 <%= error_messages_for :album %>
-
+<%= link_to 'New photo', new_photo_path(@album) %>
 <% form_for(:album, :url => album_path(@album), :html => { :method => :put }) do |f| %>
-  <p>
+  <p>	
+	<p>
+		<label for="album_title">Title</label><br/>
+		<%= f.text_field :title %>
+	</p>
+	<p>
+		<label for="album_description">Description:</label><br/>
+		<%= f.text_area :description %>
+	</p>
+
     <%= submit_tag "Update" %>
   </p>
 <% end %>
+
+<%= link_to 'New photo', new_photo_path(@album) %>
+<ul>
+<% @photos.each do | photo | %>
+	<li class="thumb">
+		<%= link_to image_tag(photo.public_filename(:thumb)), photo.public_filename%>
+		<h4><%=h photo.title %></h4>
+		<h5><%=h photo.caption %></h5>
+		<%= link_to "Delete Photo", photo_path(@album, photo), :confirm => "Whoa there buddy...you sure you wanna do that?", :method => :delete %>
+	</li>
+<% end %>
+</ul>
 
 <%= link_to 'Show', album_path(@album) %> |
 <%= link_to 'Back', albums_path %>

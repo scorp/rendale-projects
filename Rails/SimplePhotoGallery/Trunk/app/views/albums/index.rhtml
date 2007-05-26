@@ -1,18 +1,22 @@
-<h1>Listing albums</h1>
-
-<table>
-  <tr>
-  </tr>
-  
+<ul>
 <% for album in @albums %>
-  <tr>
-    <td><%= link_to 'Show', album_path(album) %></td>
-    <td><%= link_to 'Edit', edit_album_path(album) %></td>
-    <td><%= link_to 'Destroy', album_path(album), :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+<li>
+	<%= link_to album.title, album_path(album) %>
+	<p>
+		<%=h album.description %>
+	</p>
+	<% if current_user == album.user %>
+    	<ul>
+			<li><%= link_to 'Edit', edit_album_path(album) %></li>
+			<li><%= link_to 'Destroy', album_path(album), :confirm => 'Are you sure?', :method => :delete %></li>
+		</ul>
+	<% end %>
+	<% album.photos.each do | photo | %>
+		<li class="thumb"><%=image_tag(photo.public_filename(:thumb))%></li>
+	<% end %>	
+</li>
 <% end %>
-</table>
-
-<br />
-
+</ul>
+<% if !current_user.nil? %>
 <%= link_to 'New album', new_album_path %>
+<% end %>

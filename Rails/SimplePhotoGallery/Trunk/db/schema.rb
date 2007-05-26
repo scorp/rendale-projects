@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 3) do
     t.column "size",         :integer
     t.column "width",        :integer
     t.column "height",       :integer
+    t.column "user_id",      :integer
     t.column "album_id",     :integer
     t.column "title",        :string
     t.column "caption",      :text
