@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-
+  layout "shared"
+  
   # render new.rhtml
   def new
   end

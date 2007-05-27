@@ -24,9 +24,10 @@ YAPA.PageController.prototype = {
 		)
 	},
 	
-	render_upload_success: function(id){
+	render_upload_success: function(id, edit_image){
 		$("loading_" + id).setStyle({display: "none"});
-		$("upload_wrapper_" + id).replace('<div class="upload_result"><div class="upload_success">Photo Upload Success!</div></div>')
+		// $("upload_wrapper_" + id).replace('<div class="upload_result"><div class="upload_success">Photo Upload Success!</div>' + edit_image + '</div>')
+		$("upload_wrapper_" + id).innerHTML = edit_image
 	},
 	
 	render_upload_failure: function(id, message){

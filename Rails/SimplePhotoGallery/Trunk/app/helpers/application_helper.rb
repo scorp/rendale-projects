@@ -1,12 +1,12 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
 
-def set_active_tab(controller, action)
+def set_active_tab(controller)
   "<script>
     try
     {
-      $('#{controller + "_" + action}').addClassName('active');
-      //page_controller.addEffectToQueue(addClass, '#{controller + "_" + action}', 'active');
+      $('#{controller}').addClassName('active');
+      //page_controller.addEffectToQueue(addClass, '#{controller}', 'active');
     }
     catch(e)
     {}
