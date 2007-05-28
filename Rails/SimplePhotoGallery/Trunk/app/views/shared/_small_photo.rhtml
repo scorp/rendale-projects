@@ -1,0 +1,10 @@
+<% if @controller.controller_name == "user_photos" %>
+	<%= link_to image_tag(small_photo.public_filename(:small)), user_photo_path(@user, small_photo) %>
+<% else %>
+	<%= link_to image_tag(small_photo.public_filename(:small)), photo_path(small_photo) %>
+<% end %>
+<h6><%= small_photo.caption.nil? ? small_photo.filename : small_photo.caption %>
+<% if not params[:controller].include?("user") %>
+<div style="padding:0px;margin:2px 0 0 0;color:#777; border:0px">Uploaded By: <%= small_photo.user.login %></div>
+<% end %>
+</h6>

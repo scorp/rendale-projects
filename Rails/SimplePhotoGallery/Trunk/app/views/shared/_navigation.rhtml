@@ -1,0 +1,19 @@
+<div id="top_navigation">
+	<ul class="left">
+		<%if logged_in? %>
+		<li><%= link_to "Photos", user_photos_path(current_user), :id=>"photos" %></li> 
+		<li><%= link_to "Albums", user_albums_path(current_user), :id=>"albums" %></li>
+		<li><%= link_to "People", user_albums_path(current_user), :id=>"albums" %></li>
+		<%else%>
+		<li><%= link_to "Photos", photos_path, :id=>"photos" %></li> 
+		<li><%= link_to "Albums", albums_path, :id=>"albums" %></li>
+		<%end%>
+	</ul>
+	<ul class="right">
+		<%if logged_in? %>
+		<li><%= link_to "Account", edit_user_path(current_user), :id=>"users" %></li>
+		<li><%= link_to "Help", "/help.html" %></li>
+		<%end%>
+	</ul>
+</div>
+<%= set_active_tab(@controller.controller_name) %>

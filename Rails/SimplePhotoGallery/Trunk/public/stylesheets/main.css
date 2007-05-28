@@ -1,0 +1,442 @@
+/*************************************************
+Structure
+**************************************************/
+html, body{
+	font-family:helvetica;
+	padding:0px;
+	margin:0px;
+	font-size:12px;
+	
+}
+
+ul, li{
+	margin:0px; padding:0px;
+}
+
+a{
+	color:#990000;
+}
+
+img{
+	border:0px solid #fff;
+}
+
+label{
+	font-weight:bold;
+}
+
+div#container{
+	width:800px;
+	margin:auto;
+}
+
+div#content{
+	padding:5px;
+	float:left;
+	width:550px;
+	text-align:center;
+}
+
+div#inner_content{
+	text-align:left;
+}
+
+.upload_frame{
+	display:none;
+}
+
+.clear_float:after {
+    content: "."; 
+    display: block; 
+    height: 0; 
+    clear: both; 
+    visibility: hidden;
+}
+
+.clear_float {display: inline-block;}
+
+/* Hides from IE-mac \*/
+* html .clear_float {height: 1%;}
+.clear_float {display: block;}
+/* End hide from IE-mac */
+
+/*************************************************
+Header
+**************************************************/
+#header{
+	color:#990000;
+	padding:10px;
+}
+
+.header_left{
+	float:left;
+	width:40%;
+	text-align:left;
+}
+
+.header_right{
+	float:right;
+	width:40%;
+	text-align:right;
+}
+
+.tagline{
+	font-size:12px;
+	margin:0px;
+}
+
+h1{
+	font-size:36px;
+	margin:0px;
+}
+
+h3{
+	font-size:1.5em;
+}
+
+.logout_link{
+	background:#990000;
+	padding:2px;
+	color:#fff;
+	text-decoration:none;
+}
+
+/*************************************************
+Footer
+**************************************************/
+#footer{
+	background:#ccc;
+	padding:5px;
+	clear:both;
+}
+
+/*************************************************
+Navigation
+**************************************************/
+#top_navigation{
+	background: url(/images/black_fade_50p.gif) repeat-x -15px #000;
+	border-top:#000 solid 1px;
+	color:#fff;
+}
+
+#top_navigation ul, #secondary_nav ul{
+	margin:0px;
+	padding:0px 10px 0px 10px;
+}
+
+#top_navigation li, #secondary_nav li
+{
+	list-style:none;
+	display:inline;
+	margin:0px;
+	padding:0px;
+}
+
+#top_navigation a{
+	color:#fff;
+	text-decoration: none;
+	display:block;
+	padding:5px 2px 5px 2px;
+	margin:10px 5px 0px 0px;
+	font-size:1.5em;
+	float:left;
+	
+}
+
+#top_navigation a:hover{
+	background:#bbb;
+	color:#000;
+}
+
+#top_navigation a.active{
+	background:#eee;
+	color: #000
+}
+
+#secondary_nav a.active{
+	background:#990000;
+	color:#fff;
+	text-decoration:none;
+	padding:2px;
+}
+
+.left{
+	float:left;
+	text-align:left;
+}
+
+.right{
+	float:right;
+	text-align:right;
+}
+
+#top_navigation:after {
+    content: "."; 
+    display: block; 
+    height: 0; 
+    clear: both; 
+    visibility: hidden;
+}
+
+#top_navigation {display: inline-block;}
+
+/* Hides from IE-mac \*/
+* html #top_navigation {height: 1%;}
+#top_navigation {display: block;}
+/* End hide from IE-mac */
+/*************************************************
+Secondary Navigation
+**************************************************/
+#secondary_nav{
+	background: url(/images/eee_fff_fade30p.gif);
+	height:30px;
+	line-height:30px;
+	font-size:1.25em;
+}
+
+#secondary_nav ul{
+	margin:0px 0px 0px 10px;
+	padding:0px;
+}
+
+#secondary_nav li{
+	list-style:none;
+	margin:0px 5px 0px 0px;
+	padding:0px;
+}
+
+/*************************************************
+Sidebar
+**************************************************/
+#sidebar{
+	width:200px;
+	border-left:1px dotted #ccc;
+	float:right;
+	padding:10px;
+}
+
+#sidebar ul{
+	margin:0px;
+	padding:0px 10px 0px 10px;
+}
+
+#sidebar li{
+	margin:0px;
+	padding:0px;
+	list-style:none;
+}
+
+
+#upload_photos_link, #create_album_link{
+	text-decoration:none;
+	font-size:2em;
+	color:blue;
+}
+
+.large_button{
+	width:175px;
+	margin:10px;
+	padding:5px;
+	font-size:1.25em;
+	background:#990000;
+	color:#fff;
+	border: 2px solid;
+	border-color:#FF0000 #330000 #330000 #FF0000;
+}
+
+/*************************************************
+Messages
+**************************************************/
+.error{
+	background:#990000;
+	padding:5px;
+	margin:5px;
+	border:2px solid #fff;
+	color:#fff;
+	text-align:center;
+}
+
+/*************************************************
+Upload
+**************************************************/
+.loading_indicator{
+	margin-left:10px;
+	position:relative;
+	top:7px;
+	display:none;
+}
+
+.upload_wrapper{
+	
+}
+
+.upload_form{
+	font-size:1.5em;
+	line-height:60px;
+}
+
+.upload_success{
+	color:green;
+	padding:2px;
+	font-size:1em;
+	margin:0px;
+}
+
+.upload_failure{
+	color:#000;
+	background:#FFFFCC;
+	border:1px solid #FFFF33;
+	padding:5px;
+	font-size:12px;
+	margin:0px 10px 0px 10px;
+}
+
+
+.upload_control input{
+	font-size:1em;
+}
+
+.upload_control label{
+}
+
+.edit_photo_form{
+	border-bottom:1px dotted #ccc;
+}
+
+.edit_photo_form textarea{
+	font-family:helvetica;
+	padding:2px;
+	font-size:.85em;
+}
+
+/*************************************************
+Main
+**************************************************/
+
+
+/*************************************************
+User Photos
+**************************************************/
+
+
+
+ul li.thumb{
+	list-style:none;
+	float:left;
+	height:325px;
+	width:270px;
+	text-align:center;
+}
+
+ul li.thumb img{
+	border:0px solid #fff;
+}
+
+#user_photo_stream{
+margin-top:10px;
+}
+
+#user_photo_stream li{
+	list-style: none;
+	float:left;
+}
+
+#user_photo_stream:after {
+    content: "."; 
+    display: block; 
+    height: 0; 
+    clear: both; 
+    visibility: hidden;
+}
+
+#user_photo_stream li div{
+	margin: 2px 5px 2px 5px;
+	border:1px solid #ccc;
+}
+
+#user_photo_stream h6{
+	padding:0px;
+	margin:2px auto 2px auto;
+	font-size:1em;
+	color:#000;
+	text-align:left;
+	width:240px;
+	height:75px;
+	overflow:auto;
+}
+
+#top_photo_stream {display: inline-block;}
+/* Hides from IE-mac \*/
+* html #user_photo_stream {height: 1%;}
+#user_photo_stream {display: block;}
+/* End hide from IE-mac */
+
+/*************************************************
+Show Photo
+**************************************************/
+.photo_size_list{
+	padding:0px;
+	margin:0px;
+	list-style:none;
+}
+
+.photo_size_list li{
+	float:left;
+	width:100px;
+	text-align:center;
+	margin-bottom:5px;
+}
+
+.photo_sizes:after {
+    content: "."; 
+    display: block; 
+    height: 0; 
+    clear: both; 
+    visibility: hidden;
+}
+
+.photo_sizes {display: inline-block;}
+/* Hides from IE-mac \*/
+* html .photo_sizes {height: 1%;}
+.photo_sizes {display: block;}
+/* End hide from IE-mac */
+
+
+/*************************************************
+PAGINATION
+**************************************************/
+
+.pagination {
+        padding: 3px;
+        margin: 3px;
+		text-align:center;
+}
+
+.pagination a {
+        padding: 2px 5px 2px 5px;
+        margin: 2px;
+        border: 1px solid #bbb;
+        text-decoration: none;
+        color: #666;
+}
+
+.pagination a:hover, .pagination a:active {
+        border: 1px solid #666;
+        color: #000;
+}
+
+.pagination span.current {
+        padding: 2px 5px 2px 5px;
+        margin: 2px;
+        border: 1px solid #330000;
+        font-weight: bold;
+        background-color: #990000;
+        color: #FFF;
+}
+
+.pagination span.disabled {
+        padding: 2px 5px 2px 5px;
+        margin: 2px;
+        border: 1px solid #eee;
+        color: #ddd;
+}

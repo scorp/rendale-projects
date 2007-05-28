@@ -1,4 +1,16 @@
-
-<%= link_to image_tag(@photo.public_filename(:thumb)), @photo.public_filename %>
-
-<ul><li><%= link_to "Return to Album", edit_album_path(@photo.album)%></li></ul>
+<div id="content">
+<div id="inner_content">
+<div class="photo_sizes">
+	<ul class="photo_size_list">
+		<li><%=link_to "tiny", @photo.public_filename(:tiny) %></li>
+		<li><%=link_to "thumbnail", @photo.public_filename(:thumb) %></li>
+		<li><%=link_to "small", @photo.public_filename(:small) %></li>
+		<li><%=link_to "large", @photo.public_filename(:large) %></li>
+		<li><%=link_to "Original", @photo.public_filename %></li>
+	</ul>
+</div>
+<%=image_tag(@photo.public_filename(:large))%>
+<h2><%= @photo.caption.nil? ? @photo.filename : @photo.caption %></h2>
+<h2><%= @photo.user.login %></h2>
+</div>
+</div>

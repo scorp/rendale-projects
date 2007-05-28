@@ -1,0 +1,13 @@
+<div id="sidebar">
+<% if logged_in? %>
+<ul>
+	<li><%=button_to "Upload Photos", user_new_photo_path(current_user), :class=>"large_button", :method=>"get" %></li>
+	<li><%=button_to "Create an Album", user_new_album_path(current_user), :class=>"large_button", :method=>"get" %></li>
+</ul>
+<h3>Albums</h3>
+
+<h3>Tags</h3>
+<% end %>
+
+
+</div>

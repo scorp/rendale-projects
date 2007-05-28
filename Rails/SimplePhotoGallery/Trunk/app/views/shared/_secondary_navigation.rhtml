@@ -1,0 +1,17 @@
+<div id="secondary_nav" class="clear_float">
+<div class="left">
+	<ul>
+		<% if logged_in? and current_user %>
+			<li><%=link_to "Mine", user_photos_path(current_user), :id=>"user_photos_secondary"%></li>
+		<% end %>
+		<li><%=link_to "Everyone's", photos_path, :id=>"photos_secondary" %></li>
+	</ul>
+</div>
+<div class="right">
+	<ul>
+		<li>search: <%=text_field :search, :term, :size=>20 %></li>
+		<li></li>
+	</ul>
+</div>
+</div>
+<%= set_active_secondary %>

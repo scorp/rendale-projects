@@ -1,5 +1,9 @@
-<div id="content">
+<div id="content" style="text-align:left">
+<div style="text-align:left;width:300px;margin:auto;padding:10px; background:#ccc; border:#eee solid 2px">
 <% form_tag sessions_path do -%>
+<% if flash[:error] %>
+<div class="error"><%=flash[:error]%></div>
+<% end %>
 <p><label for="login">Login</label><br/>
 <%= text_field_tag 'login' %></p>
 
@@ -11,4 +15,5 @@
 
 <p><%= submit_tag 'Log in' %></p>
 <% end -%>
+</div>
 </div>

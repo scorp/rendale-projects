@@ -1,20 +1,23 @@
 class PhotosController < ApplicationController
-  before_filter :login_required, :only => [ :new, :edit, :create, :destroy ]
+  before_filter :login_required, :only => [ :new, :edit, :create, :destroy ]  
+  layout "shared"
 
   # GET /photos
   # GET /photos.xml 
   def index
-    @photos = Photo.find(:all)
+    @photos = Photo.paginate :conditions=>["user_id <> ?","NULL"], :page => params[:page], :per_page => 10
+
     respond_to do |format|
       format.html # index.rhtml
-      format.xml  { render :xml => @photos.to_xml }
+      format.xml  { render :xml => @photos.to_xml(:methods => [:small_photo_url])}
+      format.rss  { render :action => "index.rxml", :layout => false }
     end
   end
 
   # GET /photos/1
   # GET /photos/1.xml
   def show
-    @photo = Photo.find(:params[:id])
+    @photo = Photo.find(params[:id])
     respond_to do |format|
       format.html # show.rhtml
       format.xml  { render :xml => @photo.to_xml }

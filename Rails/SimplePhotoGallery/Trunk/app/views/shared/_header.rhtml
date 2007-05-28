@@ -1,0 +1,13 @@
+<div id="header" class="clear_float">
+	<div class="header_left">
+	<h1>YAPA</h1>
+	<h2 class="tagline">yet another photo application</h2>
+	</div>
+	<div class="header_right">
+		<% if logged_in? %>
+			logged in as: <%= current_user.login %> | <%= link_to "Logout", session_path(1), :method => :delete, :class=>"logout_link" %>
+		<% else %>
+			<%= link_to "Login", new_session_path() %> | <%= link_to "Signup", new_user_path() %>
+		<%end%>
+	</div>
+</div>

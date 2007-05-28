@@ -1,0 +1,17 @@
+<% remote_form_for :edit_photo, :url=>user_photo_path(current_user, edit_photo.id), :html=>{:method=>"put"} do |f| %>
+<table class="edit_photo_form">
+	<tr>
+		<td><img src="<%=edit_photo.public_filename(:tiny)%>"/></td>
+		<td valign="top">
+			<div class="upload_success">Photo Upload Success!</div>
+			<label for="edit_photo_caption">
+				Add a caption to this photo:
+			</label>
+			<div>
+				<%=f.text_area :caption, :rows=>2 %>
+				<%=submit_tag "Save" %>
+			</div>
+		</td>		
+	</tr>
+</table>
+<% end %>

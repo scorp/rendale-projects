@@ -1,0 +1,16 @@
+<div id="content">
+<div id="inner_content">
+<div class="photo_sizes">
+	<ul class="photo_size_list">
+		<li><%=link_to "tiny", @photo.public_filename(:tiny).downcase, :target=>"_blank" %></li>
+		<li><%=link_to "thumbnail", @photo.public_filename(:thumb).downcase,:target=>"_blank" %></li>
+		<li><%=link_to "small", @photo.public_filename(:small).downcase,:target=>"_blank" %></li>
+		<li><%=link_to "large", @photo.public_filename(:large).downcase,:target=>"_blank" %></li>
+		<li><%=link_to "Original", @photo.public_filename.downcase,:target=>"_blank" %></li>
+	</ul>
+</div>
+<%=image_tag(@photo.public_filename(:large))%>
+<h2><%= @photo.caption.nil? ? @photo.filename : @photo.caption %></h2>
+<h4>Uploaded By: <%= @photo.user.login %></h4>
+</div>
+</div>

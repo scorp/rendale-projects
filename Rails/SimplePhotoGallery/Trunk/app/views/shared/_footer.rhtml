@@ -1,0 +1,9 @@
+<div id="footer">
+<% if params[:controller] == "user_photos" %>
+<%= link_to image_tag("/images/feed-icon-16x16.png"), formatted_user_photos_path(@user, :rss) %> 
+<%= link_to "#{@user.login}'s Photos RSS", formatted_user_photos_path(@user, :rss) %> 
+<% else %>
+<%= link_to image_tag("/images/feed-icon-16x16.png"), formatted_photos_path(:rss) %> 
+<%= link_to "YAPA Photos RSS", formatted_photos_path(:rss) %> 
+<% end %>
+</div>

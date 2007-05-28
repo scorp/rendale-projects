@@ -1,0 +1,19 @@
+xml.instruct! :xml, :version=>"1.0" 
+xml.rss(:version=>"2.0"){
+  xml.channel{
+    xml.title(@user.login + "'s Photo Stream")
+    xml.link(user_photos_url(@user))
+    xml.description("YAPA PhotoStream")
+    xml.language('en-us')
+      for photo in @photos
+        xml.item do
+          xml.title(photo.filename)
+          xml.category("Photo Stream")           
+          xml.description("<div>" + image_tag(photo.public_filename(:small)) + "</div><div>" + (photo.caption || "") + "</div>")           
+          xml.pubDate(photo.created_at)
+          xml.link(user_photo_url(@user, photo))
+          xml.guid(image_tag(photo.public_filename(:small)))
+        end
+      end
+  }
+}
