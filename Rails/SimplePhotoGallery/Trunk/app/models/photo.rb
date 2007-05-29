@@ -24,12 +24,24 @@ module Technoweenie # :nodoc:
           size = size.first if size.is_a?(Array) && size.length == 1 && !size.first.is_a?(Fixnum)
           if size.is_a?(Fixnum) || (size.is_a?(Array) && size.first.is_a?(Fixnum))
             size = [size, size] if size.is_a?(Fixnum)
-            img.crop_resized!(*size)
+            img = kludge_crop_resized(img, *size)
           else
             img.change_geometry(size.to_s) { |cols, rows, image| image.crop_resized!(cols, rows) }
           end
           self.temp_path = write_to_temp_file(img.to_blob)
         end
+        
+        def kludge_crop_resized(img, ncols, nrows)
+            img2 = img.copy
+            if ncols != img2.columns || nrows != img2.rows
+                scale = [ncols/img2.columns.to_f, nrows/img2.rows.to_f].max
+                img2 = img2.resize(scale*img2.columns+0.5, scale*img2.rows+0.5)
+            end
+            img2 = img2.crop(Magick::CenterGravity, ncols, nrows) if ncols != img2.columns || nrows != img2.rows
+            img2
+        end
+        
+        
       end
     end
   end

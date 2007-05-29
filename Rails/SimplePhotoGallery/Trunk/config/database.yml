@@ -28,6 +28,7 @@ test:
 
 production:
   adapter: mysql
-  database: SPG
-  username: root
-  password: 
+  host: db.rendale.com
+  database: yapa
+  username: yapa
+  password: tr1vial
