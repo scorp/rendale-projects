@@ -5,7 +5,6 @@ layout "shared"
 
   def index
     @photos = @user.photos.paginate :page => params[:page], :per_page => 10, :order=>"id desc"
-
     respond_to do |format|
       format.html # index.rhtml
       format.xml  { render :xml => @photos.to_xml(:methods => [:small_photo_url])}
@@ -19,7 +18,6 @@ layout "shared"
 
   def create
     @photo = current_user.photos.build(params[:photo])
-
     respond_to do |format|
       if @photo.save
         flash[:notice] = 'Photo was successfully created.'
