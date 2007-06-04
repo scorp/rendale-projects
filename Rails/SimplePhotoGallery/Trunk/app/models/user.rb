@@ -2,12 +2,13 @@ require 'digest/sha1'
 class User < ActiveRecord::Base
   
   has_many :photos
-  has_many :albums
-  
+  has_one :avatar
+  has_many :albums  
   
   # Virtual attribute for the unencrypted password
   attr_accessor :password
-
+  attr_accessor :uploaded_data
+  
   validates_presence_of     :login, :email
   validates_presence_of     :password,                   :if => :password_required?
   validates_presence_of     :password_confirmation,      :if => :password_required?
@@ -15,9 +16,14 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password,                   :if => :password_required?
   validates_length_of       :login,    :within => 3..40
   validates_length_of       :email,    :within => 3..100
+  validates_confirmation_of :email
   validates_uniqueness_of   :login, :email, :case_sensitive => false
   before_save :encrypt_password
   before_create :make_activation_code 
+  
+  def email_confirmation
+    email
+  end
   
   # Activates the user in the database.
   def activate

@@ -1,0 +1,2 @@
+class Avatar < ImageAttachment
+end

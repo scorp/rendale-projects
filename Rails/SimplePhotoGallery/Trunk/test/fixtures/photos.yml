@@ -1,5 +1,19 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-one:
+quentin_one:
   id: 1
-two:
+  parent_id: NULL
+  content_type: "image/jpeg"
+  filename: "DSC01910.JPG"
+  thumbnail: "NULL"
+  size: 149390
+  width: 640
+  height: 480
+  user_id: 2
+  album_id: NULL
+  title: NULL
+  caption: "Caption"
+  created_at:
+      
+quentin_two:
   id: 2
+  user_id: 2

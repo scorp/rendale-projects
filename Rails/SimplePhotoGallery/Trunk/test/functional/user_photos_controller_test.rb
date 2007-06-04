@@ -6,7 +6,7 @@ context  "A controller for User Photos" do
 
   setup do
     user = users(:quentin)
-    @controller.stubs(:current_user).returns(user)
+    #@controller.stubs(:current_user).returns(user)
   end
   
   specify "should route by user" do
@@ -17,11 +17,31 @@ context  "A controller for User Photos" do
     assert_routing('users/2/photos', options)
   end
   
-  specify "should show paginated list of user photos" do
-    get :index, :user_id => @controller.current_user
+  specify "should require authentication for update access" do
+    post :create, :user_id => users(:aaron)
+    assert_redirected_to :controller=>"sessions", :action=>"new"
     
+    # get :edit, :user_id => users(:aaron), :photo_id=> photos(:quentin_one)
+    # assert_redirected_to :controller=>"sessions", :action=>"new"
+
+    # put :update, :user_id => users(:aaron), :photo_id=> photos(:quentin_one)
+    # assert_redirected_to :controller=>"sessions", :action=>"new"
+
+    get :new, :user_id => users(:aaron)
+    assert_redirected_to :controller=>"sessions", :action=>"new"
+
+    # delete :destroy, :user_id => users(:aaron), :photo_id=> photos(:quentin_one)
+    # assert_redirected_to :controller=>"sessions", :action=>"new"
   end
   
+  specify "should show paginated list of user photos" do
+    get :index, :user_id => users(:aaron)    
+    assert_response :success    
+  end
+    
+  xspecify "should provide rss feed by user" do
+    
+  end
   
 end
 

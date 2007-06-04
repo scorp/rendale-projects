@@ -101,6 +101,50 @@ h3{
 	text-decoration:none;
 }
 
+fieldset{
+	text-align:left;
+	margin:auto;
+	padding:10px; 
+	background:#ccc; 
+	border:#eee solid 2px
+}
+
+fieldset div{
+	margin-bottom:10px;
+}
+
+legend{
+	font-size: 1.5em;
+	background:#990000;
+	color:#fff;
+	padding:3px;
+	border:#ff0000 2px solid;
+}
+
+.errorExplanation{
+	background:#ffcccc;
+	border:2px solid #ff9999;
+	padding:5px;
+	margin-bottom:10px;
+}
+
+.errorExplanation li{
+	margin-left:20px;
+}
+
+.notice{
+	background:#99cc66;
+	border:2px solid #669933;
+	color:#336633;
+	padding:5px;
+	margin-bottom:10px;
+}
+
+.avatar{
+	border:3px solid #fff;
+	margin:10px 0px 10px 0px;
+}
+
 /*************************************************
 Footer
 **************************************************/

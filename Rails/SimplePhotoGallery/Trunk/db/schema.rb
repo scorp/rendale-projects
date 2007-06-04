@@ -2,7 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 3) do
+ActiveRecord::Schema.define(:version => 4) do
 
   create_table "albums", :force => true do |t|
     t.column "user_id",     :integer
@@ -12,7 +12,7 @@ ActiveRecord::Schema.define(:version => 3) do
     t.column "updated_at",  :datetime
   end
 
-  create_table "photos", :force => true do |t|
+  create_table "image_attachments", :force => true do |t|
     t.column "parent_id",    :integer
     t.column "content_type", :string
     t.column "filename",     :string
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 3) do
     t.column "size",         :integer
     t.column "width",        :integer
     t.column "height",       :integer
+    t.column "type",         :string
     t.column "user_id",      :integer
     t.column "album_id",     :integer
     t.column "title",        :string
@@ -38,6 +39,11 @@ ActiveRecord::Schema.define(:version => 3) do
     t.column "remember_token_expires_at", :datetime
     t.column "activation_code",           :string,   :limit => 40
     t.column "activated_at",              :datetime
+    t.column "first_name",                :string
+    t.column "last_name",                 :string
+    t.column "city",                      :string
+    t.column "state",                     :string
+    t.column "about",                     :text
   end
 
 end

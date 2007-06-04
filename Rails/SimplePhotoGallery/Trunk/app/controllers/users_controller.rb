@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
+  before_filter :login_required, :except=>[:new, :create]
   layout "shared"
   
   # render new.rhtml
   def new
+    
   end
 
   def create
@@ -25,11 +27,24 @@ class UsersController < ApplicationController
   end
   
   def show
-    
   end
   
   def edit
-    
+    @user = current_user
+    @avatar = current_user.avatar || current_user.build_avatar
+  end
+  
+  def update
+    @user = current_user    
+    @avatar = current_user.avatar || current_user.build_avatar
+    respond_to do |format|
+      if @user.update_attributes(params[:user]) && @avatar.update_attributes(params[:avatar])
+          flash[:notice] = "Your user information has been saved."
+          format.html {redirect_to edit_user_path(current_user)}
+      else
+          format.html {render :action => "edit"}
+      end
+    end
   end
 
 end

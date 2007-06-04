@@ -1,6 +1,6 @@
 class CreatePhotos < ActiveRecord::Migration
   def self.up
-    create_table :photos do |t|
+    create_table :image_attachments do |t|
             t.column :parent_id, :integer
             t.column :content_type, :string
             t.column :filename, :string    
@@ -8,6 +8,7 @@ class CreatePhotos < ActiveRecord::Migration
             t.column :size, :integer
             t.column :width, :integer
             t.column :height, :integer
+            t.column :type, :string
             t.column :user_id, :integer
             t.column :album_id,  :integer
             t.column :title, :string

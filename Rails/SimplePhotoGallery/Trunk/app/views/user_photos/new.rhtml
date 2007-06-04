@@ -1,24 +1,24 @@
 <div id="content">
-<div id="uploader" style="text-align:left">
-<h2>Select some photos to upload</h2>
-<%= error_messages_for :photo %>
-<% 
-1.upto(5) do | i |
-%>
-<div id="upload_wrapper_<%=i%>" class="upload_control">
-	<iframe id="upload_target_<%=i%>" name="upload_target_<%=i%>" class="upload_frame"></iframe>	
-	<% form_for(:photo, :url => user_photos_path, :html => { :multipart => true, :target=>'upload_target_' + i.to_s}) do |f| -%>
-		<p class="upload_form">
-		    <label for="photo_uploaded_data" class="upload_form_label"><%=i%>:</label>
-		    <%= f.file_field :uploaded_data, :size=>30, :id=>"upload_control_#{i}", :class=>"upload_form_input" %><img src="/images/loading.gif" id="loading_<%=i%>" class="loading_indicator" />
-		</p>
+	<div id="uploader" style="text-align:left">
+	<h2>Select some photos to upload</h2>
+	<%= error_messages_for :photo %>
 	<% 
-	end
+	1.upto(5) do | i |
 	%>
-</div>
-<% end %>
-	<p>
-	<%= button_to_function 'Upload Photos', "YAPA.page_controller.upload_photos()" %>&nbsp;<%=link_to "Clear Form", :url=>user_new_photo_path(current_user)%>
-	</p>
-</div>
+	<div id="upload_wrapper_<%=i%>" class="upload_control">
+		<iframe id="upload_target_<%=i%>" name="upload_target_<%=i%>" class="upload_frame"></iframe>	
+		<% form_for(:photo, :url => user_photos_path, :html => { :multipart => true, :target=>'upload_target_' + i.to_s}) do |f| -%>
+			<div class="upload_form">
+			    <label for="photo_uploaded_data" class="upload_form_label"><%=i%>:</label>
+			    <%= f.file_field :uploaded_data, :size=>30, :id=>"upload_control_#{i}", :class=>"upload_form_input" %><img src="/images/loading.gif" id="loading_<%=i%>" class="loading_indicator" />
+			</div>
+		<% 
+		end
+		%>
+	</div>
+	<% end %>
+		<div>
+		<%= button_to_function 'Upload Photos', "YAPA.page_controller.upload_photos()" %>&nbsp;<%=link_to "Clear Form", :url=>user_new_photo_path(current_user)%>
+		</div>
+	</div>
 </div>
