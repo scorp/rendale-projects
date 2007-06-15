@@ -1,19 +1,10 @@
 <div id="sidebar">
-<% begin %>
-<%= image_tag(@user.avatar.public_filename(:tiny), :class=>"avatar") %>
-<%= @user.login%>'s photos
-<% rescue %>
-<% end %>
-	
-<% if logged_in? %>
-<ul>
-	<li><%=button_to "Upload Photos", user_new_photo_path(current_user), :class=>"large_button", :method=>"get" %></li>
-	<li><%=button_to "Create an Album", user_new_album_path(current_user), :class=>"large_button", :method=>"get" %></li>
-</ul>
-<h3>Albums</h3>
+	<% user_area do %>
+	<%= display_avatar %>	
+	<%=button_to "Upload Photos", user_new_photo_path(current_user), :class=>"large_button", :method=>"get" %>
+	<%=button_to "Create an Album", user_new_album_path(current_user), :class=>"large_button", :method=>"get" %>
+	<h3>Albums</h3>
 
-<h3>Tags</h3>
-<% end %>
-
-
+	<h3>Tags</h3>
+	<% end %>
 </div>

@@ -253,6 +253,7 @@ Secondary Navigation
 Sidebar
 **************************************************/
 #sidebar{
+	background:#eee;
 	width:200px;
 	border-left:1px dotted #ccc;
 	float:right;
@@ -279,7 +280,7 @@ Sidebar
 
 .large_button{
 	width:175px;
-	margin:10px;
+	margin-bottom:5px;
 	padding:5px;
 	font-size:1.25em;
 	background:#990000;
@@ -376,7 +377,7 @@ ul li.thumb img{
 	border:0px solid #fff;
 }
 
-#user_photo_stream{
+#user_photo_stream_stream{
 margin-top:10px;
 }
 
@@ -394,8 +395,8 @@ margin-top:10px;
 }
 
 #user_photo_stream li div{
-	margin: 2px 5px 2px 5px;
-	border:1px solid #ccc;
+	xmargin: 2px 5px 2px 5px;
+	xborder:1px solid #ccc;
 }
 
 #user_photo_stream h6{

@@ -53,7 +53,10 @@ layout "shared"
   end
   
   def destroy
-  
+    @photo = Photo.find_by_user_id_and_id(params[:user_id], params[:id])
+    @photo.destroy
+    flash[:notice] = 'Photo has been deleted'
+    redirect_to user_photos_path(current_user)
   end
 
   def find_user

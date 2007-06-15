@@ -2,7 +2,13 @@
 module ApplicationHelper
 
 
+def user_area(&block)
+  concat content_tag(:div, capture(&block), :class=>"user_area"), block.binding if logged_in?
+end
 
+def display_avatar
+    image_tag @user.avatar.public_filename(:tiny), :class=>"avatar" rescue image_tag "/images/default_avatar.gif", :class => "avatar"
+end
 
 
 
