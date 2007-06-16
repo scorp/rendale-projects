@@ -1,0 +1,77 @@
+body{
+	background:#ccc;
+	font-family:helvetica, arial, sans-serif;
+}
+
+h1{
+	margin:auto; 
+	width:630px;
+	text-align:left;
+	font-size:1.5em;
+	color:#333;
+	margin-top:30px;
+}
+	
+
+div#animated_sim{
+	margin:auto;
+	text-align:center;
+	padding:10px;
+	border:#999 5px solid;
+	background:#333;
+	font-size:3em;
+	color:#333;
+	width:850px;
+	display:none;
+}
+
+div#sim_wrapper{
+	width:90%;
+	margin:auto;
+}
+
+div.position{
+	float:left;
+	height:20px;
+	border:2px solid #fff;
+	margin:2px;
+}
+
+div.full{
+	background:#36DEFF;
+}
+
+div#controls{
+	width:600px;
+	background:#fff;
+	border:#999 5px solid;
+	margin:auto;
+	margin-bottom:10px;
+	padding:10px;
+}
+
+div#controls td{
+	font-size:1.25em;
+}
+
+input{
+	font-size:.9em;
+}
+
+div#explanation{
+	display:none;
+	width:850px;
+	background:#fff;
+	border:#999 5px solid;
+	margin:auto;
+	margin-bottom:10px;
+	margin-top:10px;
+	padding:10px;	
+}
+
+div.explanation_row{
+	color:#666;
+	font-size:2.2em;
+	text-align:center;
+	border-bottom:1px solid #AFF2FF;
+}
