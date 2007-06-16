@@ -67,11 +67,21 @@ div#explanation{
 	margin-bottom:10px;
 	margin-top:10px;
 	padding:10px;	
+	text-align:center;
 }
 
 div.explanation_row{
 	color:#666;
 	font-size:2.2em;
-	text-align:center;
 	border-bottom:1px solid #AFF2FF;
+	height:30px;
+}
+
+div.exp_position{
+	font-size:.85em;
+	text-align:center;
+	float:left;
+	width:20px;
+	height:26px;
+	margin:2px;
 }

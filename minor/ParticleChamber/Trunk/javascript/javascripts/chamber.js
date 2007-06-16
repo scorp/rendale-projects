@@ -118,31 +118,35 @@ Event.observe(window, 'load', function(){
 		var particle_chamber = new Zenbe.ParticleChamber
 		particle_chamber.prepare($("particle_speed").value,$("initial_string").value ).animate()
 		var explanation = ""
-		
+		$("explanation").setStyle(
+			{display: "block"}
+		).update("")
 		particle_chamber.states.each(function(state,i){	
-			explanation += "<div class=\"explanation_row\">" + state + "</div>"
 			setTimeout(
 				function(){
 					$("animated_sim").setStyle({display: "block"})
 					var positions = state.toArray()
 					var html = "<div id=\"sim_wrapper\" style=\"width:" + positions.length * 28 + "px\">"
+					var state_row = ""
 					positions.each(function(position,i){
 						if (position == "X")
 						{
 							html += "<div class=\"position full\" style=\"width:20px\"></div>"						
+							state_row += "<div class=\"exp_position\" style=\"width:20px\">X</div>"
 						}
 						else
 						{
 							html += "<div class=\"position empty\" style=\"width:20px\"></div>"						
+							state_row += "<div class=\"exp_position\" style=\"width:20px\">.</div>"						
 						}
 					})
 					html += "</div><div style=\"clear:both\"></div>"
+					explanation = "<div class=\"explanation_row\"><div style=\"height:30px; margin:auto; width:" + positions.length * 24 + "px\">" + state_row + "</div></div>"
+					$("explanation").setStyle(
+						{display: "block"}
+					).innerHTML += explanation		
 					$("animated_sim").innerHTML=html
 				},i*$("simulation_speed").value)
 		})
-				
-		$("explanation").setStyle(
-			{display: "block"}
-		).update(explanation)		
 	})
 })
