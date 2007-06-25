@@ -1,0 +1,58 @@
+html, body{
+	font-family:helvetica, arial, sans-serif;
+	margin:0 0 0 0;
+	padding: 0 0 0 0;
+	color:#fff;
+}
+
+body{
+}
+
+#container{
+	text-align:center;
+	
+}
+
+h1{
+	color:#000;
+	padding:5px;
+	margin:0px 0px 10px 0px;
+	font-size:2em;
+	text-align:center;
+}
+
+.description{
+	padding:5px;
+	margin:5px;
+	font-size:14px;
+	color:#000;
+}
+
+.gallery_wrapper{
+	width:600px;
+	margin:auto;
+}
+
+.thumbnail img{
+	border:1px solid #333;
+	padding:3px;
+	margin:5px;
+}
+
+.thumbnail{
+	float:left;
+}
+
+.button{
+	font-size:18px;
+}
+
+#upload_form{
+	width:500px;
+	margin:auto;
+	background:#ccc;
+	border:3px solid #000;
+	color:#000;
+	margin-top:40px;
+	font-weight:bold;
+}
