@@ -1,0 +1,39 @@
+#!/usr/bin/env ruby
+
+RAILS_ENV = ARGV[1] || 'development'
+
+require File.dirname(__FILE__) + '/../config/environment.rb'
+
+if RAILS_ENV == "test"
+  SLEEP_TIME = 10
+else
+  SLEEP_TIME = 60
+end
+
+class MailFetcher < Daemon::Base
+  @config = YAML.load(IO.read("#{RAILS_ROOT}/config/mail.yml"))
+  
+  def self.start
+    puts "Starting Mail Fetcher Daemon"
+    
+    loop do
+      pop = Net::POP3.new(@config[RAILS_ENV]['server'])
+      pop.enable_ssl(OpenSSL::SSL::VERIFY_NONE) if @config[RAILS_ENV]['ssl']
+      pop.start(@config[RAILS_ENV]['username'], @config[RAILS_ENV]['password'])
+      unless pop.mails.empty?
+        pop.each_mail do |m|
+          
+	  #IncomingMailHandler.receive(m.pop)
+          m.delete
+        end
+      end
+      pop.finish
+      
+      sleep(SLEEP_TIME)
+    end
+  end
+  
+  def self.stop
+    puts "Stopping Mail Fetcher Daemon"
+  end
+end
