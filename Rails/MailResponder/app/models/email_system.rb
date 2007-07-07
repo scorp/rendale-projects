@@ -28,19 +28,24 @@ class EmailSystem < ActionMailer::Base
     log = self.class.logger
     inbound_mail = InboundMail.new(mail)
     begin
-       user = User.find(:first, :conditions=>["query_address = ?", inbound_mail.to[0].to_s.match(/(^.*)__(.*)@/)[1]])
-       if user.crypted_password == user.encrypt(inbound_mail.to.to_s.match(/(^.*)__(.*)@/)[2])
-         # if inbound_mail.subject.scan(/\?/)
-         # keywords = inbound_mail.subject.gsub(/\?/,"")
-         # facts = user.facts.find(:all, conditions=>["keywords = ?", keywords])
-         # log << facts.text
-         # else
-         user.facts.build(:keywords=>inbound_mail.subject, :text=>inbound_mail.text).save
-         # end
-       end
+       user = User.find(:first, :conditions=>["dropbox = ?", inbound_mail.to[0].to_s.match(/(^.*)@/)[1]])
+         if inbound_mail.subject.include?("?")
+           question = inbound_mail.subject.gsub(/\?/,"")
+           fact = user.facts.find(:first, :conditions=>["question = ?", question])
+           fact.email_to_owner
+         else
+           user.facts.build(:question=>inbound_mail.subject, :answer=>inbound_mail.text).save
+         end
      rescue Exception => error
        log << error.to_s + "\n***************************\n" + error.backtrace.join
     end
   end
-
+  
+  
+  def answer(recipient, fact)
+     recipients recipient
+     from       "answermonkey@rendale.com"
+     subject    fact.question
+     body       :fact=>fact
+  end
 end

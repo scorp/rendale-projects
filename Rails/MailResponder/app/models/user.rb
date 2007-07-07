@@ -1,6 +1,5 @@
 require 'digest/sha1'
 class User < ActiveRecord::Base
-
   has_many :facts, :dependent=>:destroy
 
   # Virtual attribute for the unencrypted password
@@ -14,8 +13,7 @@ class User < ActiveRecord::Base
   validates_length_of       :login,    :within => 3..40
   validates_length_of       :email,    :within => 3..100
   validates_uniqueness_of   :login, :email, :case_sensitive => false
-  before_save :encrypt_password
-  
+  before_save               :encrypt_password
   
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   def self.authenticate(login, password)
@@ -73,6 +71,5 @@ class User < ActiveRecord::Base
     def password_required?
       crypted_password.blank? || !password.blank?
     end
-
     
 end

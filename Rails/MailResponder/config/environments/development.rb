@@ -18,4 +18,14 @@ config.action_view.cache_template_extensions         = false
 config.action_view.debug_rjs                         = true
 
 # Don't care if the mailer can't send
-#config.action_mailer.raise_delivery_errors = false
+config.action_mailer.raise_delivery_errors = true
+
+ActionMailer::Base.delivery_method = :smtp
+ActionMailer::Base.smtp_settings = {
+:address => "mail.rendale.com",
+:port => "587",
+:domain => "rendale.com",
+:authentication => :login,
+:user_name => "m2998439",
+:password => "tr1vial"
+}

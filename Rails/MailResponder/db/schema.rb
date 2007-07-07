@@ -6,8 +6,8 @@ ActiveRecord::Schema.define(:version => 2) do
 
   create_table "facts", :force => true do |t|
     t.column "user_id",  :integer
-    t.column "keywords", :string
-    t.column "text",     :text
+    t.column "question", :string
+    t.column "answer",   :text
   end
 
   create_table "users", :force => true do |t|
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(:version => 2) do
     t.column "updated_at",                :datetime
     t.column "remember_token",            :string
     t.column "remember_token_expires_at", :datetime
-    t.column "query_address",             :string
+    t.column "dropbox",                   :string
   end
 
 end

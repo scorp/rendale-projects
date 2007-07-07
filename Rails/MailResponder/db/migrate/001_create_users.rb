@@ -9,7 +9,7 @@ class CreateUsers < ActiveRecord::Migration
       t.column :updated_at,                :datetime
       t.column :remember_token,            :string
       t.column :remember_token_expires_at, :datetime
-      t.column :query_address,             :string
+      t.column :dropbox,                   :string
     end
   end
 
