@@ -1,0 +1,59 @@
+html, body{
+  height:100%;
+}
+
+.page {
+  height:100%;
+  position:relative;
+}
+
+.content_window{
+  height:600px;
+  width:850px;
+  position:absolute;
+  top:50%;
+  left:50%;
+  margin-top:-300px;
+  margin-left:-425px;
+}
+
+.main{
+  float:left;
+  height:600px;
+  width:530px;
+}
+
+.secondary{
+  float:left;
+  padding-left:5px;
+}
+
+/*splash page*/
+div#main_splash{
+  background: url(../images/closeup1.gif) no-repeat 100px 0px;
+}
+
+.secondary #bg1{
+  padding-bottom:5px;
+}
+
+.secondary #bg2{
+  padding-bottom:5px;
+}
+
+.main ul.navigation{
+   position:absolute;
+   top:200px;
+   right:0px;
+}
+
+.main ul.navigation li{
+  list-style: none;
+}
+
+.main ul.navigation li a{
+  text-decoration:none;
+  font-weight:bold;
+  font-size:18px;
+  line-height:24px;
+}
