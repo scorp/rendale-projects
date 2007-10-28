@@ -62,3 +62,17 @@ ul.top_navigation li a{
   font-size:16px;
   line-height:24px;
 }
+
+body.schedule table{
+  width:500px;
+  font-size:14px;
+  background:#eee;
+}
+
+body.schedule table td.day{
+  width:150px;
+}
+
+body.schedule table td.time{
+  width:150px;
+}
