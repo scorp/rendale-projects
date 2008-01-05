@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  goal_id: 
+  value: 
+  description: MyText
+
+two:
+  goal_id: 
+  value: 
+  description: MyText

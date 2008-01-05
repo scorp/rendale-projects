@@ -1,0 +1,9 @@
+  [4;36;1mSQL (0.019209)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.003017)[0m   [0mCREATE TABLE "schema_info" (version integer)[0m
+  [4;36;1mSQL (0.003052)[0m   [0;1mINSERT INTO "schema_info" (version) VALUES(0)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table "schema_info" already exists: CREATE TABLE "schema_info" (version integer)[0m
+  [4;36;1mSQL (0.000407)[0m   [0;1mSELECT * FROM schema_info[0m
+  [4;35;1mSQL (0.000311)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
